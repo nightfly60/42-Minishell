@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/24 16:21:01 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/05/28 12:39:17 by aabouyaz         ###   ########.fr       */
+/*   Created: 2025/04/24 16:13:12 by edurance          #+#    #+#             */
+/*   Updated: 2025/07/13 18:37:51 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ static int	ft_isspace(char c)
 long	ft_atoi(const char *nptr)
 {
 	int		i;
-	long	res;
 	int		signe;
+	long	res;
 
 	i = 0;
 	res = 0;
@@ -33,7 +33,7 @@ long	ft_atoi(const char *nptr)
 		i++;
 	if (nptr[i] == '-')
 	{
-		signe = -1;
+		signe = signe * -1;
 		i++;
 	}
 	else if (nptr[i] == '+')

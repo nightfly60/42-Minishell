@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_arrlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/24 18:34:27 by edurance          #+#    #+#             */
-/*   Updated: 2025/07/13 18:41:34 by aabouyaz         ###   ########.fr       */
+/*   Created: 2025/06/17 13:54:45 by edurance          #+#    #+#             */
+/*   Updated: 2025/06/17 13:56:18 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(const char *src)
+int	ft_arrlen(char **tab)
 {
-	char	*str;
-	int		i;
+	int	i;
 
 	i = 0;
-	str = malloc(sizeof(char) * ft_strlen(src) + 1);
-	if (!str)
-		return (NULL);
-	while (src[i])
-	{
-		str[i] = src[i];
+	while (tab[i])
 		i++;
-	}
-	str[i] = '\0';
-	return (str);
+	return (i);
 }

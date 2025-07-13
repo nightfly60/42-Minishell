@@ -5,28 +5,28 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/26 13:13:27 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/04/26 13:28:01 by aabouyaz         ###   ########.fr       */
+/*   Created: 2025/04/26 11:48:40 by edurance          #+#    #+#             */
+/*   Updated: 2025/07/13 18:38:51 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	countlen(int nbr)
+static int	nb_len(int n)
 {
-	long	n;
+	long	nb;
 	int		count;
 
+	nb = (long)n;
 	count = 0;
-	n = (long)nbr;
-	if (n <= 0)
+	if (nb <= 0)
 	{
 		count++;
-		n = -n;
+		nb = -nb;
 	}
-	while (n > 0)
+	while (nb > 0)
 	{
-		n = n / 10;
+		nb = nb / 10;
 		count++;
 	}
 	return (count);
@@ -34,29 +34,29 @@ int	countlen(int nbr)
 
 char	*ft_itoa(int n)
 {
-	long	nbr;
 	char	*res;
-	int		lenn;
+	long	nb;
+	int		nlen;
 
-	lenn = countlen(n);
-	nbr = (long)n;
-	res = malloc(sizeof(char) * (lenn + 1));
+	nlen = nb_len(n);
+	nb = (long)n;
+	res = malloc(sizeof(char) * nlen + 1);
 	if (!res)
 		return (NULL);
-	if (nbr < 0)
+	if (nb == 0)
+		res[0] = '0';
+	if (nb < 0)
 	{
 		res[0] = '-';
-		nbr = -nbr;
+		nb = -nb;
 	}
-	res[lenn] = '\0';
-	lenn--;
-	if (nbr == 0)
-		res[0] = '0';
-	while (lenn >= 0 && nbr != 0)
+	res[nlen] = '\0';
+	nlen--;
+	while (nb > 0)
 	{
-		res[lenn] = nbr % 10 + '0';
-		nbr = nbr / 10;
-		lenn--;
+		res[nlen] = nb % 10 + '0';
+		nb = nb / 10;
+		nlen--;
 	}
 	return (res);
 }

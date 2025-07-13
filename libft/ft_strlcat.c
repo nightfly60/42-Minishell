@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/24 14:06:32 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/04/26 14:18:06 by aabouyaz         ###   ########.fr       */
+/*   Created: 2025/04/24 14:06:54 by edurance          #+#    #+#             */
+/*   Updated: 2025/07/13 18:41:48 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ unsigned long	ft_strlcat(char *dst, const char *src, unsigned long siz)
 {
 	unsigned long	i;
 	unsigned long	j;
-	unsigned long	destlen;
+	unsigned long	lendest;
 
 	i = ft_strlen(dst);
 	j = 0;
-	destlen = i;
-	if (siz <= destlen)
-		return (ft_strlen(src) + siz);
+	lendest = i;
+	if (siz <= lendest)
+		return (siz + ft_strlen(src));
 	while (i < siz - 1 && src[j])
 	{
 		dst[i] = src[j];
@@ -30,5 +30,5 @@ unsigned long	ft_strlcat(char *dst, const char *src, unsigned long siz)
 		j++;
 	}
 	dst[i] = '\0';
-	return (ft_strlen(src) + destlen);
+	return (lendest + ft_strlen(src));
 }

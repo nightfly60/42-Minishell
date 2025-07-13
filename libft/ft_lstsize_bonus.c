@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/26 17:38:30 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/04/26 17:41:03 by aabouyaz         ###   ########.fr       */
+/*   Created: 2025/04/26 17:42:37 by edurance          #+#    #+#             */
+/*   Updated: 2025/07/13 18:39:35 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 int	ft_lstsize(t_list *lst)
 {
-	int	i;
+	int	count;
 
-	i = 0;
+	count = 0;
 	while (lst)
 	{
-		i++;
 		lst = lst->next;
+		count++;
 	}
-	return (i);
+	return (count);
 }

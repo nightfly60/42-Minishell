@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/24 14:56:05 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/04/26 14:18:28 by aabouyaz         ###   ########.fr       */
+/*   Created: 2025/04/24 14:55:29 by edurance          #+#    #+#             */
+/*   Updated: 2025/07/13 18:42:28 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,12 @@
 
 char	*ft_strrchr(const char *s, int c)
 {
-	unsigned long	i;
+	unsigned int	i;
 	char			*res;
 
-	res = (char *)s;
-	if (c >= 128)
-		c = c % 128;
+	c = c % 128;
 	i = ft_strlen(s) + 1;
+	res = (char *)s;
 	while (i > 0)
 	{
 		i--;

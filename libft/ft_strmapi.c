@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/26 13:28:39 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/04/26 13:31:33 by aabouyaz         ###   ########.fr       */
+/*   Created: 2025/04/26 12:39:56 by edurance          #+#    #+#             */
+/*   Updated: 2025/07/13 18:41:58 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,15 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	unsigned int	i;
 	char			*res;
 
+	i = 0;
 	res = malloc(sizeof(char) * ft_strlen(s) + 1);
 	if (!res)
 		return (NULL);
-	i = 0;
 	while (s[i])
 	{
 		res[i] = f(i, s[i]);
 		i++;
 	}
-	res[i] = 0;
+	res[i] = '\0';
 	return (res);
 }

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/24 19:15:05 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/07/09 12:40:49 by aabouyaz         ###   ########.fr       */
+/*   Created: 2025/04/25 13:53:30 by edurance          #+#    #+#             */
+/*   Updated: 2025/07/13 18:44:51 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,18 +49,21 @@ int					ft_tolower(int c);
 int					ft_toupper(int c);
 char				*ft_substr(char const *s, unsigned int start,
 						unsigned long len);
-char				*ft_strjoin(const char *s1, const char *s2);
+char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strtrim(char const *s1, char const *set);
 char				**ft_split(char const *s, char c);
 char				*ft_itoa(int n);
 char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void				ft_striteri(char *s, void (*f)(unsigned int, char *));
-void				ft_putchar_fd(char c, int fd);
+int					ft_putchar_fd(char c, int fd);
+int					ft_putstr_fd(char *s, int fd);
 void				ft_putendl_fd(char *s, int fd);
-void				ft_putnbr_fd(int n, int fd);
-void				ft_putstr_fd(char *s, int fd);
+int					ft_putnbr_fd(int n, int fd);
+void				ft_freeall(char **res);
+int					ft_arrlen(char **tab);
+int					ft_strcmp(char *s1, char *s2);
 
-// listes chainees
+// Libft bonus (listes chainees)
 typedef struct s_list
 {
 	void			*content;
@@ -68,25 +71,22 @@ typedef struct s_list
 	struct s_list	*previous;
 }					t_list;
 
-t_list				*ft_lstnew(void *content);
+t_list				*ft_lstnew(void *pomme);
 void				ft_lstadd_front(t_list **lst, t_list *new);
 int					ft_lstsize(t_list *lst);
 t_list				*ft_lstlast(t_list *lst);
 void				ft_lstadd_back(t_list **lst, t_list *new);
 void				ft_lstdelone(t_list *lst, void (*del)(void *));
-void				ft_lstiter(t_list *lst, void (*f)(void *));
 void				ft_lstclear(t_list **lst, void (*del)(void *));
+void				ft_lstiter(t_list *lst, void (*f)(void *));
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 						void (*del)(void *));
 
-// ftprintf
-int					ft_putstr(char *s);
-void				ft_putnbr_unsigned(unsigned long long n, int *add);
-void				ft_putnbr(long long n, int *add);
-int					ft_putchar(char c);
-void				ft_putaddr(void *point, int *add);
-void				ft_put_hex(long nbr, int caps, int *add);
-int					ft_printf(const char *format, ...);
+// ft_printf
+int					ft_put_pointer(void *pointer);
+int					ft_hexa(long nbr, int maj);
+int					ft_putnbr_unsigned(unsigned int nbr);
+int					ft_printf(const char *str, ...);
 
 // gnl
 char				*get_next_line(int fd);
@@ -97,9 +97,7 @@ void				new_remaining(char ***rem, int fd);
 char				*get_result(char *s);
 void				freeall_gnl(char ***res, int fd);
 
-// others
-void				ft_freeall(char **tab);
-int					ft_strcmp(const char *s1, const char *s2);
+// printtable
 void				print_int_table(int *tab);
 void				print_str_table(char **tab);
 int					count_elem(void **tab);

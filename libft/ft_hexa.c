@@ -1,26 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_unsigned.c                               :+:      :+:    :+:   */
+/*   ft_hexa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/05 14:56:12 by edurance          #+#    #+#             */
-/*   Updated: 2025/07/13 18:40:59 by aabouyaz         ###   ########.fr       */
+/*   Created: 2025/05/12 17:21:32 by edurance          #+#    #+#             */
+/*   Updated: 2025/05/27 11:29:41 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_putnbr_unsigned(unsigned int nbr)
+int	ft_hexa(long nbr, int maj)
 {
-	char	c;
-	int		len;
+	char			c;
+	char			*base;
+	unsigned int	nb;
+	int				len;
 
 	len = 0;
-	if (nbr > 9)
-		len += ft_putnbr_unsigned(nbr / 10);
-	c = nbr % 10 + '0';
+	nb = (unsigned int)nbr;
+	if (!maj)
+		base = "0123456789abcdef";
+	if (maj)
+		base = "0123456789ABCDEF";
+	c = base[nb % 16];
+	if (nb / 16 > 0)
+		len += ft_hexa(nb / 16, maj);
 	len += ft_putchar_fd(c, 1);
 	return (len);
 }

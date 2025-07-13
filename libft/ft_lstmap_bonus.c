@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/27 11:31:09 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/04/27 11:52:36 by aabouyaz         ###   ########.fr       */
+/*   Created: 2025/04/26 18:50:07 by edurance          #+#    #+#             */
+/*   Updated: 2025/07/13 18:39:28 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,23 @@
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	void	*cont;
-	t_list	*current;
-	t_list	*begin;
+	t_list	*new;
+	t_list	*res;
+	void	*content;
 
-	begin = NULL;
+	res = NULL;
 	while (lst)
 	{
-		cont = f(lst->content);
-		current = ft_lstnew(cont);
-		if (!current)
+		content = f(lst->content);
+		new = ft_lstnew(content);
+		if (!new)
 		{
-			del(cont);
-			ft_lstclear(&begin, del);
+			del(content);
+			ft_lstclear(&res, del);
 			return (NULL);
 		}
-		ft_lstadd_back(&begin, current);
+		ft_lstadd_back(&res, new);
 		lst = lst->next;
 	}
-	return (begin);
+	return (res);
 }

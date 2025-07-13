@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/25 15:15:42 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/04/26 14:18:37 by aabouyaz         ###   ########.fr       */
+/*   Created: 2025/04/25 14:27:13 by edurance          #+#    #+#             */
+/*   Updated: 2025/07/13 18:42:34 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,28 @@
 
 char	*ft_substr(char const *s, unsigned int start, unsigned long len)
 {
-	char			*res;
-	unsigned long	i;
+	char			*news;
 	unsigned long	n;
+	unsigned long	i;
 
-	if (start >= ft_strlen(s))
+	if (ft_strlen(s) <= start)
 		n = 1;
-	else if (len > ft_strlen(s + start))
+	else if (len >= ft_strlen(s + start))
 		n = ft_strlen(s + start) + 1;
 	else
 		n = len + 1;
-	res = malloc(sizeof(char) * n);
-	if (!res)
+	news = malloc(sizeof(char) * n);
+	if (!news)
 		return (NULL);
-	res[0] = '\0';
-	if (start >= ft_strlen(s))
-		return (res);
+	news[0] = '\0';
+	if (ft_strlen(s) <= start)
+		return (news);
 	i = 0;
-	while (i < len && s[i + start])
+	while (s[i + start] && i < len)
 	{
-		res[i] = s[i + start];
+		news[i] = s[i + start];
 		i++;
 	}
-	res[i] = '\0';
-	return (res);
+	news[i] = '\0';
+	return (news);
 }

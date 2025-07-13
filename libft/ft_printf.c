@@ -5,79 +5,77 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/05 13:59:04 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/05/27 11:31:05 by aabouyaz         ###   ########.fr       */
+/*   Created: 2025/05/04 15:39:06 by edurance          #+#    #+#             */
+/*   Updated: 2025/07/13 18:40:03 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	is_cap(char c)
+static int	goodtype(char c)
 {
-	if (c >= 'A' && c <= 'Z')
-		return (1);
-	return (0);
-}
-
-static void	put_type(va_list arg, char type, int *total)
-{
-	if (type == '%')
-		*total = *total + ft_putchar('%');
-	else if (type == 'X' || type == 'x')
-		ft_put_hex((long)va_arg(arg, int), is_cap(type), total);
-	else if (type == 'u')
-		ft_putnbr_unsigned((unsigned long long)va_arg(arg, int), total);
-	else if (type == 'd' || type == 'i')
-		ft_putnbr((long long)va_arg(arg, int), total);
-	else if (type == 'p')
-		ft_putaddr((void *)va_arg(arg, void *), total);
-	else if (type == 's')
-		*total = *total + ft_putstr((char *)va_arg(arg, char *));
-	else if (type == 'c')
-		*total = *total + ft_putchar((int)va_arg(arg, int));
-}
-
-static int	isindict(char c)
-{
+	char	*types;
 	int		i;
-	char	*dict;
 
+	types = "cspdiuxX%";
 	i = 0;
-	dict = "cspdiuxX%";
-	while (dict[i])
+	while (types[i])
 	{
-		if (dict[i] == c)
+		if (c == types[i])
 			return (1);
 		i++;
 	}
 	return (0);
 }
 
-int	ft_printf(const char *format, ...)
+static int	find_type(char type, va_list args)
 {
-	va_list	args;
-	int		i;
-	int		total;
+	int	len;
 
-	if (!format)
-		return (-1);
+	len = 0;
+	if (type == 'c')
+		len += ft_putchar_fd(va_arg(args, int), 1);
+	else if (type == 's')
+		len += ft_putstr_fd(va_arg(args, char *), 1);
+	else if (type == 'p')
+		len += ft_put_pointer(va_arg(args, void *));
+	else if (type == 'd' || type == 'i')
+		len += ft_putnbr_fd(va_arg(args, int), 1);
+	else if (type == 'u')
+		len += ft_putnbr_unsigned(va_arg(args, unsigned int));
+	else if (type == 'x')
+		len += ft_hexa(va_arg(args, long), 0);
+	else if (type == 'X')
+		len += ft_hexa(va_arg(args, long), 1);
+	else if (type == '%')
+		len += ft_putchar_fd('%', 1);
+	return (len);
+}
+
+int	ft_printf(const char *str, ...)
+{
+	int		i;
+	int		len;
+	va_list	args;
+
 	i = 0;
-	total = 0;
-	va_start(args, format);
-	while (format[i])
+	len = 0;
+	if (!str)
+		return (-1);
+	va_start(args, str);
+	while (str[i])
 	{
-		if (format[i] == '%' && isindict(format[i + 1]))
+		if (str[i] == '%' && goodtype(str[i + 1]))
 		{
-			put_type(args, format[i + 1], &total);
+			len += find_type(str[i + 1], args);
 			i = i + 2;
 		}
 		else
 		{
-			ft_putchar(format[i]);
+			len += ft_putchar_fd(str[i], 1);
 			i++;
-			total++;
 		}
 	}
 	va_end(args);
-	return (total);
+	return (len);
 }

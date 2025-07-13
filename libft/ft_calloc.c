@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/24 18:26:22 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/04/26 14:16:34 by aabouyaz         ###   ########.fr       */
+/*   Created: 2025/04/24 18:06:45 by edurance          #+#    #+#             */
+/*   Updated: 2025/07/13 18:37:56 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,6 @@ void	*ft_calloc(unsigned long nmemb, unsigned long size)
 	res = malloc(totalbytes);
 	if (!res)
 		return (NULL);
-	ft_memset(res, 0, totalbytes);
+	ft_bzero(res, totalbytes);
 	return (res);
 }
