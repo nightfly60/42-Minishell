@@ -8,8 +8,8 @@ FILES = ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c ft_isascii.c 
 		ft_strrchr.c ft_strtrim.c ft_substr.c ft_tolower.c ft_toupper.c ft_lstadd_front_bonus.c \
 		ft_lstnew_bonus.c ft_lstsize_bonus.c ft_lstlast_bonus.c ft_lstadd_back_bonus.c \
 		ft_lstdelone_bonus.c ft_lstclear_bonus.c ft_lstiter_bonus.c ft_lstmap_bonus.c \
-		ft_put_pointer.c ft_putnbr_unsigned.c ft_hexa.c ft_printf.c get_next_line.c \
-		get_next_line_utils.c ft_freeall.c ft_strcmp.c ft_arrlen.c ft_printable.c
+		ft_put_pointer.c ft_putnbr_unsigned.c ft_hexa.c ft_printf.c get_next_line/get_next_line.c \
+		get_next_line/get_next_line_utils.c ft_freeall.c ft_strcmp.c ft_arrlen.c ft_printable.c
 
 CC = cc
 AR = ar rcs
