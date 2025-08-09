@@ -1,0 +1,11 @@
+# Ignore les fichiers objets
+*.o
+
+# Ignore les fichiers bibliothèques statiques
+*.a
+
+# Ignore tout le contenu du dossier obj
+obj/
+
+# Ignore l'exécutable minishell
+minishell
