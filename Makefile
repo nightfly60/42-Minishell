@@ -6,7 +6,7 @@ OBJDIR = obj
 
 LIBFT := $(LIBFT_DIR)/libft.a
 
-PARSING = 
+PARSING =
 READLINE =
 EXEC =
 
