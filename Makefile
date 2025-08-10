@@ -6,8 +6,8 @@ OBJDIR = obj
 
 LIBFT := $(LIBFT_DIR)/libft.a
 
-PARSING = 
-READLINE =
+PARSING =
+READLINE = readline/ft_readline.c readline/ft_add_history.c readline/utils/delete_char.c readline/utils/insert_char.c
 EXEC =
 
 FILES = main.c $(PARSING) $(READLINE) $(EXEC)
@@ -28,7 +28,7 @@ CFLAGS = -Wall -Werror -Wextra
 
 OBJ = $(patsubst %.c, $(OBJDIR)/%.o, $(FILES))
 
-INCLUDES = minishell.h
+INCLUDES = minishell.h readline/ft_readline.h
 
 all: $(LIBFT) $(NAME)
 

@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
+/*   insert_char.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/26 17:54:04 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/09 16:42:12 by edurance         ###   ########.fr       */
+/*   Created: 2025/08/10 13:26:38 by edurance          #+#    #+#             */
+/*   Updated: 2025/08/10 13:26:54 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../ft_readline.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	insert_char(char *buf, char c, int index)
 {
-	t_list	*last;
+	int	len;
+	int	i;
 
-	if (!*lst)
-	{
-		*lst = new;
+	len = ft_strlen(buf);
+	i = len;
+	if (!buf || index < 0 || index > len || len >= BUF_MAX - 1)
 		return ;
+	while (i >= index)
+	{
+		buf[i + 1] = buf[i];
+		i--;
 	}
-	last = ft_lstlast(*lst);
-	last->next = new;
-	new->previous = last;
-	new->next = NULL;
+	buf[index] = c;
+	buf[len + 1] = '\0';
 }

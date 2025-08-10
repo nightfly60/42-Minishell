@@ -6,17 +6,35 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 15:51:44 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/09 17:01:52 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/08/10 13:42:05 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+/*includes*/
 # include "libft/libft.h"
-# include <stdio.h>
+# include "readline/ft_readline.h"
+# include <dirent.h>
+# include <errno.h>
+# include <fcntl.h>
+# include <readline/history.h>
+# include <readline/readline.h>
+# include <signal.h>
+# include <string.h>
 # include <sys/ioctl.h>
+# include <sys/stat.h>
+# include <sys/types.h>
+# include <sys/wait.h>
+# include <termcap.h>
 # include <termios.h>
-# include <unistd.h>
+
+/*struct minishell*/
+typedef struct s_minishell
+{
+	t_list	*history;
+	t_line	line;
+}			t_minishell;
 
 #endif

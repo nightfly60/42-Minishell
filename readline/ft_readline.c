@@ -1,28 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
+/*   ft_readline.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/26 17:54:04 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/09 16:42:12 by edurance         ###   ########.fr       */
+/*   Created: 2025/08/10 13:22:30 by edurance          #+#    #+#             */
+/*   Updated: 2025/08/10 13:32:52 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../minishell.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+char	*ft_readline(char *prompt, t_list **history)
 {
-	t_list	*last;
+	char	buffer[4097];
+	char	*line;
+	int		i;
+	int		bytes;
 
-	if (!*lst)
+	i = 0;
+	bytes = 0;
+	ft_printf("%s", prompt);
+	while (1)
 	{
-		*lst = new;
-		return ;
+		bytes = read(STDIN_FILENO, &buffer[i], 1);
+		if (buffer[i] == '\n')
+			break ;
+		i++;
 	}
-	last = ft_lstlast(*lst);
-	last->next = new;
-	new->previous = last;
-	new->next = NULL;
+	buffer[i + 1] = '\0';
+	line = ft_strdup(buffer);
+	ft_add_history(line, history);
+	return (line);
 }

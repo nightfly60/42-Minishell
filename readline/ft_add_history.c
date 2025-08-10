@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
+/*   ft_add_history.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/26 17:54:04 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/09 16:42:12 by edurance         ###   ########.fr       */
+/*   Created: 2025/08/10 13:27:27 by edurance          #+#    #+#             */
+/*   Updated: 2025/08/10 13:27:36 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_readline.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	ft_add_history(char *line, t_list **history)
 {
-	t_list	*last;
+	t_list	*new_line;
+	char	*line_copy;
 
-	if (!*lst)
-	{
-		*lst = new;
+	new_line = malloc(sizeof(t_list));
+	if (!new_line)
 		return ;
-	}
-	last = ft_lstlast(*lst);
-	last->next = new;
-	new->previous = last;
-	new->next = NULL;
+	line_copy = ft_strdup(line);
+	new_line->content = line_copy;
+	new_line->next = NULL;
+	ft_lstadd_front(history, new_line);
 }
