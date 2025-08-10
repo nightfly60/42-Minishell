@@ -7,7 +7,8 @@ OBJDIR = obj
 LIBFT := $(LIBFT_DIR)/libft.a
 
 PARSING =
-READLINE = readline/ft_readline.c readline/ft_add_history.c readline/utils/delete_char.c readline/utils/insert_char.c
+READLINE = readline/ft_readline.c readline/ft_add_history.c readline/utils/delete_char.c readline/utils/insert_char.c \
+		readline/utils/switch_terminal.c
 EXEC =
 
 FILES = main.c $(PARSING) $(READLINE) $(EXEC)
@@ -21,7 +22,7 @@ LIBFT_SRCS := libft/ft_atoi.c libft/ft_bzero.c libft/ft_calloc.c libft/ft_isalnu
 		libft/ft_lstnew_bonus.c libft/ft_lstsize_bonus.c libft/ft_lstlast_bonus.c libft/ft_lstadd_back_bonus.c \
 		libft/ft_lstdelone_bonus.c libft/ft_lstclear_bonus.c libft/ft_lstiter_bonus.c libft/ft_lstmap_bonus.c \
 		libft/ft_putnbr_unsigned.c libft/ft_printf.c libft/get_next_line/get_next_line.c \
-		libft/get_next_line/get_next_line_utils.c libft/ft_freeall.c
+		libft/get_next_line/get_next_line_utils.c libft/ft_freeall.c libft/ft_lstget.c
 
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
