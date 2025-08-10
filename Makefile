@@ -8,7 +8,7 @@ LIBFT := $(LIBFT_DIR)/libft.a
 
 PARSING =
 READLINE = readline/ft_readline.c readline/ft_add_history.c readline/utils/delete_char.c readline/utils/insert_char.c \
-		readline/utils/switch_terminal.c
+		readline/utils/switch_terminal.c readline/utils/getendpos.c realine/utils/getstartpos.c
 EXEC =
 
 FILES = main.c $(PARSING) $(READLINE) $(EXEC)
@@ -25,7 +25,7 @@ LIBFT_SRCS := libft/ft_atoi.c libft/ft_bzero.c libft/ft_calloc.c libft/ft_isalnu
 		libft/get_next_line/get_next_line_utils.c libft/ft_freeall.c libft/ft_lstget.c
 
 CC = cc
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -g3
 
 OBJ = $(patsubst %.c, $(OBJDIR)/%.o, $(FILES))
 
@@ -37,7 +37,7 @@ $(LIBFT): $(LIBFT_SRCS)
 	$(MAKE) -C $(LIBFT_DIR)
 
 $(NAME): $(OBJ) $(LIBFT)
-	$(CC) $(CFLAGS) -o $@ $(OBJ) -L$(LIBFT_DIR) -lft
+	$(CC) $(CFLAGS) -o $@ $(OBJ) -L$(LIBFT_DIR) -lft -ltermcap
 
 $(OBJDIR)/%.o: %.c $(INCLUDES)
 	mkdir -p $(dir $@)

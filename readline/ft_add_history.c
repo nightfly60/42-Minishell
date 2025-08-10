@@ -6,12 +6,13 @@
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 13:27:27 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/10 13:27:36 by edurance         ###   ########.fr       */
+/*   Updated: 2025/08/10 18:49:40 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_readline.h"
 
+/*Remake de add_history pour ajouter un element dans l'historique de ft_readline (liste chainee).*/
 void	ft_add_history(char *line, t_list **history)
 {
 	t_list	*new_line;

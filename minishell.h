@@ -6,7 +6,7 @@
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 15:51:44 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/10 13:33:02 by edurance         ###   ########.fr       */
+/*   Updated: 2025/08/10 19:03:42 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,24 @@
 # include <sys/wait.h>
 # include <termcap.h>
 # include <termios.h>
+# include <curses.h>
+# include <term.h>
+
+typedef struct s_line	t_line;
+
+typedef struct s_ttysize
+{
+	int	row;
+	int	col;
+}			t_ttysize;
 
 /*struct minishell*/
 typedef struct s_minishell
 {
-	t_list	*history;
-	t_line	line;
-}			t_minishell;
+	t_list		*history;
+	t_line		*line;
+	char		*prompt;
+	t_ttysize	*size;
+}				t_minishell;
 
 #endif

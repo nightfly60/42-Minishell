@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   insert_char.c                                      :+:      :+:    :+:   */
+/*   get_endpos.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/10 13:26:38 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/10 18:48:02 by edurance         ###   ########.fr       */
+/*   Created: 2025/08/10 18:32:45 by edurance          #+#    #+#             */
+/*   Updated: 2025/08/10 18:48:22 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_readline.h"
 
-/*Insere un char a l'index choisi et decale le reste de la string vers la droite.*/
-void	insert_char(char *buf, char c, int index)
+/*Modifie end_row et end_col pour y mettre la position de la fin de la ligne dans le terminal.*/
+void	get_endpos(t_minishell *shell)
 {
-	int	len;
-	int	i;
+	int	total_offset;
 
-	len = ft_strlen(buf);
-	i = len;
-	if (!buf || index < 0 || index > len || len >= BUF_MAX - 1)
-		return ;
-	while (i >= index)
-	{
-		buf[i + 1] = buf[i];
-		i--;
-	}
-	buf[index] = c;
-	buf[len + 1] = '\0';
+	total_offset = shell->line->st_col + (int)ft_strlen(shell->line->buffer)
+		- 1;
+	shell->line->end_row = shell->line->st_row + (total_offset
+			/ shell->size->col);
+	shell->line->end_col = total_offset % shell->size->col;
 }
