@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 13:24:57 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/10 16:10:40 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/08/10 19:22:05 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,21 @@
 #  define BUF_MAX 4097
 # endif
 
+typedef struct s_minishell	t_minishell;
 /*structures*/
 typedef struct s_line
 {
-	char	*buf;
-	char	buffer;
+	char	buffer[BUF_MAX];
+	char	*newline;
 	int		st_col;
 	int		st_row;
 	int		end_col;
 	int		end_row;
+	int		index_hist;
 }			t_line;
 
 /*fonctions*/
-char		*ft_readline(char *prompt, t_list **history);
+char		*ft_readline(char *prompt, t_minishell *shell);
 void		ft_add_history(char *line, t_list **history);
 void		delete_char(char *buf, int index);
 void		insert_char(char *buf, char c, int index);

@@ -3,34 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   ft_readline.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 13:22:30 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/10 13:32:52 by edurance         ###   ########.fr       */
+/*   Updated: 2025/08/10 19:37:15 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+#include "ft_readline.h"
 
-char	*ft_readline(char *prompt, t_list **history)
+char	*ft_readline(char *prompt, t_minishell *shell)
 {
-	char	buffer[4097];
 	char	*line;
 	int		i;
-	int		bytes;
+	char	c;
 
 	i = 0;
-	bytes = 0;
 	ft_printf("%s", prompt);
 	while (1)
 	{
-		bytes = read(STDIN_FILENO, &buffer[i], 1);
-		if (buffer[i] == '\n')
+		read(STDIN_FILENO, &shell->line->buffer[i], 1);
+		c = shell->line->buffer[i];
+		if (c < 32 && c != '\t' && c != '\n' && c != '\r')
+			shell->line->buffer[i] = 0;
+		if (!arrow(c, shell))
+			write(STDOUT_FILENO, &shell->line->buffer[i], 1);
+		if (c == '\n')
 			break ;
 		i++;
 	}
-	buffer[i + 1] = '\0';
-	line = ft_strdup(buffer);
-	ft_add_history(line, history);
+	shell->line->buffer[i + 1] = 0;
+	line = ft_strdup(shell->line->buffer);
+	ft_add_history(line, &(shell->history));
 	return (line);
 }

@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 16:10:15 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/08/10 16:10:29 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/08/10 17:37:23 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	switch_terminal(void)
 		status = 0;
 		return ;
 	}
-	if (tcgetattr(STDIN_FILENO, &new) == -1 || tcgetattr(STDIN_FILENO, &old) ==
-		-1)
+	if (tcgetattr(STDIN_FILENO, &new) == -1
+		|| tcgetattr(STDIN_FILENO, &old) == -1)
 	{
 		perror("tcgetattr: ");
 		return ;

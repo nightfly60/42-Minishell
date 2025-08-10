@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 15:51:44 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/10 13:42:05 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/08/10 16:52:42 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,14 @@
 # include <termcap.h>
 # include <termios.h>
 
+typedef struct s_line	t_line;
+
 /*struct minishell*/
 typedef struct s_minishell
 {
 	t_list	*history;
-	t_line	line;
+	t_line	*line;
+	char	*prompt;
 }			t_minishell;
 
 #endif
