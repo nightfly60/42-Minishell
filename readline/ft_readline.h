@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_readline.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 13:24:57 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/11 16:15:38 by edurance         ###   ########.fr       */
+/*   Updated: 2025/08/11 16:27:33 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,16 @@
 # endif
 
 typedef struct s_minishell	t_minishell;
-
 /*structures*/
 typedef struct s_line
 {
 	char	buffer[BUF_MAX];
+	char	*newline;
 	int		st_col;
 	int		st_row;
 	int		end_col;
 	int		end_row;
+	int		index_hist;
 }			t_line;
 
 /*fonctions*/
@@ -42,5 +43,10 @@ void	get_endpos(t_minishell *shell);
 void	get_ttysize(t_minishell *shell);
 void	clear_line(t_minishell *shell);
 void	adapt_ttysize(t_minishell *shell);
+
+/*	keys	*/
+int			arrow(char c, t_minishell *shell);
+int			backspace(char c, t_minishell *shell);
+int			ctrl_v(char c);
 
 #endif

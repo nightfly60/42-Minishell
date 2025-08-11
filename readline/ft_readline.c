@@ -3,30 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   ft_readline.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 13:22:30 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/11 16:04:31 by edurance         ###   ########.fr       */
+/*   Updated: 2025/08/11 16:22:47 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+#include "ft_readline.h"
 
+char	*ft_readline(char *prompt, t_minishell *shell)
 char	*ft_readline(char *prompt, t_minishell *shell)
 {
 	char	*line;
 	int		i;
-	int		bytes;
+	char	c;
 
 	i = 0;
-	bytes = 0;
 	ft_printf("%s", prompt);
 	get_cursorpos(&shell->line->st_row, &shell->line->st_col);
 	while (1)
 	{
 		adapt_ttysize(shell);
-		bytes = read(STDIN_FILENO, &shell->line->buffer[i], 1);
-		if (shell->line->buffer[i] == '\n')
+		read(STDIN_FILENO, &shell->line->shell->line->buffer[i], 1);
+		c = shell->line->buffer[i];
+		if (shell->line->c < 32 && c != '\t' && c != '\n' && c != '\r')
+			shell->line->buffer[i] = 0;
+		if (!arrow(c, shell) && !backspace(c, shell) && !ctrl_v(c))
+			write(STDOUT_FILENO, &shell->line->buffer[i], 1);
+		// ft_printf("|%d|", c);
+		if (c == '\n')
 			break ;
 		i++;
 	}

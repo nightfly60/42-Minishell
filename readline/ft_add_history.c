@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_add_history.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 13:27:27 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/10 18:49:40 by edurance         ###   ########.fr       */
+/*   Updated: 2025/08/11 16:25:57 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	ft_add_history(char *line, t_list **history)
 	t_list	*new_line;
 	char	*line_copy;
 
+	if (!line[0] || line[0] == '\n')
+		return ;
 	new_line = malloc(sizeof(t_list));
 	if (!new_line)
 		return ;

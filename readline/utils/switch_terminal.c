@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   switch_terminal.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 16:10:15 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/08/11 16:12:21 by edurance         ###   ########.fr       */
+/*   Updated: 2025/08/11 14:47:13 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_readline.h"
 
-/*Passer du mode canonique au non-canonique et inversement.*/
 void	switch_terminal(void)
 {
 	static int				status = 0;
@@ -34,6 +33,10 @@ void	switch_terminal(void)
 	}
 	new.c_lflag = new.c_lflag & ~ICANON;
 	new.c_lflag = new.c_lflag & ~ECHO;
+	new.c_lflag = new.c_lflag & ~ECHOE;
+	new.c_cc[VMIN] = 1;
+	new.c_cc[VTIME] = 0;
+	new.c_cc[VERASE] = '\b';
 	if (tcsetattr(STDIN_FILENO, TCSANOW, &new) == -1)
 		perror("tcsetattr: ");
 	status = 1;
