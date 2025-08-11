@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 15:51:48 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/11 16:28:30 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/08/11 16:38:44 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,13 @@ int	main(void)
 	t_minishell	*shell;
 
 	shell = malloc(sizeof(t_minishell));
+	get_ttysize(shell);
 	shell->prompt = "minishell > ";
 	shell->history = NULL;
 	switch_terminal();
 	readprint(shell);
 	switch_terminal();
 	ft_lstclear(&(shell->history), free);
+	free(shell->size);
 	free(shell);
 }

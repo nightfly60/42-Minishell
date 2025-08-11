@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 13:47:00 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/08/11 16:28:40 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/08/11 16:47:59 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	arrow_up(t_minishell *shell)
 		shell->line->new_line = ft_strdup(shell->line->buffer);
 	(shell->line->index_hist)++;
 	history = ft_lstget(shell->history, shell->line->index_hist);
-	write(STDOUT_FILENO, "\x1b[2K\r", 5);
+	clear_line(shell);
 	ft_printf("%s", shell->prompt);
 	write(STDOUT_FILENO, (char *)history->content,
 		ft_strlen((char *)history->content) - 1);

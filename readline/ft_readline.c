@@ -6,14 +6,13 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 13:22:30 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/11 16:22:47 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/08/11 16:43:13 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 #include "ft_readline.h"
 
-char	*ft_readline(char *prompt, t_minishell *shell)
 char	*ft_readline(char *prompt, t_minishell *shell)
 {
 	char	*line;
@@ -26,9 +25,10 @@ char	*ft_readline(char *prompt, t_minishell *shell)
 	while (1)
 	{
 		adapt_ttysize(shell);
-		read(STDIN_FILENO, &shell->line->shell->line->buffer[i], 1);
+		if (read(STDIN_FILENO, &shell->line->buffer[i], 1) <= 0)
+			continue;
 		c = shell->line->buffer[i];
-		if (shell->line->c < 32 && c != '\t' && c != '\n' && c != '\r')
+		if (c < 32 && c != '\t' && c != '\n' && c != '\r')
 			shell->line->buffer[i] = 0;
 		if (!arrow(c, shell) && !backspace(c, shell) && !ctrl_v(c))
 			write(STDOUT_FILENO, &shell->line->buffer[i], 1);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_cursorpos.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 18:31:21 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/11 14:47:39 by edurance         ###   ########.fr       */
+/*   Updated: 2025/08/11 17:05:57 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	get_cursorpos(int *row, int *col)
 	char	c;
 
 	i = 0;
-	switch_terminal();
 	write(STDOUT_FILENO, "\033[6n", 4);
 	while (i < 32 - 1)
 	{
@@ -43,7 +42,6 @@ void	get_cursorpos(int *row, int *col)
 			break ;
 	}
 	buf[i] = '\0';
-	switch_terminal();
 	if (buf[0] == '\033' && buf[1] == '[')
 		parse_position(buf + 2, row, col);
 	else
