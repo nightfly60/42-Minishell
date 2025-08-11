@@ -8,7 +8,8 @@ LIBFT := $(LIBFT_DIR)/libft.a
 
 PARSING =
 READLINE = readline/ft_readline.c readline/ft_add_history.c readline/utils/delete_char.c readline/utils/insert_char.c \
-		readline/utils/switch_terminal.c readline/utils/getendpos.c realine/utils/getstartpos.c
+		readline/utils/switch_terminal.c readline/utils/get_endpos.c readline/utils/get_cursorpos.c readline/utils/adapt_ttysize.c \
+		readline/utils/clear_line.c readline/utils/get_ttysize.c
 EXEC =
 
 FILES = main.c $(PARSING) $(READLINE) $(EXEC)

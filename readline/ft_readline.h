@@ -6,7 +6,7 @@
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 13:24:57 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/10 18:33:40 by edurance         ###   ########.fr       */
+/*   Updated: 2025/08/11 16:15:38 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ typedef struct s_minishell	t_minishell;
 typedef struct s_line
 {
 	char	buffer[BUF_MAX];
-	char	c;
 	int		st_col;
 	int		st_row;
 	int		end_col;
@@ -38,7 +37,10 @@ void	ft_add_history(char *line, t_list **history);
 void	delete_char(char *buf, int index);
 void	insert_char(char *buf, char c, int index);
 void	switch_terminal(void);
-void	get_startpos(int *row, int *col);
+void	get_cursorpos(int *row, int *col);
 void	get_endpos(t_minishell *shell);
+void	get_ttysize(t_minishell *shell);
+void	clear_line(t_minishell *shell);
+void	adapt_ttysize(t_minishell *shell);
 
 #endif

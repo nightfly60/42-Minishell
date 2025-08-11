@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_startpos.c                                     :+:      :+:    :+:   */
+/*   get_cursorpos.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 18:31:21 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/10 18:48:38 by edurance         ###   ########.fr       */
+/*   Updated: 2025/08/11 14:47:39 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ static void	parse_position(char *buf, int *row, int *col)
 	*col = (int)ft_atoi(&buf[i]);
 }
 
-/*Trouve la position actuelle du curseur (appelee dans ft_readline pour la position de depart uniquement).*/
-void	get_startpos(int *row, int *col)
+/*Trouve la position actuelle du curseur (en envoyant en sequence au terminal et read).*/
+void	get_cursorpos(int *row, int *col)
 {
 	char	buf[32];
 	int		i;
@@ -45,7 +45,7 @@ void	get_startpos(int *row, int *col)
 	buf[i] = '\0';
 	switch_terminal();
 	if (buf[0] == '\033' && buf[1] == '[')
-		parse_cursor_position(buf + 2, row, col);
+		parse_position(buf + 2, row, col);
 	else
 	{
 		*row = -1;

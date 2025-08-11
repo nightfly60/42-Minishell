@@ -6,7 +6,7 @@
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 13:22:30 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/10 18:35:21 by edurance         ###   ########.fr       */
+/*   Updated: 2025/08/11 16:04:31 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,10 @@ char	*ft_readline(char *prompt, t_minishell *shell)
 	i = 0;
 	bytes = 0;
 	ft_printf("%s", prompt);
-	get_startpos(&shell->line->st_row, &shell->line->st_col);
+	get_cursorpos(&shell->line->st_row, &shell->line->st_col);
 	while (1)
 	{
+		adapt_ttysize(shell);
 		bytes = read(STDIN_FILENO, &shell->line->buffer[i], 1);
 		if (shell->line->buffer[i] == '\n')
 			break ;
