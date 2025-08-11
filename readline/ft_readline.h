@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 13:24:57 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/10 19:22:05 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/08/11 15:13:02 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,11 @@ char		*ft_readline(char *prompt, t_minishell *shell);
 void		ft_add_history(char *line, t_list **history);
 void		delete_char(char *buf, int index);
 void		insert_char(char *buf, char c, int index);
-int			arrow(char c, t_minishell *shell);
 void		switch_terminal(void);
+
+/*	keys	*/
+int			arrow(char c, t_minishell *shell);
+int			backspace(char c, t_minishell *shell);
+int			ctrl_v(char c);
 
 #endif

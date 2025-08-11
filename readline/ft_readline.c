@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 13:22:30 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/10 19:37:15 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/08/11 15:13:41 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,9 @@ char	*ft_readline(char *prompt, t_minishell *shell)
 		c = shell->line->buffer[i];
 		if (c < 32 && c != '\t' && c != '\n' && c != '\r')
 			shell->line->buffer[i] = 0;
-		if (!arrow(c, shell))
+		if (!arrow(c, shell) && !backspace(c, shell) && !ctrl_v(c))
 			write(STDOUT_FILENO, &shell->line->buffer[i], 1);
+		// ft_printf("|%d|", c);
 		if (c == '\n')
 			break ;
 		i++;

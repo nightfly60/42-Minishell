@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 16:10:15 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/08/10 17:37:23 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/08/11 14:47:13 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,10 @@ void	switch_terminal(void)
 	}
 	new.c_lflag = new.c_lflag & ~ICANON;
 	new.c_lflag = new.c_lflag & ~ECHO;
+	new.c_lflag = new.c_lflag & ~ECHOE;
+	new.c_cc[VMIN] = 1;
+	new.c_cc[VTIME] = 0;
+	new.c_cc[VERASE] = '\b';
 	if (tcsetattr(STDIN_FILENO, TCSANOW, &new) == -1)
 		perror("tcsetattr: ");
 	status = 1;

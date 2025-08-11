@@ -8,7 +8,7 @@ LIBFT := $(LIBFT_DIR)/libft.a
 
 PARSING =
 READLINE = readline/ft_readline.c readline/ft_add_history.c readline/utils/delete_char.c readline/utils/insert_char.c \
-			readline/keys/arrows.c readline/utils/switch_terminal.c
+			readline/keys/arrows.c readline/utils/switch_terminal.c readline/keys/backspace.c readline/keys/ctrl_v.c
 EXEC =
 
 FILES = main.c $(PARSING) $(READLINE) $(EXEC)
