@@ -10,3 +10,4 @@ obj/
 # Ignore l'exécutable minishell
 minishell
 .vscode
+main.c

@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 13:47:00 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/08/11 14:33:58 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/08/11 16:28:40 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	arrow_up(t_minishell *shell)
 	if (shell->line->index_hist + 1 >= ft_lstsize(shell->history))
 		return ;
 	if ((shell->line->index_hist) == -1)
-		shell->line->newline = ft_strdup(shell->line->buffer);
+		shell->line->new_line = ft_strdup(shell->line->buffer);
 	(shell->line->index_hist)++;
 	history = ft_lstget(shell->history, shell->line->index_hist);
 	write(STDOUT_FILENO, "\x1b[2K\r", 5);
@@ -57,7 +57,7 @@ static void	arrow_down(t_minishell *shell)
 	{
 		shell->line->index_hist = -1;
 		write(STDOUT_FILENO, "\x1b[2K\r", 5);
-		ft_printf("%s%s", shell->prompt, shell->line->newline);
+		ft_printf("%s%s", shell->prompt, shell->line->new_line);
 		return ;
 	}
 	(shell->line->index_hist)--;

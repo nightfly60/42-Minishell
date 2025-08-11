@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 13:24:57 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/11 16:27:33 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/08/11 16:28:11 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef struct s_minishell	t_minishell;
 typedef struct s_line
 {
 	char	buffer[BUF_MAX];
-	char	*newline;
+	char	*new_line;
 	int		st_col;
 	int		st_row;
 	int		end_col;
