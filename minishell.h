@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 15:51:44 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/10 16:52:42 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/08/12 12:06:35 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 /*includes*/
 # include "libft/libft.h"
-# include "readline/ft_readline.h"
 # include <dirent.h>
 # include <errno.h>
 # include <fcntl.h>
@@ -29,15 +28,10 @@
 # include <sys/wait.h>
 # include <termcap.h>
 # include <termios.h>
-
-typedef struct s_line	t_line;
-
 /*struct minishell*/
 typedef struct s_minishell
 {
-	t_list	*history;
-	t_line	*line;
-	char	*prompt;
+
 }			t_minishell;
 
 #endif
