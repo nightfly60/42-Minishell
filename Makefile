@@ -35,7 +35,7 @@ $(LIBFT): $(LIBFT_SRCS)
 	$(MAKE) -C $(LIBFT_DIR)
 
 $(NAME): $(OBJ) $(LIBFT)
-	$(CC) $(CFLAGS) -o $@ $(OBJ) -L$(LIBFT_DIR) -lft -ltermcap
+	$(CC) $(CFLAGS) -o $@ $(OBJ) -L$(LIBFT_DIR) -lft -lreadline
 
 $(OBJDIR)/%.o: %.c $(INCLUDES)
 	mkdir -p $(dir $@)
