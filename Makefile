@@ -7,12 +7,9 @@ OBJDIR = obj
 LIBFT := $(LIBFT_DIR)/libft.a
 
 PARSING =
-READLINE = readline/ft_readline.c readline/ft_add_history.c readline/utils/delete_char.c readline/utils/insert_char.c \
-		readline/utils/switch_terminal.c readline/utils/get_endpos.c readline/utils/get_cursorpos.c readline/utils/adapt_ttysize.c \
-		readline/utils/clear_line.c readline/utils/get_ttysize.c
 EXEC =
 
-FILES = main.c $(PARSING) $(READLINE) $(EXEC)
+FILES = main.c $(PARSING) $(EXEC)
 
 LIBFT_SRCS := libft/ft_atoi.c libft/ft_bzero.c libft/ft_calloc.c libft/ft_isalnum.c libft/ft_isalpha.c libft/ft_isascii.c \
 		libft/ft_isdigit.c libft/ft_isprint.c libft/ft_itoa.c libft/ft_memchr.c libft/ft_memcmp.c libft/ft_memcpy.c \
@@ -30,7 +27,7 @@ CFLAGS = -Wall -Werror -Wextra -g3
 
 OBJ = $(patsubst %.c, $(OBJDIR)/%.o, $(FILES))
 
-INCLUDES = minishell.h readline/ft_readline.h
+INCLUDES = minishell.h
 
 all: $(LIBFT) $(NAME)
 
