@@ -6,7 +6,7 @@
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 15:51:44 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/12 12:03:54 by edurance         ###   ########.fr       */
+/*   Updated: 2025/08/14 13:26:16 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 /*includes*/
 # include "libft/libft.h"
+# include "parsing/parsing.h"
 # include <dirent.h>
 # include <errno.h>
 # include <fcntl.h>

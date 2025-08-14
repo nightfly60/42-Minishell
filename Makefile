@@ -6,7 +6,7 @@ OBJDIR = obj
 
 LIBFT := $(LIBFT_DIR)/libft.a
 
-PARSING =
+PARSING = parsing/check_quotes.c parsing/utils/is_even.c
 EXEC =
 
 FILES = main.c $(PARSING) $(EXEC)

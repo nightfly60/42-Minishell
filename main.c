@@ -6,7 +6,7 @@
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 14:15:26 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/13 17:00:52 by edurance         ###   ########.fr       */
+/*   Updated: 2025/08/14 13:25:53 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,13 @@ int	main(void)
 			exit_minishell(line);
 		}
 		add_history(line);
+		if (!quotes_checker(line))
+		{
+			ft_printf("minishell: %s: syntax error\n", line);
+			free(line);
+			line = NULL;
+			continue ;
+		}
 		free(line);
 		line = NULL;
 	}
