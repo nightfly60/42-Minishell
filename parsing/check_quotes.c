@@ -6,7 +6,7 @@
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 13:22:10 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/14 13:25:48 by edurance         ###   ########.fr       */
+/*   Updated: 2025/08/14 13:29:47 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	which_quotes(char c, int *inside, int *dquotes, int *squotes)
 			*inside = 1;
 	}
 	else if (c == '\'' && ((*inside && !is_even(*squotes)) || (!*inside
-		&& is_even(*squotes))))
+				&& is_even(*squotes))))
 	{
 		(*squotes)++;
 		if (*inside)
