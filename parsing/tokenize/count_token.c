@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   count_token.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 15:16:07 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/08/14 17:08:38 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/08/14 17:45:55 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	count_tokens(char *s)
 		else if (is_operator(&s[i]))
 			i += is_operator(&s[i]);
 		else if (!ft_isspace(s[i]) && (!s[i + 1] || ft_isspace(s[i + 1])
-				|| is_quote(&s[i + 1])))
+				|| is_quote(&s[i + 1]) || is_operator(&s[i + 1])))
 			i++;
 		else
 		{

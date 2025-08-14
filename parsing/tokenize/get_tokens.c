@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_tokens.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 17:07:40 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/08/14 17:13:14 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/08/14 17:47:21 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ char	**get_tokens(char *line)
 	i = 0;
 	while (line[i])
 	{
-		while (ft_isspace(line[i]) && !is_operator(&line[i])
+		while (line[i] && ft_isspace(line[i]) && !is_operator(&line[i])
 			&& !is_quote(&line[i]))
 			i++;
 		if (!line[i])
