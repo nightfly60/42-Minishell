@@ -1,39 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/24 16:13:12 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/14 13:01:10 by aabouyaz         ###   ########.fr       */
+/*   Created: 2025/08/14 13:22:39 by edurance          #+#    #+#             */
+/*   Updated: 2025/08/14 17:08:52 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef PARSING_H
+# define PARSING_H
 
-long	ft_atoi(const char *nptr)
-{
-	int		i;
-	int		signe;
-	long	res;
+# include "../minishell.h"
 
-	i = 0;
-	res = 0;
-	signe = 1;
-	while (ft_isspace(nptr[i]))
-		i++;
-	if (nptr[i] == '-')
-	{
-		signe = signe * -1;
-		i++;
-	}
-	else if (nptr[i] == '+')
-		i++;
-	while (ft_isdigit(nptr[i]))
-	{
-		res = res * 10 + (nptr[i] - '0');
-		i++;
-	}
-	return (res * signe);
-}
+/*utils prototypes*/
+int		is_even(int n);
+
+/*parsing prototypes*/
+int		quotes_checker(char *line);
+
+/*	tokenize	*/
+int		is_operator(char *s);
+int		is_quote(char *s);
+int		count_tokens(char *s);
+char	**get_tokens(char *line);
+
+#endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 13:53:30 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/10 17:01:13 by edurance         ###   ########.fr       */
+/*   Updated: 2025/08/14 12:49:24 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ int					ft_putnbr_fd(int n, int fd);
 void				ft_freeall(char **res);
 int					ft_arrlen(char **tab);
 int					ft_strcmp(char *s1, char *s2);
+int					ft_isspace(char c);
 
 // Libft bonus (listes chainees)
 typedef struct s_list

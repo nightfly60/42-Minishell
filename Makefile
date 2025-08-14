@@ -6,7 +6,7 @@ OBJDIR = obj
 
 LIBFT := $(LIBFT_DIR)/libft.a
 
-PARSING =
+PARSING = parsing/tokenize/count_token.c parsing/tokenize/token_utils.c parsing/tokenize/get_tokens.c
 EXEC =
 
 FILES = main.c $(PARSING) $(EXEC)
@@ -35,7 +35,7 @@ $(LIBFT): $(LIBFT_SRCS)
 	$(MAKE) -C $(LIBFT_DIR)
 
 $(NAME): $(OBJ) $(LIBFT)
-	$(CC) $(CFLAGS) -o $@ $(OBJ) -L$(LIBFT_DIR) -lft
+	$(CC) $(CFLAGS) -o $@ $(OBJ) -L$(LIBFT_DIR) -lft -lreadline
 
 $(OBJDIR)/%.o: %.c $(INCLUDES)
 	mkdir -p $(dir $@)

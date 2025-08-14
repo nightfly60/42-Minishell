@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 15:51:44 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/12 12:06:35 by edurance         ###   ########.fr       */
+/*   Updated: 2025/08/14 16:27:41 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,10 @@
 /*struct minishell*/
 typedef struct s_minishell
 {
+}		t_minishell;
 
-}			t_minishell;
+int		count_tokens(char *s);
+char	*next_tokens(char *s);
+char	**get_tokens(char *line);
 
 #endif
