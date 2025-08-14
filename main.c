@@ -6,7 +6,7 @@
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 14:15:26 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/14 13:25:53 by edurance         ###   ########.fr       */
+/*   Updated: 2025/08/14 17:34:17 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,13 @@ void	handle_signal(int signal)
 int	main(void)
 {
 	char	*line;
+	t_alias *alias = malloc(sizeof(t_alias));
+	if (!alias)
+		return (1);
+	alias->name = NULL;
+	alias->content = NULL;
+	alias->next = NULL;
+	alias->previous = NULL;
 
 	rl_clear_history();
 	signal(SIGINT, handle_signal);
@@ -54,6 +61,8 @@ int	main(void)
 			line = NULL;
 			continue ;
 		}
+		if (!ft_strncmp(line, "alias", 5))
+			ft_alias(ft_split(line, ' '), &alias);
 		free(line);
 		line = NULL;
 	}
