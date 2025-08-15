@@ -6,19 +6,11 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 16:13:12 by edurance          #+#    #+#             */
-/*   Updated: 2025/07/13 18:37:51 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/08/14 13:01:10 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-static int	ft_isspace(char c)
-{
-	if (c == ' ' || c == '\f' || c == '\n' || c == '\r' || c == '\t'
-		|| c == '\v')
-		return (1);
-	return (0);
-}
 
 long	ft_atoi(const char *nptr)
 {

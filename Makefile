@@ -6,8 +6,10 @@ OBJDIR = obj
 
 LIBFT := $(LIBFT_DIR)/libft.a
 
-PARSING = parsing/check_quotes.c parsing/utils/is_even.c
+PARSING = parsing/tokenize/count_token.c parsing/tokenize/token_utils.c parsing/tokenize/get_tokens.c parsing/check_quotes.c parsing/utils/is_even.c
 BUILT_IN = built-in/alias/find_alias.c built-in/alias/ft_add_alias.c  built-in/alias/ft_alias.c built-in/alias/ft_modify_alias.c built-in/alias/ft_print_alias.c
+READLINE = readline/ft_readline.c readline/ft_add_history.c readline/utils/delete_char.c readline/utils/insert_char.c \
+			readline/keys/arrows.c readline/utils/switch_terminal.c readline/keys/backspace.c readline/keys/ctrl_v.c
 EXEC =
 
 FILES = main.c $(PARSING) $(BUILT_IN)
