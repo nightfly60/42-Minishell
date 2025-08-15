@@ -6,13 +6,13 @@
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 14:15:26 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/15 14:41:24 by edurance         ###   ########.fr       */
+/*   Updated: 2025/08/15 16:45:42 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void exit_minishell(char *line)
+void	exit_minishell(char *line)
 {
 	free(line);
 	ft_printf("exit\n");
@@ -32,20 +32,13 @@ void	handle_signal(int signal)
 		return ;
 }
 
-
-
 int	main(void)
 {
 	char	*line;
 	char	**args;
-	t_alias *alias = malloc(sizeof(t_alias));
-	if (!alias)
-		return (1);
-	alias->name = NULL;
-	alias->content = NULL;
-	alias->next = NULL;
-	alias->previous = NULL;
+	t_alias	*alias;
 
+	alias = NULL;
 	rl_clear_history();
 	signal(SIGINT, handle_signal);
 	signal(SIGQUIT, SIG_IGN);
@@ -64,17 +57,26 @@ int	main(void)
 			line = NULL;
 			continue ;
 		}
-		if (!ft_strncmp(line, "alias", 5))
+		else if (!ft_strncmp(line, "alias", 5))
 		{
 			ft_alias(ft_split(line, ' '), &alias);
+		}
+		else if (!ft_strncmp(line, "unalias", 7))
+		{
+			char **unalias_args = ft_split(line, ' ');
+			ft_unalias(unalias_args[1], &alias);
 		}
 		else
 		{
 			args = get_tokens(line);
 			print_str_table(args);
-			ft_printf("\n\n");
+			ft_printf("\n After Alias Expansion\n");
 			ft_alias_expansion(args, alias);
 			print_str_table(args);
+			ft_printf("\nAfter merged tokens\n");
+			args = ft_merge_tokens(line, args);
+			print_str_table(args);
+			ft_freeall(args);
 		}
 		free(line);
 		line = NULL;
