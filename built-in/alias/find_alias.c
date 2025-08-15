@@ -1,17 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_alias_utils.c                                   :+:      :+:    :+:   */
+/*   find_alias.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 17:20:20 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/14 17:30:46 by edurance         ###   ########.fr       */
+/*   Updated: 2025/08/15 10:59:09 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_built_in.h"
 
+/*Trouve l'alias avec le nom passe en argument.*/
 int	find_alias(t_alias *alias_list, char *name)
 {
 	t_alias	*current;

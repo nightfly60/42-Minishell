@@ -6,12 +6,13 @@
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 13:22:10 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/14 13:29:47 by edurance         ###   ########.fr       */
+/*   Updated: 2025/08/15 11:04:10 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
+/*Savoir si je considere ma quote comme tel ou comme un char normal.*/
 static void	which_quotes(char c, int *inside, int *dquotes, int *squotes)
 {
 	if (c == '\"' && ((inside && !is_even(*inside)) || (!*inside
@@ -34,6 +35,7 @@ static void	which_quotes(char c, int *inside, int *dquotes, int *squotes)
 	}
 }
 
+/*Verifie que les quotes se ferment bien.*/
 int	quotes_checker(char *line)
 {
 	int	i;

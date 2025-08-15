@@ -6,12 +6,14 @@
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 17:23:01 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/14 17:33:56 by edurance         ###   ########.fr       */
+/*   Updated: 2025/08/15 11:04:25 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_built_in.h"
 
+/*Si la liste n'existe pas ou que c'est le premier dans l'ordre alphabetique
+	-> ajoute.*/
 static int	add_alias_front(t_alias **alias_list, t_alias *new_alias)
 {
 	if (!*alias_list || !(*alias_list)->name || ft_strcmp(new_alias->name,
@@ -27,6 +29,8 @@ static int	add_alias_front(t_alias **alias_list, t_alias *new_alias)
 	return (0);
 }
 
+/*On trouve la bonne position pour que ce soit dans
+l'ordre alaphabetique et on le rajoute.*/
 static void	add_alias_sorted(t_alias **alias_list, t_alias *new_alias)
 {
 	t_alias	*current;
@@ -49,6 +53,7 @@ static void	add_alias_sorted(t_alias **alias_list, t_alias *new_alias)
 		current->previous = new_alias;
 }
 
+/*Ajoute un alias avec le nom et le content dans la liste chainee.*/
 void	ft_add_alias(char *name, char *content, t_alias **alias_list)
 {
 	t_alias	*new_alias;

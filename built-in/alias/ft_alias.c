@@ -6,12 +6,13 @@
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 17:15:36 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/14 17:35:24 by edurance         ###   ########.fr       */
+/*   Updated: 2025/08/15 10:57:34 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_built_in.h"
 
+/*Verifie si il y a bien un nom=valeur et non juste =valeur.*/
 static int	check_eq(char *args)
 {
 	int	i;
@@ -34,6 +35,9 @@ static int	check_eq(char *args)
 	return (1);
 }
 
+/*Si il y a un '=' et qu'il y a un nom -> modifie ou ajoute un alias.
+Si il y a pas de '=' ou qu'il y en a un et pas de nom
+	-> on essaie de le trouver et on l'affiche, sinon erreur.*/
 static int	handle_alias(t_alias **alias_list, char *args)
 {
 	char	*name;
@@ -59,10 +63,15 @@ static int	handle_alias(t_alias **alias_list, char *args)
 	return (1);
 }
 
+/*Reproduction de la commande alias en bash. Si il y a qu'un seul arg
+	-> print ("alias"). Si il y en a deux,
+	on appelle la commande alias pour savoir si on doit :
+1. Changer ou ajouter un alias.
+2. Afficher un alias en particulier.*/
 int	ft_alias(char **args, t_alias **alias_list)
 {
-	int		i;
-	int		arg_count;
+	int	i;
+	int	arg_count;
 
 	i = 0;
 	arg_count = ft_arrlen(args);
