@@ -10,4 +10,5 @@ obj/
 # Ignore l'exécutable minishell
 minishell
 .vscode
+.gitignore
 main.c
