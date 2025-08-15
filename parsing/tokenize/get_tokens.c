@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_tokens.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 17:07:40 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/08/14 17:47:21 by edurance         ###   ########.fr       */
+/*   Updated: 2025/08/15 15:54:22 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	ft_strlen_to_space(char *s)
 	int	i;
 
 	i = 0;
-	while (s[i] && !ft_isspace(s[i]))
+	while (s[i] && !ft_isspace(s[i]) && !is_operator(&s[i]))
 		i++;
 	return (i);
 }

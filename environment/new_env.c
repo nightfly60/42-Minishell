@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_freeall.c                                       :+:      :+:    :+:   */
+/*   new_env.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/27 12:22:48 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/08/15 15:02:36 by aabouyaz         ###   ########.fr       */
+/*   Created: 2025/08/15 15:30:11 by aabouyaz          #+#    #+#             */
+/*   Updated: 2025/08/15 15:33:15 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_env.h"
 
-void	ft_freeall(char **tab)
+/*	retourne une nouvelle structure env	*/
+t_env	*new_env(char *name, char *value)
 {
-	int	i;
+	t_env	*res;
 
-	i = 0;
-	if (!tab)
-		return ;
-	while (tab[i])
-	{
-		free(tab[i]);
-		tab[i] = NULL;
-		i++;
-	}
-	free(tab);
-	tab = NULL;
+	res = malloc(sizeof(t_env));
+	if (!res)
+		return (NULL);
+	res->name = ft_strdup(name);
+	res->value = ft_strdup(value);
+	res->next = NULL;
+	res->previous = NULL;
+	return (res);
 }

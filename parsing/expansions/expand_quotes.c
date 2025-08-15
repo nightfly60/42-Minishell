@@ -1,30 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_freeall.c                                       :+:      :+:    :+:   */
+/*   expand_quotes.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/27 12:22:48 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/08/15 15:02:36 by aabouyaz         ###   ########.fr       */
+/*   Created: 2025/08/15 12:31:28 by aabouyaz          #+#    #+#             */
+/*   Updated: 2025/08/15 16:53:26 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../parsing.h"
 
-void	ft_freeall(char **tab)
+static char	*single_quote(char *s)
 {
-	int	i;
+	char	*res;
+	int		i;
 
-	i = 0;
-	if (!tab)
-		return ;
-	while (tab[i])
+	i = 1;
+	res = malloc(sizeof(char) * (strlen(s) - 1));
+	if (!res)
+		return (NULL);
+	while (s[i + 1])
 	{
-		free(tab[i]);
-		tab[i] = NULL;
+		res[i] = s[i];
 		i++;
 	}
-	free(tab);
-	tab = NULL;
+	res[i] = 0;
+	free(s);
+	return (res);
+}
+
+int	main(void)
+{
+	char	*quote;
+	char	*exp;
+
+	quote = strdup("\'salut les $amis ca va ???\'");
+	exp = single_quote(quote);
+	printf("%s\n", exp);
+	free(exp);
 }

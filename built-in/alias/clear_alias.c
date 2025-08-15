@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_freeall.c                                       :+:      :+:    :+:   */
+/*   clear_alias.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/27 12:22:48 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/08/15 15:02:36 by aabouyaz         ###   ########.fr       */
+/*   Created: 2025/08/15 14:58:31 by aabouyaz          #+#    #+#             */
+/*   Updated: 2025/08/15 15:14:11 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../ft_built_in.h"
 
-void	ft_freeall(char **tab)
+/*	Sert a liberer tous les alias	*/
+void	clear_alias(t_alias *lst, void (*f)(void *))
 {
-	int	i;
+	t_alias	*next;
 
-	i = 0;
-	if (!tab)
-		return ;
-	while (tab[i])
+	while (lst)
 	{
-		free(tab[i]);
-		tab[i] = NULL;
-		i++;
+		f(lst->content);
+		f(lst->name);
+		next = lst->next;
+		f(lst);
+		lst = next;
 	}
-	free(tab);
-	tab = NULL;
 }

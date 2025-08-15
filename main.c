@@ -3,18 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 14:15:26 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/15 14:41:24 by edurance         ###   ########.fr       */
+/*   Updated: 2025/08/15 17:00:53 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void exit_minishell(char *line)
+void	exit_minishell(t_minishell *shell)
 {
-	free(line);
+	ft_freeall(shell->tokens);
+	free(shell->line);
+	rl_clear_history();
+	clear_alias(shell->alias, &free);
+	clear_env(shell->env, &free);
+	free(shell);
 	ft_printf("exit\n");
 	exit(0);
 }
@@ -32,52 +37,60 @@ void	handle_signal(int signal)
 		return ;
 }
 
-
-
-int	main(void)
+static void	init_shell(t_minishell *shell, char **env)
 {
-	char	*line;
-	char	**args;
-	t_alias *alias = malloc(sizeof(t_alias));
-	if (!alias)
-		return (1);
-	alias->name = NULL;
-	alias->content = NULL;
-	alias->next = NULL;
-	alias->previous = NULL;
-
+	shell->tokens = NULL;
+	shell->line = NULL;
+	shell->alias = NULL;
+	shell->env = NULL;
 	rl_clear_history();
+	shell->prompt = "minishell > ";
+	copy_env(shell, env);
+}
+
+int	main(int ac, char **av, char **env)
+{
+	t_minishell	*shell;
+
+	(void)ac;
+	(void)av;
+	shell = malloc(sizeof(t_minishell));
+	if (!shell)
+		return (1);
 	signal(SIGINT, handle_signal);
 	signal(SIGQUIT, SIG_IGN);
+	init_shell(shell, env);
 	while (1)
 	{
-		line = readline("> ");
-		if (!line || !ft_strcmp(line, "exit"))
+		shell->line = readline(shell->prompt);
+		if (!(shell->line) || !ft_strcmp((shell->line), "exit"))
 		{
-			exit_minishell(line);
+			exit_minishell(shell);
 		}
-		add_history(line);
-		if (!quotes_checker(line))
+		add_history((shell->line));
+		if (!quotes_checker((shell->line)))
 		{
-			ft_printf("minishell: %s: syntax error\n", line);
-			free(line);
-			line = NULL;
+			ft_printf("minishell: %s: syntax error\n", (shell->line));
+			free((shell->line));
+			(shell->line) = NULL;
 			continue ;
 		}
-		if (!ft_strncmp(line, "alias", 5))
+		if (!ft_strncmp((shell->line), "alias", 5))
 		{
-			ft_alias(ft_split(line, ' '), &alias);
+			ft_alias(ft_split((shell->line), ' '), &(shell->alias));
 		}
+		else if (!ft_strncmp((shell->line), "env", 3))
+			print_env(shell);
 		else
 		{
-			args = get_tokens(line);
-			print_str_table(args);
+			shell->tokens = get_tokens(shell->line);
+			print_str_table(shell->tokens);
 			ft_printf("\n\n");
-			ft_alias_expansion(args, alias);
-			print_str_table(args);
+			ft_alias_expansion(shell->tokens, shell->alias);
+			print_str_table(shell->tokens);
 		}
-		free(line);
-		line = NULL;
+		free(shell->line);
+		shell->line = NULL;
 	}
 	rl_clear_history();
 	return (0);

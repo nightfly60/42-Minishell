@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_built_in.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 17:16:07 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/14 17:31:12 by edurance         ###   ########.fr       */
+/*   Updated: 2025/08/15 14:59:31 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,6 @@ int					modify_alias(t_alias *alias_list, char *name,
 void				ft_add_alias(char *name, char *content,
 						t_alias **alias_list);
 int					find_alias(t_alias *alias_list, char *name);
+void				clear_alias(t_alias *lst, void (*f)(void *));
 
 #endif

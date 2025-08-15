@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 15:51:44 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/15 11:17:40 by edurance         ###   ########.fr       */
+/*   Updated: 2025/08/15 16:53:18 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 /*includes*/
 # include "built-in/ft_built_in.h"
+# include "environment/ft_env.h"
 # include "libft/libft.h"
 # include "parsing/parsing.h"
 # include <curses.h>
@@ -33,9 +34,16 @@
 # include <termcap.h>
 # include <termios.h>
 
+typedef struct s_env	t_env;
+typedef struct s_alias	t_alias;
 /*struct minishell*/
 typedef struct s_minishell
 {
+	char	*prompt;
+	char	*line;
+	char	**tokens;
+	t_alias	*alias;
+	t_env	*env;
 }				t_minishell;
 
 #endif
