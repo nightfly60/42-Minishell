@@ -6,7 +6,7 @@
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 13:22:39 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/15 15:45:57 by edurance         ###   ########.fr       */
+/*   Updated: 2025/08/15 16:55:27 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int						is_quote(char *s);
 int						count_tokens(char *s);
 char					**get_tokens(char *line);
 char					**ft_merge_tokens(char *line, char **tokens);
-void	free_str_array(char **arr);
+void					free_str_array(char **arr);
 
 /*	expensions	*/
 void					ft_alias_expansion(char **args, t_alias *alias);

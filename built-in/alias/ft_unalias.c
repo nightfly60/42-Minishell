@@ -6,7 +6,7 @@
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 16:45:03 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/15 16:53:58 by edurance         ###   ########.fr       */
+/*   Updated: 2025/08/15 16:55:09 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,9 @@ static void	ft_alias_delone(t_alias *alias, void (*del)(void *))
 	alias = NULL;
 }
 
-/*Change les pointeurs de previous de next et next de previous pour rattacher la chaine correctement sans l'elem.*/
-static void ft_reattach_alias(t_alias *previous, t_alias *next, t_alias **alias)
+/*Change les pointeurs de previous de next + next de previous 
+pour rattacher la chaine correctement sans l'elem.*/
+static void	ft_reattach_alias(t_alias *previous, t_alias *next, t_alias **alias)
 {
 	if (previous)
 		previous->next = next;
