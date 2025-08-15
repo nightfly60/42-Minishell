@@ -1,21 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_even.c                                          :+:      :+:    :+:   */
+/*   find_alias.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/14 13:24:24 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/15 11:24:27 by edurance         ###   ########.fr       */
+/*   Created: 2025/08/14 17:20:20 by edurance          #+#    #+#             */
+/*   Updated: 2025/08/15 10:59:09 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../parsing.h"
+#include "../ft_built_in.h"
 
-/*Est ce que ce nombre est pair ou impair. even = pair / odd = impair.*/
-int	is_even(int n)
+/*Trouve l'alias avec le nom passe en argument.*/
+int	find_alias(t_alias *alias_list, char *name)
 {
-	if (n % 2 == 0)
-		return (1);
+	t_alias	*current;
+
+	current = alias_list;
+	while (current && current->name)
+	{
+		if (!ft_strcmp(current->name, name))
+		{
+			ft_printf("%s='%s'\n", current->name, current->content);
+			return (1);
+		}
+		current = current->next;
+	}
 	return (0);
 }

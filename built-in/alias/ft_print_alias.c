@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_even.c                                          :+:      :+:    :+:   */
+/*   ft_print_alias.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/14 13:24:24 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/15 11:24:27 by edurance         ###   ########.fr       */
+/*   Created: 2025/08/14 17:21:20 by edurance          #+#    #+#             */
+/*   Updated: 2025/08/15 10:53:48 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../parsing.h"
+#include "../ft_built_in.h"
 
-/*Est ce que ce nombre est pair ou impair. even = pair / odd = impair.*/
-int	is_even(int n)
+/*Print la liste d'alias complete sous le format : "name='content'".*/
+void	ft_print_alias(t_alias *alias_list)
 {
-	if (n % 2 == 0)
-		return (1);
-	return (0);
+	while (alias_list && alias_list->name)
+	{
+		printf("%s='%s'\n", alias_list->name, alias_list->content);
+		alias_list = alias_list->next;
+	}
 }

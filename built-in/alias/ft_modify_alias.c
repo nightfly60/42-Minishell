@@ -1,21 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_even.c                                          :+:      :+:    :+:   */
+/*   ft_modify_alias.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/14 13:24:24 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/15 11:24:27 by edurance         ###   ########.fr       */
+/*   Created: 2025/08/14 17:22:11 by edurance          #+#    #+#             */
+/*   Updated: 2025/08/15 10:54:16 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../parsing.h"
+#include "../ft_built_in.h"
 
-/*Est ce que ce nombre est pair ou impair. even = pair / odd = impair.*/
-int	is_even(int n)
+/*Modifier un alias si il existe deja.*/
+int	modify_alias(t_alias *alias_list, char *name, char *content)
 {
-	if (n % 2 == 0)
-		return (1);
+	t_alias	*current;
+
+	current = alias_list;
+	while (current)
+	{
+		if (current->name && !ft_strcmp(current->name, name))
+		{
+			if (current->content)
+				free(current->content);
+			current->content = ft_strdup(content);
+			return (1);
+		}
+		current = current->next;
+	}
 	return (0);
 }
