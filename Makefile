@@ -6,10 +6,11 @@ OBJDIR = obj
 
 LIBFT := $(LIBFT_DIR)/libft.a
 
-PARSING =
+PARSING = parsing/check_quotes.c parsing/utils/is_even.c
+BUILT_IN = built-in/alias/find_alias.c built-in/alias/ft_add_alias.c  built-in/alias/ft_alias.c built-in/alias/ft_modify_alias.c built-in/alias/ft_print_alias.c
 EXEC =
 
-FILES = main.c $(PARSING) $(READLINE) $(EXEC)
+FILES = main.c $(PARSING) $(BUILT_IN)
 
 LIBFT_SRCS := libft/ft_atoi.c libft/ft_bzero.c libft/ft_calloc.c libft/ft_isalnum.c libft/ft_isalpha.c libft/ft_isascii.c \
 		libft/ft_isdigit.c libft/ft_isprint.c libft/ft_itoa.c libft/ft_memchr.c libft/ft_memcmp.c libft/ft_memcpy.c \
@@ -35,7 +36,7 @@ $(LIBFT): $(LIBFT_SRCS)
 	$(MAKE) -C $(LIBFT_DIR)
 
 $(NAME): $(OBJ) $(LIBFT)
-	$(CC) $(CFLAGS) -o $@ $(OBJ) -L$(LIBFT_DIR) -lft -ltermcap
+	$(CC) $(CFLAGS) -o $@ $(OBJ) -L$(LIBFT_DIR) -lft -lreadline
 
 $(OBJDIR)/%.o: %.c $(INCLUDES)
 	mkdir -p $(dir $@)

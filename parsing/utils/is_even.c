@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   is_even.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/24 15:03:10 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/12 15:18:33 by edurance         ###   ########.fr       */
+/*   Created: 2025/08/14 13:24:24 by edurance          #+#    #+#             */
+/*   Updated: 2025/08/15 11:02:09 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../parsing.h"
 
-int	ft_strcmp(char *s1, char *s2)
+/*Est ce que ce nombre est pair ou impair. even = pair / odd = impair.*/
+int	is_even(int n)
 {
-	int	i;
-
-	i = 0;
-	while (s1 && s2 && s1[i] == s2[i] && s1[i])
-	{
-		i++;
-	}
-	return (s1[i] - s2[i]);
+	if (n % 2 == 0)
+		return (1);
+	return (0);
 }

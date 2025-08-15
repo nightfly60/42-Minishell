@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   find_alias.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/24 15:03:10 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/12 15:18:33 by edurance         ###   ########.fr       */
+/*   Created: 2025/08/14 17:20:20 by edurance          #+#    #+#             */
+/*   Updated: 2025/08/15 10:59:09 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../ft_built_in.h"
 
-int	ft_strcmp(char *s1, char *s2)
+/*Trouve l'alias avec le nom passe en argument.*/
+int	find_alias(t_alias *alias_list, char *name)
 {
-	int	i;
+	t_alias	*current;
 
-	i = 0;
-	while (s1 && s2 && s1[i] == s2[i] && s1[i])
+	current = alias_list;
+	while (current && current->name)
 	{
-		i++;
+		if (!ft_strcmp(current->name, name))
+		{
+			ft_printf("%s='%s'\n", current->name, current->content);
+			return (1);
+		}
+		current = current->next;
 	}
-	return (s1[i] - s2[i]);
+	return (0);
 }

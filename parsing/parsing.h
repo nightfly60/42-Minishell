@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/24 15:03:10 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/12 15:18:33 by edurance         ###   ########.fr       */
+/*   Created: 2025/08/14 13:22:39 by edurance          #+#    #+#             */
+/*   Updated: 2025/08/14 13:25:44 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef PARSING_H
+# define PARSING_H
 
-int	ft_strcmp(char *s1, char *s2)
-{
-	int	i;
+# include "../minishell.h"
 
-	i = 0;
-	while (s1 && s2 && s1[i] == s2[i] && s1[i])
-	{
-		i++;
-	}
-	return (s1[i] - s2[i]);
-}
+/*utils prototypes*/
+int	is_even(int n);
+
+/*parsing prototypes*/
+int	quotes_checker(char *line);
+
+#endif

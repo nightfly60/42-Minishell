@@ -11,3 +11,4 @@ obj/
 minishell
 .vscode
 .gitignore
+main.c

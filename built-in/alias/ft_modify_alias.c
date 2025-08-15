@@ -1,25 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   ft_modify_alias.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/24 15:03:10 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/12 15:18:33 by edurance         ###   ########.fr       */
+/*   Created: 2025/08/14 17:22:11 by edurance          #+#    #+#             */
+/*   Updated: 2025/08/15 10:54:16 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../ft_built_in.h"
 
-int	ft_strcmp(char *s1, char *s2)
+/*Modifier un alias si il existe deja.*/
+int	modify_alias(t_alias *alias_list, char *name, char *content)
 {
-	int	i;
+	t_alias	*current;
 
-	i = 0;
-	while (s1 && s2 && s1[i] == s2[i] && s1[i])
+	current = alias_list;
+	while (current)
 	{
-		i++;
+		if (current->name && !ft_strcmp(current->name, name))
+		{
+			if (current->content)
+				free(current->content);
+			current->content = ft_strdup(content);
+			return (1);
+		}
+		current = current->next;
 	}
-	return (s1[i] - s2[i]);
+	return (0);
 }

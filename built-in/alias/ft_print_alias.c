@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   ft_print_alias.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/24 15:03:10 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/12 15:18:33 by edurance         ###   ########.fr       */
+/*   Created: 2025/08/14 17:21:20 by edurance          #+#    #+#             */
+/*   Updated: 2025/08/15 10:53:48 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../ft_built_in.h"
 
-int	ft_strcmp(char *s1, char *s2)
+/*Print la liste d'alias complete sous le format : "name='content'".*/
+void	ft_print_alias(t_alias *alias_list)
 {
-	int	i;
-
-	i = 0;
-	while (s1 && s2 && s1[i] == s2[i] && s1[i])
+	while (alias_list && alias_list->name)
 	{
-		i++;
+		printf("%s='%s'\n", alias_list->name, alias_list->content);
+		alias_list = alias_list->next;
 	}
-	return (s1[i] - s2[i]);
 }
