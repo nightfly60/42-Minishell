@@ -6,7 +6,7 @@
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 14:15:26 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/16 11:29:53 by edurance         ###   ########.fr       */
+/*   Updated: 2025/08/16 14:59:44 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,73 @@ static void	init_shell(t_minishell *shell, char **env)
 	copy_env(shell, env);
 }
 
+void	print_str_tab_wrapper(void *content)
+{
+	print_str_table((char **)content);
+}
+
+void	print_str_wrapper(void *content)
+{
+	static int	idx = 0;
+
+	printf("-> On passe sur l'élément %d de la liste\n", idx++);
+	printf("value = '%s'\n", (char *)content);
+}
+
+void	ft_print_cmd(t_cmd_block *elem)
+{
+	if (!elem)
+	{
+		printf("Nothing in the cmd block\n");
+		return ;
+	}
+	printf("\nPRINT CMD\n");
+	printf("Infile = %s\n", elem->infile);
+	printf("Outfile = %s\n", elem->outfile);
+	printf("Heredoc EOF = %s\n", elem->heredoc_eof);
+	printf("Append = %s\n", elem->append);
+	ft_lstiter(elem->cmds, print_str_wrapper);
+}
+
+t_cmd_block	*init_cmd_block(char **tokens)
+{
+	t_cmd_block	*cmd_block;
+	t_list		*cmds;
+	int			i;
+	int			j;
+
+	cmd_block = malloc(sizeof(t_cmd_block));
+	if (!cmd_block)
+		return (NULL);
+	i = 0;
+	j = 0;
+	cmds = NULL;
+	while (tokens[i])
+	{
+		if (!ft_strcmp(tokens[i], "<") && tokens[i + 1])
+			cmd_block->infile = ft_strdup(tokens[++i]);
+		else if (!ft_strcmp(tokens[i], ">") && tokens[i + 1])
+			cmd_block->outfile = ft_strdup(tokens[++i]);
+		else if (!ft_strcmp(tokens[i], "<<") && tokens[i + 1])
+			cmd_block->heredoc_eof = ft_strdup(tokens[++i]);
+		else if (!ft_strcmp(tokens[i], ">>") && tokens[i + 1])
+			cmd_block->append = ft_strdup(tokens[++i]);
+		else
+		{
+			printf("ici\n");
+			ft_lstadd_back(&cmds, ft_lstnew(ft_strdup(tokens[i])));
+		}
+		i++;
+	}
+	cmd_block->cmds = cmds;
+	return (cmd_block);
+}
+
 int	main(int ac, char **av, char **env)
 {
 	t_minishell	*shell;
+	char		**cmd_unalias;
+	t_cmd_block	*cmd_block;
 
 	(void)ac;
 	(void)av;
@@ -81,7 +145,7 @@ int	main(int ac, char **av, char **env)
 		}
 		else if (!ft_strncmp((shell->line), "unalias", 5))
 		{
-			char **cmd_unalias = ft_split(shell->line, ' ');
+			cmd_unalias = ft_split(shell->line, ' ');
 			ft_unalias(cmd_unalias[1], &shell->alias);
 			ft_freeall(cmd_unalias);
 		}
@@ -94,6 +158,8 @@ int	main(int ac, char **av, char **env)
 			ft_printf("\n\n");
 			ft_alias_expansion(shell->tokens, shell->alias);
 			print_str_table(shell->tokens);
+			cmd_block = init_cmd_block(shell->tokens);
+			ft_print_cmd(cmd_block);
 		}
 		free(shell->line);
 		shell->line = NULL;
