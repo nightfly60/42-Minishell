@@ -1,43 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expand_quotes.c                                    :+:      :+:    :+:   */
+/*   find_var.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/15 12:31:28 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/08/15 16:53:26 by aabouyaz         ###   ########.fr       */
+/*   Created: 2025/08/16 11:24:39 by aabouyaz          #+#    #+#             */
+/*   Updated: 2025/08/16 15:10:06 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../parsing.h"
+#include "ft_env.h"
 
-static char	*single_quote(char *s)
+t_env	*find_var(char *name, t_env **first, int name_len)
 {
-	char	*res;
-	int		i;
+	t_env	*current;
 
-	i = 1;
-	res = malloc(sizeof(char) * (strlen(s) - 1));
-	if (!res)
-		return (NULL);
-	while (s[i + 1])
+	current = *first;
+	while (current)
 	{
-		res[i] = s[i];
-		i++;
+		if (current->name && !ft_strncmp(current->name, name, name_len))
+			return (current);
+		current = current->next;
 	}
-	res[i] = 0;
-	free(s);
-	return (res);
-}
-
-int	main(void)
-{
-	char	*quote;
-	char	*exp;
-
-	quote = strdup("\'salut les $amis ca va ???\'");
-	exp = single_quote(quote);
-	printf("%s\n", exp);
-	free(exp);
+	return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 17:07:40 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/08/15 15:54:22 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/08/16 12:12:14 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ static int	ft_strlen_to_space(char *s)
 	int	i;
 
 	i = 0;
-	while (s[i] && !ft_isspace(s[i]) && !is_operator(&s[i]))
+	while (s[i] && !ft_isspace(s[i]) && !is_operator(&s[i])
+			&& s[i] != '\'' && s[i] != '"')
 		i++;
 	return (i);
 }

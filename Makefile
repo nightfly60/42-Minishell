@@ -7,10 +7,10 @@ OBJDIR = obj
 LIBFT := $(LIBFT_DIR)/libft.a
 
 PARSING = parsing/tokenize/count_token.c parsing/tokenize/token_utils.c parsing/tokenize/get_tokens.c parsing/check_quotes.c parsing/utils/is_even.c \
-			parsing/expansions/ft_alias_expansion.c
+			parsing/expansions/ft_alias_expansion.c parsing/expansions/ft_quotes_expansion.c
 BUILT_IN = built-in/alias/find_alias.c built-in/alias/ft_add_alias.c  built-in/alias/ft_alias.c built-in/alias/ft_modify_alias.c built-in/alias/ft_print_alias.c \
 			built-in/alias/clear_alias.c
-ENVIRNMT = environment/new_env.c environment/copy_env.c environment/env_utils.c
+ENVIRNMT = environment/new_env.c environment/copy_env.c environment/env_utils.c environment/find_var.c environment/valid_id.c
 EXEC =
 
 FILES = main.c $(PARSING) $(BUILT_IN) $(ENVIRNMT)

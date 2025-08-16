@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 13:22:39 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/15 12:33:44 by edurance         ###   ########.fr       */
+/*   Updated: 2025/08/16 14:36:28 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 /*structs*/
 typedef struct s_alias	t_alias;
+typedef struct s_env	t_env;
 
 /*	parsing prototypes	*/
 int						is_even(int n);
@@ -30,5 +31,6 @@ char					**get_tokens(char *line);
 
 /*	expensions	*/
 void					ft_alias_expansion(char **args, t_alias *alias);
+void					ft_quotes_expansion(char **tokens, t_env *env);
 
 #endif
