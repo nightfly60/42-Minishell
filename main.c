@@ -6,15 +6,20 @@
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 14:15:26 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/15 16:45:42 by edurance         ###   ########.fr       */
+/*   Updated: 2025/08/16 11:29:53 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	exit_minishell(char *line)
+void	exit_minishell(t_minishell *shell)
 {
-	free(line);
+	ft_freeall(shell->tokens);
+	free(shell->line);
+	rl_clear_history();
+	clear_alias(shell->alias, &free);
+	clear_env(shell->env, &free);
+	free(shell);
 	ft_printf("exit\n");
 	exit(0);
 }
@@ -32,54 +37,66 @@ void	handle_signal(int signal)
 		return ;
 }
 
-int	main(void)
+static void	init_shell(t_minishell *shell, char **env)
 {
-	char	*line;
-	char	**args;
-	t_alias	*alias;
-
-	alias = NULL;
+	shell->tokens = NULL;
+	shell->line = NULL;
+	shell->alias = NULL;
+	shell->env = NULL;
 	rl_clear_history();
+	shell->prompt = "minishell > ";
+	copy_env(shell, env);
+}
+
+int	main(int ac, char **av, char **env)
+{
+	t_minishell	*shell;
+
+	(void)ac;
+	(void)av;
+	shell = malloc(sizeof(t_minishell));
+	if (!shell)
+		return (1);
 	signal(SIGINT, handle_signal);
 	signal(SIGQUIT, SIG_IGN);
+	init_shell(shell, env);
 	while (1)
 	{
-		line = readline("> ");
-		if (!line || !ft_strcmp(line, "exit"))
+		shell->line = readline(shell->prompt);
+		if (!(shell->line) || !ft_strcmp((shell->line), "exit"))
 		{
-			exit_minishell(line);
+			exit_minishell(shell);
 		}
-		add_history(line);
-		if (!quotes_checker(line))
+		add_history((shell->line));
+		if (!quotes_checker((shell->line)))
 		{
-			ft_printf("minishell: %s: syntax error\n", line);
-			free(line);
-			line = NULL;
+			ft_printf("minishell: %s: syntax error\n", (shell->line));
+			free((shell->line));
+			(shell->line) = NULL;
 			continue ;
 		}
-		else if (!ft_strncmp(line, "alias", 5))
+		if (!ft_strncmp((shell->line), "alias", 5))
 		{
-			ft_alias(ft_split(line, ' '), &alias);
+			ft_alias(ft_split((shell->line), ' '), &(shell->alias));
 		}
-		else if (!ft_strncmp(line, "unalias", 7))
+		else if (!ft_strncmp((shell->line), "unalias", 5))
 		{
-			char **unalias_args = ft_split(line, ' ');
-			ft_unalias(unalias_args[1], &alias);
+			char **cmd_unalias = ft_split(shell->line, ' ');
+			ft_unalias(cmd_unalias[1], &shell->alias);
+			ft_freeall(cmd_unalias);
 		}
+		else if (!ft_strncmp((shell->line), "env", 3))
+			print_env(shell);
 		else
 		{
-			args = get_tokens(line);
-			print_str_table(args);
-			ft_printf("\n After Alias Expansion\n");
-			ft_alias_expansion(args, alias);
-			print_str_table(args);
-			ft_printf("\nAfter merged tokens\n");
-			args = ft_merge_tokens(line, args);
-			print_str_table(args);
-			ft_freeall(args);
+			shell->tokens = get_tokens(shell->line);
+			print_str_table(shell->tokens);
+			ft_printf("\n\n");
+			ft_alias_expansion(shell->tokens, shell->alias);
+			print_str_table(shell->tokens);
 		}
-		free(line);
-		line = NULL;
+		free(shell->line);
+		shell->line = NULL;
 	}
 	rl_clear_history();
 	return (0);
