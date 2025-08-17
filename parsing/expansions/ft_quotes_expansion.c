@@ -6,12 +6,14 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 12:31:28 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/08/17 12:52:35 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/08/17 14:59:42 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parsing.h"
 
+/*	Expand et remplace l'adresse du char **s envoye.
+	Comportement d'une single_quote uniquement.	*/
 static void	single_quote(char **s)
 {
 	char	*res;
@@ -34,6 +36,7 @@ static void	single_quote(char **s)
 	*s = res;
 }
 
+/*	Calcul la longueur totale finale d'un dquote a expand.	*/
 static int	expand_len(char *s, t_env *first)
 {
 	int	i;
@@ -47,8 +50,8 @@ static int	expand_len(char *s, t_env *first)
 		if (s[i] == '$' && s[i + 1] && is_valid_id(&s[i + 1]))
 		{
 			valid_id = is_valid_id(&s[i + 1]);
-			if (find_var_len(&s[i + 1], &first, valid_id) && find_var_len(&s[i
-					+ 1], &first, valid_id)->value)
+			if (find_var_len(&s[i + 1], &first, valid_id)
+				&& find_var_len(&s[i + 1], &first, valid_id)->value)
 				len += ft_strlen(find_var_len(&s[i + 1], &first,
 							valid_id)->value);
 			i += valid_id + 1;
@@ -62,6 +65,8 @@ static int	expand_len(char *s, t_env *first)
 	return (len);
 }
 
+/*	Met la valeur de la variable d'environement a la place de son nom
+	dans le (char *res), avance l'index pointe. 	*/
 static void	set_value(t_env *env, char *s, char **res, int *index)
 {
 	t_env	*temp;
@@ -89,6 +94,8 @@ static void	set_value(t_env *env, char *s, char **res, int *index)
 	}
 }
 
+/*	Expand et remplace l'adresse du char **s envoye.
+	Comportement d'une double_quote uniquement.	*/
 static void	double_quote(char **s, t_env *env)
 {
 	char	*res;
@@ -118,14 +125,7 @@ static void	double_quote(char **s, t_env *env)
 	*s = res;
 }
 
-static void	expand_quote(char **quote, t_env *env)
-{
-	if ((*quote)[0] == '\'')
-		single_quote(quote);
-	else
-		double_quote(quote, env);
-}
-
+/*	Expand autant les quotes que les dquotes.	*/
 void	ft_quotes_expansion(char **tokens, t_env *env)
 {
 	int	i;
@@ -133,10 +133,10 @@ void	ft_quotes_expansion(char **tokens, t_env *env)
 	i = 0;
 	while (tokens[i])
 	{
-		if (tokens[i][0] == '"' || tokens[i][0] == '\'')
-		{
-			expand_quote(&tokens[i], env);
-		}
+		if (tokens[i][0] == '"')
+			double_quote(&tokens[i], env);
+		else if (tokens[i][0] == '\'')
+			single_quote(&tokens[i]);
 		i++;
 	}
 }

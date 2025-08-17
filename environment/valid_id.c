@@ -6,13 +6,16 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/16 11:34:27 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/08/16 11:45:40 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/08/17 14:55:50 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_env.h"
 
-/*	Renvoie la taille d'un id valide.	*/
+/*	Renvoie la taille d'un id valide.
+	Regles:
+		- commencer par un '_' ou un alphabetique.
+		- uniquement des '_' et des alphanumeriques.	*/
 int	is_valid_id(char *s)
 {
 	int	i;

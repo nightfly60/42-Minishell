@@ -6,12 +6,13 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 15:36:41 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/08/15 17:07:34 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/08/17 14:52:22 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_env.h"
 
+/*	prends une ligne complete et renvoie son contenu avant  '='.	*/
 static char	*get_var_name(char *s)
 {
 	char	*res;
@@ -31,6 +32,7 @@ static char	*get_var_name(char *s)
 	return (res);
 }
 
+/*	copy dans le shell l'environnement passe en argument.	*/
 void	copy_env(t_minishell *shell, char **env)
 {
 	int		i;

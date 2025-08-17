@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 15:26:57 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/08/17 12:46:12 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/08/17 14:50:21 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct s_env
 	struct s_env	*previous;
 }					t_env;
 
+/*	fonctions pour l'environnement	*/
 t_env	*env_last(t_env *lst);
 void	env_add_back(t_env **lst, t_env *new);
 void	env_delone(t_env *elem, void (*del)(void *));
