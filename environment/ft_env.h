@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 15:26:57 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/08/16 15:10:13 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/08/17 12:46:12 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ t_env	*new_env(char *name, char *value);
 void	copy_env(t_minishell *shell, char **env);
 void	print_env(t_minishell *shell);
 void	clear_env(t_env *lst, void (*f)(void *));
-t_env	*find_var(char *name, t_env **first, int name_len);
+t_env	*find_var(char *name, t_env **first);
 int		is_valid_id(char *s);
+t_env	*find_var_len(char *name, t_env **first, int name_len);
 
 #endif
