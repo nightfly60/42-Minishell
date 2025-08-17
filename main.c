@@ -6,7 +6,7 @@
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 14:15:26 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/16 14:59:44 by edurance         ###   ########.fr       */
+/*   Updated: 2025/08/17 15:09:29 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,73 +48,35 @@ static void	init_shell(t_minishell *shell, char **env)
 	copy_env(shell, env);
 }
 
-void	print_str_tab_wrapper(void *content)
+void	print_cmd_blocks(t_cmd_block *block)
 {
-	print_str_table((char **)content);
-}
-
-void	print_str_wrapper(void *content)
-{
-	static int	idx = 0;
-
-	printf("-> On passe sur l'élément %d de la liste\n", idx++);
-	printf("value = '%s'\n", (char *)content);
-}
-
-void	ft_print_cmd(t_cmd_block *elem)
-{
-	if (!elem)
+	int i = 0;
+	while (block)
 	{
-		printf("Nothing in the cmd block\n");
-		return ;
-	}
-	printf("\nPRINT CMD\n");
-	printf("Infile = %s\n", elem->infile);
-	printf("Outfile = %s\n", elem->outfile);
-	printf("Heredoc EOF = %s\n", elem->heredoc_eof);
-	printf("Append = %s\n", elem->append);
-	ft_lstiter(elem->cmds, print_str_wrapper);
-}
-
-t_cmd_block	*init_cmd_block(char **tokens)
-{
-	t_cmd_block	*cmd_block;
-	t_list		*cmds;
-	int			i;
-	int			j;
-
-	cmd_block = malloc(sizeof(t_cmd_block));
-	if (!cmd_block)
-		return (NULL);
-	i = 0;
-	j = 0;
-	cmds = NULL;
-	while (tokens[i])
-	{
-		if (!ft_strcmp(tokens[i], "<") && tokens[i + 1])
-			cmd_block->infile = ft_strdup(tokens[++i]);
-		else if (!ft_strcmp(tokens[i], ">") && tokens[i + 1])
-			cmd_block->outfile = ft_strdup(tokens[++i]);
-		else if (!ft_strcmp(tokens[i], "<<") && tokens[i + 1])
-			cmd_block->heredoc_eof = ft_strdup(tokens[++i]);
-		else if (!ft_strcmp(tokens[i], ">>") && tokens[i + 1])
-			cmd_block->append = ft_strdup(tokens[++i]);
-		else
+		printf("----- CMD BLOCK %d -----\n", i++);
+		if (block->cmds)
 		{
-			printf("ici\n");
-			ft_lstadd_back(&cmds, ft_lstnew(ft_strdup(tokens[i])));
+			int j = 0;
+			while (block->cmds[j])
+			{
+				printf("arg[%d] = %s\n", j, block->cmds[j]);
+				j++;
+			}
 		}
-		i++;
+		if (block->infile) printf("infile = %s\n", block->infile);
+		if (block->outfile) printf("outfile = %s\n", block->outfile);
+		if (block->append) printf("append = %s\n", block->append);
+		if (block->heredoc_eof) printf("heredoc_eof = %s\n", block->heredoc_eof);
+		printf("\n");
+		block = block->next;
 	}
-	cmd_block->cmds = cmds;
-	return (cmd_block);
 }
+
 
 int	main(int ac, char **av, char **env)
 {
 	t_minishell	*shell;
 	char		**cmd_unalias;
-	t_cmd_block	*cmd_block;
 
 	(void)ac;
 	(void)av;
@@ -154,12 +116,13 @@ int	main(int ac, char **av, char **env)
 		else
 		{
 			shell->tokens = get_tokens(shell->line);
+			ft_printf("GET_TOKENS\n");
 			print_str_table(shell->tokens);
-			ft_printf("\n\n");
+			ft_printf("\nALIAS EXPANSION\n");
 			ft_alias_expansion(shell->tokens, shell->alias);
 			print_str_table(shell->tokens);
-			cmd_block = init_cmd_block(shell->tokens);
-			ft_print_cmd(cmd_block);
+			t_cmd_block *cmd_blocks = parse_pipeline(shell->tokens);
+			print_cmd_blocks(cmd_blocks);
 		}
 		free(shell->line);
 		shell->line = NULL;

@@ -6,7 +6,7 @@
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 15:51:44 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/16 11:39:04 by edurance         ###   ########.fr       */
+/*   Updated: 2025/08/17 14:43:19 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ typedef struct s_cmd_block
 	char				*outfile;
 	char				*heredoc_eof;
 	char				*append;
-	t_list				*cmds;
+	char				**cmds;
+	struct s_cmd_block	*next;
 }						t_cmd_block;
 
 /*struct minishell*/

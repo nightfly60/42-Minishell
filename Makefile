@@ -7,7 +7,7 @@ OBJDIR = obj
 LIBFT := $(LIBFT_DIR)/libft.a
 
 PARSING = parsing/tokenize/count_token.c parsing/tokenize/token_utils.c parsing/tokenize/get_tokens.c parsing/check_quotes.c parsing/utils/is_even.c \
-			parsing/expansions/ft_alias_expansion.c parsing/tokenize/ft_merge_tokens.c
+			parsing/expansions/ft_alias_expansion.c parsing/tokenize/ft_merge_tokens.c parsing/cmds/args.c parsing/cmds/parse_cmds.c
 BUILT_IN = built-in/alias/find_alias.c built-in/alias/ft_add_alias.c  built-in/alias/ft_alias.c built-in/alias/ft_modify_alias.c built-in/alias/ft_print_alias.c \
 			built-in/alias/ft_unalias.c built-in/alias/clear_alias.c
 ENVIRNMT = environment/new_env.c environment/copy_env.c environment/env_utils.c
@@ -27,7 +27,7 @@ LIBFT_SRCS := libft/ft_atoi.c libft/ft_bzero.c libft/ft_calloc.c libft/ft_isalnu
 		libft/get_next_line/get_next_line_utils.c libft/ft_freeall.c libft/ft_lstget.c libft/ft_lstget.c
 
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -g3 -g3
+CFLAGS = -Wall -Werror -Wextra -g3
 
 OBJ = $(patsubst %.c, $(OBJDIR)/%.o, $(FILES))
 
