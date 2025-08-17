@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 16:01:35 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/08/15 17:00:18 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/08/17 15:15:05 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	env_delone(t_env *elem, void (*del)(void *))
 
 void	print_env(t_minishell *shell)
 {
-	t_env *current;
+	t_env	*current;
 
 	current = shell->env;
 	while (current)

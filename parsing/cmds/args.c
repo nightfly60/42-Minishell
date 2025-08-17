@@ -6,15 +6,16 @@
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/17 15:01:30 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/17 15:02:08 by edurance         ###   ########.fr       */
+/*   Updated: 2025/08/17 15:13:39 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parsing.h"
 
-int count_cmd_args(char **tokens, int i)
+/*Compte le nombres d'arguments (cmd + args jusqu'au prochain operateur).*/
+int	count_cmd_args(char **tokens, int i)
 {
-	int arg_count;
+	int	arg_count;
 
 	arg_count = 0;
 	while (tokens[i + arg_count] && !is_operator(tokens[i + arg_count]))
@@ -22,10 +23,11 @@ int count_cmd_args(char **tokens, int i)
 	return (arg_count);
 }
 
-char **ft_argdup(char **tokens, int arg_count, int i)
+/*Duplique tant d'arguments dans un char ***/
+char	**ft_argdup(char **tokens, int arg_count, int i)
 {
-	char **args;
-	int	j;
+	char	**args;
+	int		j;
 
 	j = 0;
 	args = malloc(sizeof(char *) * (arg_count + 1));

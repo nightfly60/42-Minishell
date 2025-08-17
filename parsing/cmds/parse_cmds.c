@@ -6,12 +6,13 @@
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/17 14:57:59 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/17 15:03:16 by edurance         ###   ########.fr       */
+/*   Updated: 2025/08/17 15:14:59 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parsing.h"
 
+/*Si on est sur un operateur, on remplis la bonne section avec le nom/EOF etc.*/
 static int	handle_operators(int i, char **tokens, t_cmd_block *cmd_block)
 {
 	if (!ft_strcmp(tokens[i], "<") && tokens[i + 1])
@@ -22,15 +23,17 @@ static int	handle_operators(int i, char **tokens, t_cmd_block *cmd_block)
 		cmd_block->append = ft_strdup(tokens[i + 1]);
 	else if (!ft_strcmp(tokens[i], "<<") && tokens[i + 1])
 		cmd_block->heredoc_eof = ft_strdup(tokens[i + 1]);
-	if (cmd_block->infile || cmd_block->outfile || cmd_block->append || cmd_block->heredoc_eof)
+	if (cmd_block->infile || cmd_block->outfile || cmd_block->append
+		|| cmd_block->heredoc_eof)
 		return (1);
 	return (0);
 }
 
-static t_cmd_block *new_cmd(void)
+/*Malloc et mettre a null tout*/
+static t_cmd_block	*new_cmd(void)
 {
-	t_cmd_block *cmd_block;
-	
+	t_cmd_block	*cmd_block;
+
 	cmd_block = malloc(sizeof(t_cmd_block));
 	if (!cmd_block)
 		return (NULL);
@@ -39,17 +42,20 @@ static t_cmd_block *new_cmd(void)
 	cmd_block->append = NULL;
 	cmd_block->heredoc_eof = NULL;
 	cmd_block->cmds = NULL;
-
 	return (cmd_block);
 }
 
-static t_cmd_block *parse_cmd(char **tokens, int *i)
+/*On compte le nb d'args
+	-> dup. On evite les | et on gere les operateurs dans la structure.*/
+static t_cmd_block	*parse_cmd(char **tokens, int *i)
 {
-	t_cmd_block *cmd = new_cmd();
-	int start = *i;
-	int arg_count;
-	char **args;
+	t_cmd_block	*cmd;
+	int			start;
+	int			arg_count;
+	char		**args;
 
+	cmd = new_cmd();
+	start = *i;
 	while (tokens[*i] && ft_strcmp(tokens[*i], "|"))
 	{
 		handle_operators(*i, tokens, cmd);
@@ -63,13 +69,14 @@ static t_cmd_block *parse_cmd(char **tokens, int *i)
 	return (cmd);
 }
 
-
-t_cmd_block *parse_pipeline(char **tokens)
+/*Remplis la structure t_cmd_block etliste chainee pour chaque cmd (args,
+	infile etc.)*/
+t_cmd_block	*parse_pipeline(char **tokens)
 {
-	t_cmd_block *head;
-	t_cmd_block *current;
-	t_cmd_block *new_block;
-	int i;
+	t_cmd_block	*head;
+	t_cmd_block	*current;
+	t_cmd_block	*new_block;
+	int			i;
 
 	head = NULL;
 	current = NULL;
