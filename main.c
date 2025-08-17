@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 14:15:26 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/16 14:36:32 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/08/17 15:28:55 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	main(int ac, char **av, char **env)
 			print_str_table(shell->tokens);
 			ft_printf("\n\n");
 			ft_alias_expansion(shell->tokens, shell->alias);
-			ft_quotes_expansion(shell->tokens, shell->env);
+			ft_expand_tokens(shell->tokens, shell->env);
 			print_str_table(shell->tokens);
 		}
 		free(shell->line);

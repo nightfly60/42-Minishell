@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 13:22:39 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/16 14:36:28 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/08/17 15:28:49 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ char					**get_tokens(char *line);
 
 /*	expensions	*/
 void					ft_alias_expansion(char **args, t_alias *alias);
-void					ft_quotes_expansion(char **tokens, t_env *env);
+void					ft_expand_tokens(char **tokens, t_env *env);
+void					ft_word_expansion(char **s, t_env *env);
 
 #endif

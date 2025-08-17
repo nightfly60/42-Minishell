@@ -1,51 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_quotes_expansion.c                              :+:      :+:    :+:   */
+/*   ft_word_exepansion.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/15 12:31:28 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/08/17 15:36:31 by aabouyaz         ###   ########.fr       */
+/*   Created: 2025/08/17 15:12:01 by aabouyaz          #+#    #+#             */
+/*   Updated: 2025/08/17 15:36:50 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parsing.h"
 
-/*	Expand et remplace l'adresse du char **s envoye.
-	Comportement d'une single_quote uniquement.	*/
-static void	single_quote(char **s)
-{
-	char	*res;
-	int		i;
-	int		j;
-
-	j = 0;
-	i = 1;
-	res = malloc(sizeof(char) * (strlen(*s) - 1));
-	if (!res)
-		return ;
-	while ((*s)[i] && (*s)[i + 1])
-	{
-		res[j] = (*s)[i];
-		i++;
-		j++;
-	}
-	res[j] = 0;
-	free(*s);
-	*s = res;
-}
-
-/*	Calcul la longueur totale finale d'un dquote a expand.	*/
+/*	Calcul la longueur totale finale d'un mot a expand.	*/
 static int	expand_len(char *s, t_env *first)
 {
 	int	i;
 	int	len;
 	int	valid_id;
 
-	i = 1;
+	i = 0;
 	len = 0;
-	while (s[i] && s[i + 1])
+	while (s[i])
 	{
 		if (s[i] == '$' && s[i + 1] && is_valid_id(&s[i + 1]))
 		{
@@ -94,20 +70,19 @@ static void	set_value(t_env *env, char *s, char **res, int *index)
 	}
 }
 
-/*	Expand et remplace l'adresse du char **s envoye.
-	Comportement d'une double_quote uniquement.	*/
-static void	double_quote(char **s, t_env *env)
+/*	Expand et remplace l'adresse du char **s envoye.	*/
+void	ft_word_expansion(char **s, t_env *env)
 {
 	char	*res;
 	int		i;
 	int		j;
 
 	j = 0;
-	i = 1;
+	i = 0;
 	res = malloc(sizeof(char) * expand_len(*s, env) + 1);
 	if (!res)
 		return ;
-	while ((*s)[i] && (*s)[i + 1])
+	while ((*s)[i])
 	{
 		if ((*s)[i] == '$' && (*s)[i + 1] && is_valid_id(&(*s)[i + 1]))
 		{
@@ -123,22 +98,4 @@ static void	double_quote(char **s, t_env *env)
 	res[j] = 0;
 	free(*s);
 	*s = res;
-}
-
-/*	Expand autant les quotes que les dquotes.	*/
-void	ft_expand_tokens(char **tokens, t_env *env)
-{
-	int	i;
-
-	i = 0;
-	while (tokens[i])
-	{
-		if (tokens[i][0] == '"')
-			double_quote(&tokens[i], env);
-		else if (tokens[i][0] == '\'')
-			single_quote(&tokens[i]);
-		else
-			ft_word_expansion(&tokens[i], env);
-		i++;
-	}
 }

@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 15:36:41 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/08/17 14:52:22 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/08/17 15:17:25 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	copy_env(t_minishell *shell, char **env)
 	int		i;
 	char	*name;
 	t_env	*new;
+	char	*value;
 
 	i = 0;
 	while (env[i])
@@ -48,7 +49,11 @@ void	copy_env(t_minishell *shell, char **env)
 			if (ft_strncmp(name, "SHLVL", 5))
 				new = new_env(name, getenv(name));
 			else
-				new = new_env(name, ft_itoa(ft_atoi(getenv(name)) + 1));
+			{
+				value = ft_itoa(ft_atoi(getenv(name)) + 1);
+				new = new_env(name, value);
+				free(value);
+			}
 			env_add_back(&(shell->env), new);
 		}
 		free(name);
