@@ -6,7 +6,7 @@
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 14:15:26 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/17 15:09:29 by edurance         ###   ########.fr       */
+/*   Updated: 2025/08/18 16:38:13 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,31 +47,6 @@ static void	init_shell(t_minishell *shell, char **env)
 	shell->prompt = "minishell > ";
 	copy_env(shell, env);
 }
-
-void	print_cmd_blocks(t_cmd_block *block)
-{
-	int i = 0;
-	while (block)
-	{
-		printf("----- CMD BLOCK %d -----\n", i++);
-		if (block->cmds)
-		{
-			int j = 0;
-			while (block->cmds[j])
-			{
-				printf("arg[%d] = %s\n", j, block->cmds[j]);
-				j++;
-			}
-		}
-		if (block->infile) printf("infile = %s\n", block->infile);
-		if (block->outfile) printf("outfile = %s\n", block->outfile);
-		if (block->append) printf("append = %s\n", block->append);
-		if (block->heredoc_eof) printf("heredoc_eof = %s\n", block->heredoc_eof);
-		printf("\n");
-		block = block->next;
-	}
-}
-
 
 int	main(int ac, char **av, char **env)
 {

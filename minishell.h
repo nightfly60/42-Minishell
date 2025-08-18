@@ -6,7 +6,7 @@
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 15:51:44 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/17 14:43:19 by edurance         ###   ########.fr       */
+/*   Updated: 2025/08/18 16:16:07 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@ typedef struct s_alias	t_alias;
 
 typedef struct s_cmd_block
 {
-	char				*infile;
-	char				*outfile;
-	char				*heredoc_eof;
-	char				*append;
+	t_list				*infile;
+	t_list				*outfile;
+	t_list				*heredoc_eof;
+	t_list				*append;
 	char				**cmds;
 	struct s_cmd_block	*next;
 }						t_cmd_block;

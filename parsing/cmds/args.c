@@ -6,7 +6,7 @@
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/17 15:01:30 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/17 15:13:39 by edurance         ###   ########.fr       */
+/*   Updated: 2025/08/18 16:35:12 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,13 @@ int	count_cmd_args(char **tokens, int i)
 	int	arg_count;
 
 	arg_count = 0;
-	while (tokens[i + arg_count] && !is_operator(tokens[i + arg_count]))
-		arg_count++;
+	while (tokens[i + arg_count] && ft_strcmp(tokens[i + arg_count], "|"))
+	{
+		if (!is_operator(tokens[i + arg_count]))
+			arg_count++;
+		else
+			i += 2;
+	}
 	return (arg_count);
 }
 

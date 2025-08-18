@@ -6,7 +6,7 @@
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/17 14:57:59 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/17 15:14:59 by edurance         ###   ########.fr       */
+/*   Updated: 2025/08/18 16:35:36 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,31 @@
 /*Si on est sur un operateur, on remplis la bonne section avec le nom/EOF etc.*/
 static int	handle_operators(int i, char **tokens, t_cmd_block *cmd_block)
 {
+	t_list	*elem;
+
 	if (!ft_strcmp(tokens[i], "<") && tokens[i + 1])
-		cmd_block->infile = ft_strdup(tokens[i + 1]);
+	{
+		elem = ft_lstnew(ft_strdup(tokens[i + 1]));
+		ft_lstadd_back(&cmd_block->infile, elem);
+	}
 	else if (!ft_strcmp(tokens[i], ">") && tokens[i + 1])
-		cmd_block->outfile = ft_strdup(tokens[i + 1]);
+	{
+		elem = ft_lstnew(ft_strdup(tokens[i + 1]));
+		ft_lstadd_back(&cmd_block->outfile, elem);
+	}
 	else if (!ft_strcmp(tokens[i], ">>") && tokens[i + 1])
-		cmd_block->append = ft_strdup(tokens[i + 1]);
+	{
+		elem = ft_lstnew(ft_strdup(tokens[i + 1]));
+		ft_lstadd_back(&cmd_block->append, elem);
+	}
 	else if (!ft_strcmp(tokens[i], "<<") && tokens[i + 1])
-		cmd_block->heredoc_eof = ft_strdup(tokens[i + 1]);
-	if (cmd_block->infile || cmd_block->outfile || cmd_block->append
-		|| cmd_block->heredoc_eof)
-		return (1);
-	return (0);
+	{
+		elem = ft_lstnew(ft_strdup(tokens[i + 1]));
+		ft_lstadd_back(&cmd_block->heredoc_eof, elem);
+	}
+	else
+		return (0);
+	return (1);
 }
 
 /*Malloc et mettre a null tout*/
@@ -50,19 +63,26 @@ static t_cmd_block	*new_cmd(void)
 static t_cmd_block	*parse_cmd(char **tokens, int *i)
 {
 	t_cmd_block	*cmd;
-	int			start;
-	int			arg_count;
 	char		**args;
+	int			j;
 
 	cmd = new_cmd();
-	start = *i;
+	j = 0;
+	args = malloc(sizeof(char *) * (count_cmd_args(tokens, *i) + 1));
+	if (!args)
+		return (NULL);
 	while (tokens[*i] && ft_strcmp(tokens[*i], "|"))
 	{
-		handle_operators(*i, tokens, cmd);
+		if (handle_operators(*i, tokens, cmd))
+			(*i)++;
+		else
+		{
+			args[j] = ft_strdup(tokens[*i]);
+			j++;
+		}
 		(*i)++;
 	}
-	arg_count = count_cmd_args(tokens, start);
-	args = ft_argdup(tokens, arg_count, start);
+	args[j] = NULL;
 	cmd->cmds = args;
 	if (tokens[*i] && !ft_strcmp(tokens[*i], "|"))
 		(*i)++;
