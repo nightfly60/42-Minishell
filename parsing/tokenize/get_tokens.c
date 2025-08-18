@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 17:07:40 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/08/17 14:47:58 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/08/18 15:15:24 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ char	**get_tokens(char *line)
 	int		j;
 
 	j = 0;
+	if (!line)
+		return (NULL);
 	res = malloc(sizeof(char *) * (count_tokens(line) + 1));
 	if (!res)
 		return (NULL);

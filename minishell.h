@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 15:51:44 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/15 16:53:18 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/08/18 15:38:32 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,16 @@ typedef struct s_alias	t_alias;
 /*struct minishell*/
 typedef struct s_minishell
 {
-	char	*prompt;
-	char	*line;
-	char	**tokens;
-	t_alias	*alias;
-	t_env	*env;
-}				t_minishell;
+	char				*prompt;
+	char				*line;
+	char				**tokens;
+	t_alias				*alias;
+	t_env				*env;
+}						t_minishell;
+
+/*	utils Minishell	*/
+void					free_line(t_minishell *shell);
+void					init_shell(t_minishell *shell, char **env);
+void					exit_minishell(t_minishell *shell);
 
 #endif

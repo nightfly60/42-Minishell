@@ -1,42 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   count_token.c                                      :+:      :+:    :+:   */
+/*   check_operators.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/14 15:16:07 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/08/18 15:15:13 by aabouyaz         ###   ########.fr       */
+/*   Created: 2025/08/18 15:20:41 by aabouyaz          #+#    #+#             */
+/*   Updated: 2025/08/18 15:39:50 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parsing.h"
 
-/*	compte le nombre de tokens dans la ligne	*/
-int	count_tokens(char *s)
+int	check_operators(char **tokens)
 {
 	int	i;
-	int	count;
-	int	add_index;
 
-	count = 0;
 	i = 0;
-	while (s && s[i])
+	while (tokens && tokens[i])
 	{
-		add_index = is_quote(&s[i]);
-		if (add_index)
-			i += add_index;
-		else if (is_operator(&s[i]))
-			i += is_operator(&s[i]);
-		else if (!ft_isspace(s[i]) && (!s[i + 1] || ft_isspace(s[i + 1])
-				|| is_quote(&s[i + 1]) || is_operator(&s[i + 1])))
-			i++;
-		else
+		if (is_operator(tokens[i]))
 		{
-			i++;
-			continue ;
+			if (!tokens[i + 1])
+				return (ft_printf("syntax error near unexpected token `newline'\n"));
+			else if (is_operator(tokens[i + 1]))
+				return (ft_printf("syntax error near unexpected token `%s'\n",
+						tokens[i + 1]));
 		}
-		count++;
+		i++;
 	}
-	return (count);
+	return (0);
 }
