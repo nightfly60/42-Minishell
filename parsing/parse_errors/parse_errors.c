@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parse_errors.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 15:33:30 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/08/18 15:34:46 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/08/18 17:05:24 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parsing.h"
 
+/*Affiche les parse errors. Et voila !*/
 int	parse_errors(t_minishell *shell)
 {
 	if (!quotes_checker((shell->line)) || check_operators(shell->tokens))
