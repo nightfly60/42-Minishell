@@ -1,10 +1,11 @@
 #include "minishell.h"
 
-static void print_file(void *redir)
+static void	print_file(void *redir)
 {
-	char *test;
-	t_redir *redirections = (t_redir *)redir;
+	char	*test;
+	t_redir	*redirections;
 
+	redirections = (t_redir *)redir;
 	if (redirections->type == INFILE)
 		test = "infile";
 	else if (redirections->type == OUTFILE)
@@ -16,9 +17,11 @@ static void print_file(void *redir)
 	ft_printf("%s: %s\n", test, redirections->name);
 }
 
-void print_cmd(void *commands)
+void	print_cmd(void *commands)
 {
-	t_cmd_block *cmd = (t_cmd_block *)commands;
+	t_cmd_block	*cmd;
+
+	cmd = (t_cmd_block *)commands;
 	print_str_table(cmd->cmds);
 	ft_lstiter(cmd->in, &print_file);
 	ft_lstiter(cmd->out, &print_file);

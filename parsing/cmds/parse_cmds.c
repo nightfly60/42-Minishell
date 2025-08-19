@@ -6,7 +6,7 @@
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/17 14:57:59 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/19 11:25:12 by edurance         ###   ########.fr       */
+/*   Updated: 2025/08/19 12:42:22 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void	parse_pipeline(t_minishell *shell)
 	int		i;
 
 	i = 0;
-	while ((shell->tokens)[i])
+	while ((shell->tokens) && (shell->tokens)[i])
 	{
 		new_block = ft_lstnew(parse_cmd((shell->tokens), &i));
 		ft_lstadd_back(&(shell->cmd_block), new_block);

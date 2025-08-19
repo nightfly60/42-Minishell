@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell_utils.c                                  :+:      :+:    :+:   */
+/*   init_exit.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 15:37:00 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/08/19 12:47:22 by edurance         ###   ########.fr       */
+/*   Updated: 2025/08/19 12:49:54 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 static void	ft_pacoshell(void)
 {
@@ -32,42 +32,6 @@ static void	ft_pacoshell(void)
 	ft_printf("    Y88b  d88P 888    888 888        888      888\n");
 	ft_printf("     \"Y8888P\"  888    888 8888888888 88888888 88888888\n");
 	ft_printf("\n");
-}
-
-static void	free_files(void *redir)
-{
-	t_redir	*redirections;
-
-	redirections = (t_redir *)redir;
-	free(redirections->name);
-	redirections->name = NULL;
-	free(redir);
-	redir = NULL;
-}
-
-static void	free_cmd_block(void *command)
-{
-	t_cmd_block	*cmd;
-
-	cmd = (t_cmd_block *)command;
-	ft_freeall(cmd->cmds);
-	cmd->cmds = NULL;
-	ft_lstclear(&(cmd->in), &free_files);
-	ft_lstclear(&(cmd->out), &free_files);
-	cmd->in = NULL;
-	cmd->out = NULL;
-	free(command);
-	command = NULL;
-}
-
-void	free_line(t_minishell *shell)
-{
-	free(shell->line);
-	ft_freeall(shell->tokens);
-	shell->tokens = NULL;
-	shell->line = NULL;
-	ft_lstclear(&(shell->cmd_block), &free_cmd_block);
-	shell->cmd_block = NULL;
 }
 
 void	init_shell(t_minishell *shell, char **env)

@@ -6,7 +6,7 @@
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 15:51:44 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/19 12:07:34 by edurance         ###   ########.fr       */
+/*   Updated: 2025/08/19 12:32:22 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@
 # include <sys/stat.h>
 # include <sys/types.h>
 # include <sys/wait.h>
-# include <term.h>
 # include <term.h>
 # include <termcap.h>
 # include <termios.h>
@@ -59,7 +58,6 @@ typedef struct s_cmd_block
 	char				**cmds;
 }						t_cmd_block;
 
-
 typedef struct s_env	t_env;
 typedef struct s_alias	t_alias;
 /*struct minishell*/
@@ -75,5 +73,10 @@ typedef struct s_minishell
 
 /*DEBUG*/
 void					print_cmd(void *commands);
+
+/*	utils Minishell	*/
+void					free_line(t_minishell *shell);
+void					init_shell(t_minishell *shell, char **env);
+void					exit_minishell(t_minishell *shell);
 
 #endif

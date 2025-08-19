@@ -6,7 +6,7 @@
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 13:22:39 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/19 12:05:24 by edurance         ###   ########.fr       */
+/*   Updated: 2025/08/19 12:30:07 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ char						**get_tokens(char *line);
 char						**ft_merge_tokens(char *line, char **tokens);
 void						free_str_array(char **arr);
 
-
 /*	commands (parse pipeline)	*/
 int							count_cmd_args(char **tokens, int i);
 char						**ft_argdup(char **tokens, int arg_count, int i);
@@ -43,7 +42,9 @@ void						parse_pipeline(t_minishell *shell);
 
 /*	expensions	*/
 void						ft_alias_expansion(char **args, t_alias *alias);
-void						ft_expand_tokens(char **tokens, t_env *env);
+void						single_quote(char **s);
+void						double_quote(char **s, t_env *env);
 void						ft_word_expansion(char **s, t_env *env);
+void						ft_expand_cmds(t_minishell *shell);
 
 #endif
