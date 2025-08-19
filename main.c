@@ -6,7 +6,7 @@
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 14:15:26 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/18 16:38:13 by edurance         ###   ########.fr       */
+/*   Updated: 2025/08/19 11:37:49 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,30 @@ static void	init_shell(t_minishell *shell, char **env)
 	rl_clear_history();
 	shell->prompt = "minishell > ";
 	copy_env(shell, env);
+}
+
+void print_file(void *redir)
+{
+	char *test;
+	t_redir *redirections = (t_redir *)redir;
+
+	if (redirections->type == INFILE)
+		test = "infile";
+	else if (redirections->type == OUTFILE)
+		test = "outfile";
+	else if (redirections->type == HEREDOC)
+		test = "heredoc";
+	else
+		test = "append";
+	ft_printf("%s: %s\n", test, redirections->name);
+}
+
+void print_cmd(void *commands)
+{
+	t_cmd_block *cmd = (t_cmd_block *)commands;
+	print_str_table(cmd->cmds);
+	ft_lstiter(cmd->in, &print_file);
+	ft_lstiter(cmd->out, &print_file);
 }
 
 int	main(int ac, char **av, char **env)
@@ -96,8 +120,9 @@ int	main(int ac, char **av, char **env)
 			ft_printf("\nALIAS EXPANSION\n");
 			ft_alias_expansion(shell->tokens, shell->alias);
 			print_str_table(shell->tokens);
-			t_cmd_block *cmd_blocks = parse_pipeline(shell->tokens);
-			print_cmd_blocks(cmd_blocks);
+			printf("-----------------CMD BLOCKS-----------------\n");
+			parse_pipeline(shell);
+			ft_lstiter(shell->cmd_block, &print_cmd);
 		}
 		free(shell->line);
 		shell->line = NULL;

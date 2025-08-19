@@ -6,11 +6,23 @@
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/17 14:57:59 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/18 16:35:36 by edurance         ###   ########.fr       */
+/*   Updated: 2025/08/19 11:25:12 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parsing.h"
+
+static t_redir	*make_redir(char *name, t_redirtype type)
+{
+	t_redir	*redirect;
+
+	redirect = malloc(sizeof(t_redir));
+	if (!redirect)
+		return (NULL);
+	redirect->name = ft_strdup(name);
+	redirect->type = type;
+	return (redirect);
+}
 
 /*Si on est sur un operateur, on remplis la bonne section avec le nom/EOF etc.*/
 static int	handle_operators(int i, char **tokens, t_cmd_block *cmd_block)
@@ -19,23 +31,23 @@ static int	handle_operators(int i, char **tokens, t_cmd_block *cmd_block)
 
 	if (!ft_strcmp(tokens[i], "<") && tokens[i + 1])
 	{
-		elem = ft_lstnew(ft_strdup(tokens[i + 1]));
-		ft_lstadd_back(&cmd_block->infile, elem);
+		elem = ft_lstnew(make_redir(tokens[i + 1], INFILE));
+		ft_lstadd_back(&cmd_block->in, elem);
 	}
 	else if (!ft_strcmp(tokens[i], ">") && tokens[i + 1])
 	{
-		elem = ft_lstnew(ft_strdup(tokens[i + 1]));
-		ft_lstadd_back(&cmd_block->outfile, elem);
+		elem = ft_lstnew(make_redir(tokens[i + 1], OUTFILE));
+		ft_lstadd_back(&cmd_block->out, elem);
 	}
 	else if (!ft_strcmp(tokens[i], ">>") && tokens[i + 1])
 	{
-		elem = ft_lstnew(ft_strdup(tokens[i + 1]));
-		ft_lstadd_back(&cmd_block->append, elem);
+		elem = ft_lstnew(make_redir(tokens[i + 1], APPEND));
+		ft_lstadd_back(&cmd_block->out, elem);
 	}
 	else if (!ft_strcmp(tokens[i], "<<") && tokens[i + 1])
 	{
-		elem = ft_lstnew(ft_strdup(tokens[i + 1]));
-		ft_lstadd_back(&cmd_block->heredoc_eof, elem);
+		elem = ft_lstnew(make_redir(tokens[i + 1], HEREDOC));
+		ft_lstadd_back(&cmd_block->in, elem);
 	}
 	else
 		return (0);
@@ -50,10 +62,8 @@ static t_cmd_block	*new_cmd(void)
 	cmd_block = malloc(sizeof(t_cmd_block));
 	if (!cmd_block)
 		return (NULL);
-	cmd_block->infile = NULL;
-	cmd_block->outfile = NULL;
-	cmd_block->append = NULL;
-	cmd_block->heredoc_eof = NULL;
+	cmd_block->in = NULL;
+	cmd_block->out = NULL;
 	cmd_block->cmds = NULL;
 	return (cmd_block);
 }
@@ -91,24 +101,16 @@ static t_cmd_block	*parse_cmd(char **tokens, int *i)
 
 /*Remplis la structure t_cmd_block etliste chainee pour chaque cmd (args,
 	infile etc.)*/
-t_cmd_block	*parse_pipeline(char **tokens)
+void	parse_pipeline(t_minishell *shell)
 {
-	t_cmd_block	*head;
-	t_cmd_block	*current;
-	t_cmd_block	*new_block;
-	int			i;
+	t_list	*new_block;
+	int		i;
 
-	head = NULL;
-	current = NULL;
 	i = 0;
-	while (tokens[i])
+	while ((shell->tokens)[i])
 	{
-		new_block = parse_cmd(tokens, &i);
-		if (!head)
-			head = new_block;
-		else
-			current->next = new_block;
-		current = new_block;
+		new_block = ft_lstnew(parse_cmd((shell->tokens), &i));
+		ft_lstadd_back(&(shell->cmd_block), new_block);
 	}
-	return (head);
+	return ;
 }

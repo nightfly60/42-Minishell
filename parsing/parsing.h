@@ -6,7 +6,7 @@
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 13:22:39 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/17 15:06:14 by edurance         ###   ########.fr       */
+/*   Updated: 2025/08/19 11:25:40 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 /*structs*/
 typedef struct s_alias		t_alias;
 typedef struct s_cmd_block	t_cmd_block;
+typedef struct s_minishell	t_minishell;
 
 /*	parsing prototypes	*/
 int							is_even(int n);
@@ -37,6 +38,6 @@ void						ft_alias_expansion(char **args, t_alias *alias);
 /*	commands (parse pipeline)	*/
 int							count_cmd_args(char **tokens, int i);
 char						**ft_argdup(char **tokens, int arg_count, int i);
-t_cmd_block					*parse_pipeline(char **tokens);
+void						parse_pipeline(t_minishell *shell);
 
 #endif
