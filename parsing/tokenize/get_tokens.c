@@ -6,7 +6,7 @@
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 17:07:40 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/08/15 15:55:29 by edurance         ###   ########.fr       */
+/*   Updated: 2025/08/19 12:04:42 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ static int	ft_strlen_to_space(char *s)
 	int	i;
 
 	i = 0;
-	while (s[i] && !ft_isspace(s[i]) && !is_operator(&s[i]))
+	while (s[i] && !ft_isspace(s[i]) && !is_operator(&s[i]) && s[i] != '\''
+		&& s[i] != '"')
 		i++;
 	return (i);
 }
@@ -74,6 +75,8 @@ char	**get_tokens(char *line)
 	int		j;
 
 	j = 0;
+	if (!line)
+		return (NULL);
 	res = malloc(sizeof(char *) * (count_tokens(line) + 1));
 	if (!res)
 		return (NULL);

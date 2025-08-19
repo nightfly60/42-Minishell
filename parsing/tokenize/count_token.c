@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   count_token.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 15:16:07 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/08/14 17:45:55 by edurance         ###   ########.fr       */
+/*   Updated: 2025/08/18 15:15:13 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	count_tokens(char *s)
 
 	count = 0;
 	i = 0;
-	while (s[i])
+	while (s && s[i])
 	{
 		add_index = is_quote(&s[i]);
 		if (add_index)

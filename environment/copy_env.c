@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   copy_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 15:36:41 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/08/15 17:07:34 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/08/19 12:06:16 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_env.h"
 
+/*	prends une ligne complete et renvoie son contenu avant  '='.	*/
 static char	*get_var_name(char *s)
 {
 	char	*res;
@@ -31,11 +32,13 @@ static char	*get_var_name(char *s)
 	return (res);
 }
 
+/*	copy dans le shell l'environnement passe en argument.	*/
 void	copy_env(t_minishell *shell, char **env)
 {
 	int		i;
 	char	*name;
 	t_env	*new;
+	char	*value;
 
 	i = 0;
 	while (env[i])
@@ -46,7 +49,11 @@ void	copy_env(t_minishell *shell, char **env)
 			if (ft_strncmp(name, "SHLVL", 5))
 				new = new_env(name, getenv(name));
 			else
-				new = new_env(name, ft_itoa(ft_atoi(getenv(name)) + 1));
+			{
+				value = ft_itoa(ft_atoi(getenv(name)) + 1);
+				new = new_env(name, value);
+				free(value);
+			}
 			env_add_back(&(shell->env), new);
 		}
 		free(name);
