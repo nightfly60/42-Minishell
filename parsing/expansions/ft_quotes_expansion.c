@@ -6,7 +6,7 @@
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 12:31:28 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/08/19 13:01:18 by edurance         ###   ########.fr       */
+/*   Updated: 2025/08/19 13:02:27 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	ft_expand_tokens(char **tokens, t_env *env)
 	}
 }
 
-/*	Parcours tous les commande bloc et expand les char **.	*/
+/*	Parcours tous les commandes block et expand les char **.	*/
 void	ft_expand_cmds(t_minishell *shell)
 {
 	t_list		*lst;
