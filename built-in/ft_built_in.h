@@ -6,7 +6,7 @@
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 17:16:07 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/14 17:31:12 by edurance         ###   ########.fr       */
+/*   Updated: 2025/08/16 11:23:55 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,7 @@ int					modify_alias(t_alias *alias_list, char *name,
 void				ft_add_alias(char *name, char *content,
 						t_alias **alias_list);
 int					find_alias(t_alias *alias_list, char *name);
+void				ft_unalias(char *del_name, t_alias **alias);
+void				clear_alias(t_alias *lst, void (*f)(void *));
 
 #endif

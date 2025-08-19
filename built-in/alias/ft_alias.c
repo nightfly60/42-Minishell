@@ -6,7 +6,7 @@
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 17:15:36 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/15 10:57:34 by edurance         ###   ########.fr       */
+/*   Updated: 2025/08/18 11:46:53 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,8 @@ static int	handle_alias(t_alias **alias_list, char *args)
 2. Afficher un alias en particulier.*/
 int	ft_alias(char **args, t_alias **alias_list)
 {
-	int	i;
 	int	arg_count;
 
-	i = 0;
 	arg_count = ft_arrlen(args);
 	if (arg_count == 1)
 	{
