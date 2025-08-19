@@ -6,6 +6,7 @@ OBJDIR = obj
 
 LIBFT := $(LIBFT_DIR)/libft.a
 
+<<<<<<< HEAD
 PARSING = parsing/tokenize/count_token.c parsing/tokenize/token_utils.c parsing/tokenize/get_tokens.c parsing/check_quotes.c parsing/utils/is_even.c \
 			parsing/expansions/ft_alias_expansion.c parsing/tokenize/ft_merge_tokens.c parsing/cmds/args.c parsing/cmds/parse_cmds.c
 BUILT_IN = built-in/alias/find_alias.c built-in/alias/ft_add_alias.c  built-in/alias/ft_alias.c built-in/alias/ft_modify_alias.c built-in/alias/ft_print_alias.c \
@@ -14,6 +15,16 @@ ENVIRNMT = environment/new_env.c environment/copy_env.c environment/env_utils.c
 EXEC =
 
 FILES = main.c $(PARSING) $(BUILT_IN) $(ENVIRNMT)
+=======
+PARSING = parsing/tokenize/count_token.c parsing/tokenize/token_utils.c parsing/tokenize/get_tokens.c parsing/parse_errors/check_quotes.c parsing/utils/is_even.c \
+			parsing/expansions/ft_alias_expansion.c parsing/expansions/ft_quotes_expansion.c parsing/expansions/ft_word_exepansion.c
+BUILT_IN = built-in/alias/find_alias.c built-in/alias/ft_add_alias.c  built-in/alias/ft_alias.c built-in/alias/ft_modify_alias.c built-in/alias/ft_print_alias.c \
+			built-in/alias/clear_alias.c parsing/parse_errors/check_operators.c parsing/parse_errors/parse_errors.c
+ENVIRNMT = environment/new_env.c environment/copy_env.c environment/env_utils.c environment/find_var.c environment/valid_id.c
+EXEC =
+
+FILES = main.c minishell_utils.c $(PARSING) $(BUILT_IN) $(ENVIRNMT)
+>>>>>>> anas
 
 LIBFT_SRCS := libft/ft_atoi.c libft/ft_bzero.c libft/ft_calloc.c libft/ft_isalnum.c libft/ft_isalpha.c libft/ft_isascii.c \
 		libft/ft_isdigit.c libft/ft_isprint.c libft/ft_itoa.c libft/ft_memchr.c libft/ft_memcmp.c libft/ft_memcpy.c \
@@ -27,7 +38,7 @@ LIBFT_SRCS := libft/ft_atoi.c libft/ft_bzero.c libft/ft_calloc.c libft/ft_isalnu
 		libft/get_next_line/get_next_line_utils.c libft/ft_freeall.c libft/ft_lstget.c libft/ft_lstget.c
 
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -g3
+CFLAGS = -Wall -Werror -Wextra -g3 -g3
 
 OBJ = $(patsubst %.c, $(OBJDIR)/%.o, $(FILES))
 

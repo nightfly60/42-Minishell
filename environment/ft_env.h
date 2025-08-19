@@ -6,7 +6,7 @@
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 15:26:57 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/08/16 11:24:50 by edurance         ###   ########.fr       */
+/*   Updated: 2025/08/19 12:05:46 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct s_env
 	struct s_env	*previous;
 }					t_env;
 
+/*	fonctions pour l'environnement	*/
 t_env	*env_last(t_env *lst);
 void	env_add_back(t_env **lst, t_env *new);
 void	env_delone(t_env *elem, void (*del)(void *));
@@ -33,5 +34,8 @@ t_env	*new_env(char *name, char *value);
 void	copy_env(t_minishell *shell, char **env);
 void	print_env(t_minishell *shell);
 void	clear_env(t_env *lst, void (*f)(void *));
+t_env	*find_var(char *name, t_env **first);
+int		is_valid_id(char *s);
+t_env	*find_var_len(char *name, t_env **first, int name_len);
 
 #endif

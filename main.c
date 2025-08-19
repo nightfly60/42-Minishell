@@ -6,12 +6,17 @@
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 14:15:26 by edurance          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2025/08/19 11:37:49 by edurance         ###   ########.fr       */
+=======
+/*   Updated: 2025/08/18 17:01:19 by edurance         ###   ########.fr       */
+>>>>>>> anas
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+<<<<<<< HEAD
 void	exit_minishell(t_minishell *shell)
 {
 	ft_freeall(shell->tokens);
@@ -24,6 +29,8 @@ void	exit_minishell(t_minishell *shell)
 	exit(0);
 }
 
+=======
+>>>>>>> anas
 void	handle_signal(int signal)
 {
 	if (signal == SIGINT)
@@ -37,6 +44,7 @@ void	handle_signal(int signal)
 		return ;
 }
 
+<<<<<<< HEAD
 static void	init_shell(t_minishell *shell, char **env)
 {
 	shell->tokens = NULL;
@@ -76,6 +84,11 @@ int	main(int ac, char **av, char **env)
 {
 	t_minishell	*shell;
 	char		**cmd_unalias;
+=======
+int	main(int ac, char **av, char **env)
+{
+	t_minishell	*shell;
+>>>>>>> anas
 
 	(void)ac;
 	(void)av;
@@ -88,6 +101,7 @@ int	main(int ac, char **av, char **env)
 	while (1)
 	{
 		shell->line = readline(shell->prompt);
+<<<<<<< HEAD
 		if (!(shell->line) || !ft_strcmp((shell->line), "exit"))
 		{
 			exit_minishell(shell);
@@ -100,20 +114,32 @@ int	main(int ac, char **av, char **env)
 			(shell->line) = NULL;
 			continue ;
 		}
+=======
+		add_history((shell->line));
+		shell->tokens = get_tokens(shell->line);
+		if (parse_errors(shell))
+			continue ;
+		if (!(shell->line) || !ft_strcmp((shell->line), "exit"))
+			exit_minishell(shell);
+>>>>>>> anas
 		if (!ft_strncmp((shell->line), "alias", 5))
 		{
 			ft_alias(ft_split((shell->line), ' '), &(shell->alias));
 		}
+<<<<<<< HEAD
 		else if (!ft_strncmp((shell->line), "unalias", 5))
 		{
 			cmd_unalias = ft_split(shell->line, ' ');
 			ft_unalias(cmd_unalias[1], &shell->alias);
 			ft_freeall(cmd_unalias);
 		}
+=======
+>>>>>>> anas
 		else if (!ft_strncmp((shell->line), "env", 3))
 			print_env(shell);
 		else
 		{
+<<<<<<< HEAD
 			shell->tokens = get_tokens(shell->line);
 			ft_printf("GET_TOKENS\n");
 			print_str_table(shell->tokens);
@@ -128,5 +154,12 @@ int	main(int ac, char **av, char **env)
 		shell->line = NULL;
 	}
 	rl_clear_history();
+=======
+			ft_alias_expansion(shell->tokens, shell->alias);
+			ft_expand_tokens(shell->tokens, shell->env);
+		}
+		free_line(shell);
+	}
+>>>>>>> anas
 	return (0);
 }

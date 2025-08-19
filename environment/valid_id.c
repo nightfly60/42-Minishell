@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_freeall.c                                       :+:      :+:    :+:   */
+/*   valid_id.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/27 12:22:48 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/08/15 15:02:36 by aabouyaz         ###   ########.fr       */
+/*   Created: 2025/08/16 11:34:27 by aabouyaz          #+#    #+#             */
+/*   Updated: 2025/08/17 14:55:50 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_env.h"
 
-void	ft_freeall(char **tab)
+/*	Renvoie la taille d'un id valide.
+	Regles:
+		- commencer par un '_' ou un alphabetique.
+		- uniquement des '_' et des alphanumeriques.	*/
+int	is_valid_id(char *s)
 {
 	int	i;
 
 	i = 0;
-	if (!tab)
-		return ;
-	while (tab[i])
+	if (s[i] != '_' && !ft_isalpha(s[i]))
+		return (0);
+	while (s[i])
 	{
-		free(tab[i]);
-		tab[i] = NULL;
+		if (s[i] != '_' && !ft_isalnum(s[i]))
+			return (i);
 		i++;
 	}
-	free(tab);
-	tab = NULL;
+	return (i);
 }
