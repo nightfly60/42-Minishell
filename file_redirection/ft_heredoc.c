@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 15:25:20 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/20 18:01:00 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/08/20 18:12:51 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ int	ft_heredoc(char *limiter, t_minishell *shell, t_redirtype type)
 {
 	char	*line;
 	char	*text;
-	int		limit_len;
+	int		len;
 	int		fd[2];
 
 	line = NULL;
 	text = NULL;
-	limit_len = ft_strlen(limiter);
+	len = ft_strlen(limiter);
 	if (pipe(fd) == -1)
 		perror("pipe");
 	while (1)
@@ -44,8 +44,7 @@ int	ft_heredoc(char *limiter, t_minishell *shell, t_redirtype type)
 		line = get_next_line(STDIN_FILENO);
 		if (type == HEREDOC)
 			ft_expand_heredoc(&line, shell->env);
-		if (!line || (!ft_strncmp(limiter, line, limit_len)
-				&& line[limit_len] == '\n'))
+		if (!line || (!ft_strncmp(limiter, line, len) && line[len] == '\n'))
 			break ;
 		write(fd[1], line, ft_strlen(line));
 		free(line);
