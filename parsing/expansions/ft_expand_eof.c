@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_expand_squotes.c                                :+:      :+:    :+:   */
+/*   ft_expand_eof.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/19 12:15:51 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/20 14:43:30 by aabouyaz         ###   ########.fr       */
+/*   Created: 2025/08/20 14:41:07 by aabouyaz          #+#    #+#             */
+/*   Updated: 2025/08/20 14:52:31 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parsing.h"
 
-/*	Expand et remplace l'adresse du char **s envoye.
-	Comportement d'une single_quote uniquement.	*/
-void	single_quote(char **s)
+/*	Enleve les quotes de debut et de fin	*/
+static void	expand_quotes(char **s)
 {
 	char	*res;
 	int		i;
@@ -25,7 +24,7 @@ void	single_quote(char **s)
 	res = malloc(sizeof(char) * (ft_strlen(*s) - 1));
 	if (!res)
 		return ;
-	while ((*s)[i] != '\'')
+	while ((*s)[i] && (*s)[i + 1])
 	{
 		res[j] = (*s)[i];
 		i++;
@@ -34,4 +33,19 @@ void	single_quote(char **s)
 	res[j] = 0;
 	free(*s);
 	*s = res;
+}
+
+void	ft_expand_eof(char **tokens)
+{
+	int	i;
+
+	i = 0;
+	while (tokens[i])
+	{
+		if (tokens[i][0] == '"')
+			expand_quotes(&tokens[i]);
+		else if (tokens[i][0] == '\'')
+			expand_quotes(&tokens[i]);
+		i++;
+	}
 }
