@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_merge_tokens.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 15:33:11 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/15 16:12:31 by edurance         ###   ########.fr       */
+/*   Updated: 2025/08/20 11:16:43 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static char	*merge_until_space(char *line, int *line_i, char **tokens, int *i)
 }
 
 /*Join les tokens qui devraient n'en faire qu'un comment "salut"atous.*/
-char	**ft_merge_tokens(char *line, char **tokens)
+void	ft_merge_tokens(t_minishell *shell)
 {
 	char	**res;
 	int		i;
@@ -52,18 +52,19 @@ char	**ft_merge_tokens(char *line, char **tokens)
 	i = 0;
 	res_i = 0;
 	line_i = 0;
-	nb_tokens = ft_arrlen(tokens);
+	nb_tokens = ft_arrlen(shell->tokens);
 	res = malloc(sizeof(char *) * (nb_tokens + 1));
 	if (!res)
-		return (NULL);
+		return ;
 	while (i < nb_tokens)
 	{
-		while (line[line_i] && (ft_isspace(line[line_i])
-				|| is_operator(&line[line_i])))
+		while ((shell->line)[line_i] && (ft_isspace(shell->line[line_i])))
 			line_i++;
-		res[res_i] = merge_until_space(line, &line_i, tokens, &i);
+		res[res_i] = merge_until_space(shell->line, &line_i, shell->tokens, &i);
 		res_i++;
 	}
 	res[res_i] = NULL;
-	return (res);
+	ft_freeall(shell->tokens);
+	shell->tokens = res;
+	return ;
 }

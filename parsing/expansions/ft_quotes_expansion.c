@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_quotes_expansion.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 12:31:28 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/08/19 15:59:28 by edurance         ###   ########.fr       */
+/*   Updated: 2025/08/20 11:18:55 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,29 @@ void	exp_file(t_list *lst, void (*f)(void *, t_minishell *), t_minishell *s)
 	}
 }
 
+static void	ft_expand_merged(char **merged, t_minishell *shell)
+{
+	char	**tokens;
+	char	*res;
+	int		i;
+	char	*temp;
+
+	i = 0;
+	res = NULL;
+	tokens = get_tokens(*merged);
+	ft_expand_tokens(tokens, shell->env);
+	while (tokens[i])
+	{
+		temp = res;
+		res = ft_strjoin(res, tokens[i]);
+		free(temp);
+		i++;
+	}
+	ft_freeall(tokens);
+	free(*merged);
+	*merged = res;
+}
+
 /*	Expand les noms de fichiers	*/
 static void	ft_expand_filename(void *content, t_minishell *shell)
 {
@@ -48,12 +71,7 @@ static void	ft_expand_filename(void *content, t_minishell *shell)
 
 	redir = (t_redir *)content;
 	filename = redir->name;
-	if (filename[0] == '"')
-		double_quote(&(redir->name), shell->env);
-	else if (filename[0] == '\'')
-		single_quote(&(redir->name));
-	else
-		ft_word_expansion(&(redir->name), shell->env);
+	ft_expand_merged(&(redir->name), shell);
 	return ;
 }
 
@@ -62,12 +80,18 @@ void	ft_expand_cmds(t_minishell *shell)
 {
 	t_list		*lst;
 	t_cmd_block	*command;
+	int			i;
 
 	lst = shell->cmd_block;
 	while (lst)
 	{
 		command = (t_cmd_block *)lst->content;
-		ft_expand_tokens(command->cmds, shell->env);
+		i = 0;
+		while ((command->cmds)[i])
+		{
+			ft_expand_merged(&(command->cmds)[i], shell);
+			i++;
+		}
 		exp_file(command->in, &ft_expand_filename, shell);
 		exp_file(command->out, &ft_expand_filename, shell);
 		lst = lst->next;
