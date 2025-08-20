@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 13:22:39 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/19 12:30:07 by edurance         ###   ########.fr       */
+/*   Updated: 2025/08/20 14:46:32 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int							is_operator(char *s);
 int							is_quote(char *s);
 int							count_tokens(char *s);
 char						**get_tokens(char *line);
-char						**ft_merge_tokens(char *line, char **tokens);
+void						ft_merge_tokens(t_minishell *shell);
 void						free_str_array(char **arr);
 
 /*	commands (parse pipeline)	*/
@@ -46,5 +46,6 @@ void						single_quote(char **s);
 void						double_quote(char **s, t_env *env);
 void						ft_word_expansion(char **s, t_env *env);
 void						ft_expand_cmds(t_minishell *shell);
+void					ft_expand_eof(char **tokens);
 
 #endif

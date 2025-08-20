@@ -12,6 +12,8 @@ static void	print_file(void *redir)
 		test = "outfile";
 	else if (redirections->type == HEREDOC)
 		test = "heredoc";
+	else if (redirections->type == HEREDOC_NO_EXP)
+		test = "heredoc sans expansion";
 	else
 		test = "append";
 	ft_printf("%s: %s\n", test, redirections->name);

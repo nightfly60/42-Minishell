@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_cmds.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/17 14:57:59 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/19 12:42:22 by edurance         ###   ########.fr       */
+/*   Updated: 2025/08/20 14:32:57 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,22 @@
 static t_redir	*make_redir(char *name, t_redirtype type)
 {
 	t_redir	*redirect;
+	int		i;
 
 	redirect = malloc(sizeof(t_redir));
 	if (!redirect)
 		return (NULL);
 	redirect->name = ft_strdup(name);
+	if (type == HEREDOC)
+	{
+		i = 0;
+		while (name[i])
+		{
+			if (name[i] == '"' || name[i] == '\'')
+				type = HEREDOC_NO_EXP;
+			i++;
+		}
+	}
 	redirect->type = type;
 	return (redirect);
 }

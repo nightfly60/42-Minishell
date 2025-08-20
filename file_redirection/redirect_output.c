@@ -1,37 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_expand_squotes.c                                :+:      :+:    :+:   */
+/*   redirect_output.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/19 12:15:51 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/20 14:43:30 by aabouyaz         ###   ########.fr       */
+/*   Created: 2025/08/20 11:37:57 by aabouyaz          #+#    #+#             */
+/*   Updated: 2025/08/20 15:15:35 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../parsing.h"
+#include "ft_redirection.h"
 
-/*	Expand et remplace l'adresse du char **s envoye.
-	Comportement d'une single_quote uniquement.	*/
-void	single_quote(char **s)
+void	redirect_output(void *content)
 {
-	char	*res;
-	int		i;
-	int		j;
+	t_redir *out;
+	int	old_fd;
 
-	j = 0;
-	i = 1;
-	res = malloc(sizeof(char) * (ft_strlen(*s) - 1));
-	if (!res)
-		return ;
-	while ((*s)[i] != '\'')
-	{
-		res[j] = (*s)[i];
-		i++;
-		j++;
-	}
-	res[j] = 0;
-	free(*s);
-	*s = res;
+	out = (t_redir *)content;
+	old_fd = open_files(out->name, out->type);
+	if (dup2(old_fd, STDOUT_FILENO) == -1)
+		perror(errno);
+	close(old_fd);
 }

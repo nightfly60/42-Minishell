@@ -1,37 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_expand_squotes.c                                :+:      :+:    :+:   */
+/*   ft_redirection.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/19 12:15:51 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/20 14:43:30 by aabouyaz         ###   ########.fr       */
+/*   Created: 2025/08/20 11:38:19 by aabouyaz          #+#    #+#             */
+/*   Updated: 2025/08/20 15:12:09 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../parsing.h"
+#include "../minishell.h"
 
-/*	Expand et remplace l'adresse du char **s envoye.
-	Comportement d'une single_quote uniquement.	*/
-void	single_quote(char **s)
-{
-	char	*res;
-	int		i;
-	int		j;
-
-	j = 0;
-	i = 1;
-	res = malloc(sizeof(char) * (ft_strlen(*s) - 1));
-	if (!res)
-		return ;
-	while ((*s)[i] != '\'')
-	{
-		res[j] = (*s)[i];
-		i++;
-		j++;
-	}
-	res[j] = 0;
-	free(*s);
-	*s = res;
-}
+/*	fonction de redirection	*/
+int	open_files(char *name, t_redirtype type);
