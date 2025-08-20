@@ -6,7 +6,7 @@
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 12:31:28 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/08/19 15:59:28 by edurance         ###   ########.fr       */
+/*   Updated: 2025/08/19 16:05:12 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ static void	ft_expand_filename(void *content, t_minishell *shell)
 	char	*filename;
 
 	redir = (t_redir *)content;
+	if (redir->type == HEREDOC)
+		return ;
 	filename = redir->name;
 	if (filename[0] == '"')
 		double_quote(&(redir->name), shell->env);
