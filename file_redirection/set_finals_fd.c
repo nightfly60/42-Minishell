@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 15:36:49 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/20 17:55:28 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/08/20 18:28:59 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,14 @@ static void	set_outfile_fd(t_cmd_block *block)
 void	set_finals_fd(t_minishell *shell)
 {
 	t_cmd_block	*block;
+	t_list		*lst;
 
-	block = ((t_cmd_block *)shell->cmd_block->content);
-	set_infile_fd(block, shell);
-	set_outfile_fd(block);
+	lst = shell->cmd_block;
+	while (lst)
+	{
+		block = ((t_cmd_block *)lst->content);
+		set_infile_fd(block, shell);
+		set_outfile_fd(block);
+		lst = lst->next;
+	}
 }

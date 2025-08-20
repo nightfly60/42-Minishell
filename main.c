@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 14:15:26 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/20 17:56:11 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/08/20 18:31:26 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ static void redirection(int in, int out)
 {
 	char *line;
 
-	line = "elena";
+	line = get_next_line(in);
 	while (line)
 	{
-		line = get_next_line(in);
 		ft_putstr_fd(line, out);
 		free(line);
+		line = get_next_line(in);
 	}
 }
 
@@ -75,6 +75,7 @@ int	main(int ac, char **av, char **env)
 		}
 		set_finals_fd(shell);
 		redirection(((t_cmd_block *)shell->cmd_block->content)->in_fd, ((t_cmd_block *)shell->cmd_block->content)->out_fd);
+		ft_lstiter(shell->cmd_block, &print_cmd);
 		free_line(shell);
 	}
 	return (0);
