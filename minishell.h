@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 15:51:44 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/20 11:29:08 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/08/20 15:46:03 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "environment/ft_env.h"
 # include "libft/libft.h"
 # include "parsing/parsing.h"
+# include "file_redirection/ft_redirection.h"
 # include <curses.h>
 # include <dirent.h>
 # include <errno.h>

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 14:15:26 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/20 14:49:59 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/08/20 15:50:59 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,15 +54,13 @@ int	main(int ac, char **av, char **env)
 			print_env(shell);
 		else
 		{
-			print_str_table(shell->tokens);
 			ft_alias_expansion(shell->tokens, shell->alias);
 			ft_merge_tokens(shell);
-			print_str_table(shell->tokens);
 			parse_pipeline(shell);
-			ft_lstiter(shell->cmd_block, &print_cmd);
 			ft_expand_cmds(shell);
 			ft_lstiter(shell->cmd_block, &print_cmd);
 		}
+		apply_redirections(shell->cmd_block);
 		free_line(shell);
 	}
 	return (0);

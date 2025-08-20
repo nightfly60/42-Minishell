@@ -18,9 +18,12 @@ ENVIRNMT = environment/new_env.c environment/copy_env.c environment/env_utils.c 
 
 UTILS = minishell_utils/free_line.c minishell_utils/init_exit.c
 
+REDIRECTIONS = file_redirection/apply_redirections.c file_redirection/ft_heredoc.c file_redirection/open_files.c file_redirection/redirect_input.c \
+				file_redirection/redirect_output.c
+
 EXEC =
 
-FILES = main.c $(PARSING) $(BUILT_IN) $(ENVIRNMT) $(UTILS) debug.c
+FILES = main.c $(PARSING) $(BUILT_IN) $(ENVIRNMT) $(UTILS) $(REDIRECTIONS) debug.c
 
 LIBFT_SRCS := libft/ft_atoi.c libft/ft_bzero.c libft/ft_calloc.c libft/ft_isalnum.c libft/ft_isalpha.c libft/ft_isascii.c \
 		libft/ft_isdigit.c libft/ft_isprint.c libft/ft_itoa.c libft/ft_memchr.c libft/ft_memcmp.c libft/ft_memcpy.c \

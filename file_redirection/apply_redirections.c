@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_redirection.h                                   :+:      :+:    :+:   */
+/*   apply_redirections.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/20 11:38:19 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/08/20 15:48:32 by edurance         ###   ########.fr       */
+/*   Created: 2025/08/20 15:36:49 by edurance          #+#    #+#             */
+/*   Updated: 2025/08/20 15:39:42 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "ft_redirection.h"
 
-typedef enum e_redirtype	t_redirtype;
+void apply_redirections(void *cmd_block)
+{
+	t_cmd_block *block;
 
-/*	fonction de redirection	*/
-int							open_files(char *name, t_redirtype type);
-int							ft_heredoc(char *limiter);
-void						redirect_input(void *content);
-void						redirect_output(void *content);
-void						apply_redirections(void *cmd_block);
+	block = (t_cmd_block *)cmd_block;
+	ft_lstiter(block->in, &redirect_input);
+	ft_lstiter(block->out, &redirect_output);
+}
