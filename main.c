@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 14:15:26 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/19 12:31:55 by edurance         ###   ########.fr       */
+/*   Updated: 2025/08/20 11:17:27 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int	main(int ac, char **av, char **env)
 		else
 		{
 			ft_alias_expansion(shell->tokens, shell->alias);
+			ft_merge_tokens(shell);
 			parse_pipeline(shell);
 			ft_expand_cmds(shell);
 			ft_lstiter(shell->cmd_block, &print_cmd);

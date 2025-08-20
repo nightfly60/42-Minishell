@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_quotes_utils.c                                  :+:      :+:    :+:   */
+/*   ft_expand_squotes.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 12:15:51 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/19 12:19:42 by edurance         ###   ########.fr       */
+/*   Updated: 2025/08/20 10:45:26 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	single_quote(char **s)
 	res = malloc(sizeof(char) * (strlen(*s) - 1));
 	if (!res)
 		return ;
-	while ((*s)[i] && (*s)[i + 1])
+	while ((*s)[i] != '\'')
 	{
 		res[j] = (*s)[i];
 		i++;

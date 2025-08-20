@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_expand_dquotes.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 12:19:54 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/19 12:48:33 by edurance         ###   ########.fr       */
+/*   Updated: 2025/08/20 10:44:56 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	expand_len(char *s, t_env *first)
 
 	i = 1;
 	len = 0;
-	while (s[i] && s[i + 1])
+	while (s[i] != '"')
 	{
 		if (s[i] == '$' && s[i + 1] && is_valid_id(&s[i + 1]))
 		{
@@ -83,7 +83,7 @@ void	double_quote(char **s, t_env *env)
 	res = malloc(sizeof(char) * expand_len(*s, env) + 1);
 	if (!res)
 		return ;
-	while ((*s)[i] && (*s)[i + 1])
+	while ((*s)[i] != '"')
 	{
 		if ((*s)[i] == '$' && (*s)[i + 1] && is_valid_id(&(*s)[i + 1]))
 		{
