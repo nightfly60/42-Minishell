@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_files.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 11:47:38 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/08/20 15:11:56 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/08/20 15:53:03 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	open_files(char *name, t_redirtype type)
 {
 	int	fd;
 
+	fd = -1;
 	if (type == OUTFILE)
 		fd = open(name, O_CREAT | O_WRONLY | O_TRUNC, 0666);
 	else if (type == INFILE)
@@ -27,6 +28,6 @@ int	open_files(char *name, t_redirtype type)
 	else
 		ft_printf("ERROR: OPEN");
 	if (fd == -1)
-		perror(errno);
+		perror("open");
 	return (fd);
 }

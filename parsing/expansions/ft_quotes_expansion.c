@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_expansion.c                                     :+:      :+:    :+:   */
+/*   ft_quotes_expansion.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 12:31:28 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/08/20 17:52:55 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/08/20 17:51:37 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,32 +40,6 @@ void	exp_file(t_list *lst, void (*f)(void *, t_minishell *), t_minishell *s)
 	}
 }
 
-static void	ft_expand_merged(char **merged, t_minishell *shell, int eof)
-{
-	char	**tokens;
-	char	*res;
-	int		i;
-	char	*temp;
-
-	i = 0;
-	res = NULL;
-	tokens = get_tokens(*merged);
-	if (!eof)
-		ft_expand_tokens(tokens, shell->env);
-	else
-		ft_expand_eof(tokens);
-	while (tokens[i])
-	{
-		temp = res;
-		res = ft_strjoin(res, tokens[i]);
-		free(temp);
-		i++;
-	}
-	ft_freeall(tokens);
-	free(*merged);
-	*merged = res;
-}
-
 /*	Expand les noms de fichiers	*/
 static void	ft_expand_filename(void *content, t_minishell *shell)
 {
@@ -73,11 +47,15 @@ static void	ft_expand_filename(void *content, t_minishell *shell)
 	char	*filename;
 
 	redir = (t_redir *)content;
+	if (redir->type == HEREDOC)
+		return ;
 	filename = redir->name;
-	if (redir->type == HEREDOC || redir->type == HEREDOC_NO_EXP)
-		ft_expand_merged(&(redir->name), shell, 1);
+	if (filename[0] == '"')
+		double_quote(&(redir->name), shell->env);
+	else if (filename[0] == '\'')
+		single_quote(&(redir->name));
 	else
-		ft_expand_merged(&(redir->name), shell, 0);
+		ft_word_expansion(&(redir->name), shell->env);
 	return ;
 }
 
@@ -86,18 +64,12 @@ void	ft_expand_cmds(t_minishell *shell)
 {
 	t_list		*lst;
 	t_cmd_block	*command;
-	int			i;
 
 	lst = shell->cmd_block;
 	while (lst)
 	{
 		command = (t_cmd_block *)lst->content;
-		i = 0;
-		while ((command->cmds)[i])
-		{
-			ft_expand_merged(&(command->cmds)[i], shell, 0);
-			i++;
-		}
+		ft_expand_tokens(command->cmds, shell->env);
 		exp_file(command->in, &ft_expand_filename, shell);
 		exp_file(command->out, &ft_expand_filename, shell);
 		lst = lst->next;
