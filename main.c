@@ -6,7 +6,7 @@
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 14:15:26 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/18 17:01:19 by edurance         ###   ########.fr       */
+/*   Updated: 2025/08/19 12:31:55 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,9 @@ int	main(int ac, char **av, char **env)
 		else
 		{
 			ft_alias_expansion(shell->tokens, shell->alias);
-			ft_expand_tokens(shell->tokens, shell->env);
+			parse_pipeline(shell);
+			ft_expand_cmds(shell);
+			ft_lstiter(shell->cmd_block, &print_cmd);
 		}
 		free_line(shell);
 	}

@@ -6,7 +6,7 @@
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 15:51:44 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/18 17:01:32 by edurance         ###   ########.fr       */
+/*   Updated: 2025/08/19 12:32:22 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,43 @@
 
 typedef struct s_env	t_env;
 typedef struct s_alias	t_alias;
+
+typedef enum e_redirtype
+{
+	INFILE,
+	OUTFILE,
+	HEREDOC,
+	APPEND
+}						t_redirtype;
+
+typedef struct s_redir
+{
+	char				*name;
+	t_redirtype			type;
+}						t_redir;
+
+typedef struct s_cmd_block
+{
+	t_list				*in;
+	t_list				*out;
+	char				**cmds;
+}						t_cmd_block;
+
+typedef struct s_env	t_env;
+typedef struct s_alias	t_alias;
 /*struct minishell*/
 typedef struct s_minishell
 {
 	char				*prompt;
 	char				*line;
 	char				**tokens;
+	t_list				*cmd_block;
 	t_alias				*alias;
 	t_env				*env;
 }						t_minishell;
+
+/*DEBUG*/
+void					print_cmd(void *commands);
 
 /*	utils Minishell	*/
 void					free_line(t_minishell *shell);
