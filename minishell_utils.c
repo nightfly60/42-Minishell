@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 15:37:00 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/08/18 17:01:37 by edurance         ###   ########.fr       */
+/*   Updated: 2025/08/20 17:39:12 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,10 @@ void	free_line(t_minishell *shell)
 {
 	free(shell->line);
 	ft_freeall(shell->tokens);
+	if (((t_cmd_block *)shell->cmd_block->content)->in_fd != STDIN_FILENO)
+		close(((t_cmd_block *)shell->cmd_block->content)->in_fd);
+	if (((t_cmd_block *)shell->cmd_block->content)->out_fd != STDOUT_FILENO)
+		close(((t_cmd_block *)shell->cmd_block->content)->out_fd);
 	shell->tokens = NULL;
 	shell->line = NULL;
 }

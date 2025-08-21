@@ -18,7 +18,7 @@ ENVIRNMT = environment/new_env.c environment/copy_env.c environment/env_utils.c 
 
 UTILS = minishell_utils/free_line.c minishell_utils/init_exit.c
 
-REDIRECTIONS = file_redirection/apply_redirections.c file_redirection/ft_heredoc.c file_redirection/open_files.c file_redirection/redirect_input.c \
+REDIRECTIONS = file_redirection/set_finals_fd.c file_redirection/ft_heredoc.c file_redirection/open_files.c file_redirection/redirect_input.c \
 				file_redirection/redirect_output.c
 
 EXEC =

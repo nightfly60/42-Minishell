@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 15:51:44 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/20 15:46:03 by edurance         ###   ########.fr       */
+/*   Updated: 2025/08/20 17:21:01 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ typedef struct s_cmd_block
 {
 	t_list				*in;
 	t_list				*out;
+	int					out_fd;
+	int					in_fd;
 	char				**cmds;
 }						t_cmd_block;
 

@@ -6,14 +6,14 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 12:31:28 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/08/20 14:48:36 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/08/20 17:52:55 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parsing.h"
 
 /*	Expand autant les quotes que les dquotes.	*/
-static void	ft_expand_tokens(char **tokens, t_env *env)
+void	ft_expand_tokens(char **tokens, t_env *env)
 {
 	int	i;
 
