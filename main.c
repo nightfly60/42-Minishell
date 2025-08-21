@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 14:15:26 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/20 18:31:26 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/08/21 16:00:43 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,6 @@ void	handle_signal(int signal)
 	}
 	if (signal == SIGQUIT)
 		return ;
-}
-
-static void redirection(int in, int out)
-{
-	char *line;
-
-	line = get_next_line(in);
-	while (line)
-	{
-		ft_putstr_fd(line, out);
-		free(line);
-		line = get_next_line(in);
-	}
 }
 
 int	main(int ac, char **av, char **env)
@@ -74,7 +61,7 @@ int	main(int ac, char **av, char **env)
 			ft_lstiter(shell->cmd_block, &print_cmd);
 		}
 		set_finals_fd(shell);
-		redirection(((t_cmd_block *)shell->cmd_block->content)->in_fd, ((t_cmd_block *)shell->cmd_block->content)->out_fd);
+		exec_line(shell);
 		ft_lstiter(shell->cmd_block, &print_cmd);
 		free_line(shell);
 	}

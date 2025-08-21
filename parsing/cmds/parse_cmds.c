@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/17 14:57:59 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/20 17:21:32 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/08/21 16:07:41 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ static t_cmd_block	*new_cmd(void)
 	cmd_block->cmds = NULL;
 	cmd_block->in_fd = STDIN_FILENO;
 	cmd_block->out_fd = STDOUT_FILENO;
+	cmd_block->pipe_fd = -1;
 	return (cmd_block);
 }
 
