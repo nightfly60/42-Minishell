@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_files.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 11:47:38 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/08/20 15:53:03 by edurance         ###   ########.fr       */
+/*   Updated: 2025/08/22 15:09:33 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,6 @@ int	open_files(char *name, t_redirtype type)
 	else
 		ft_printf("ERROR: OPEN");
 	if (fd == -1)
-		perror("open");
+		perror(name);
 	return (fd);
 }

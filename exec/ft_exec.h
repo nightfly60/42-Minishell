@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 15:20:27 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/22 12:26:24 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/08/22 13:07:41 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,6 @@ typedef struct s_cmd_block	t_cmd_block;
 int							exec_line(t_minishell *shell);
 void						close_child(int pipes[2], t_list *cmd_block);
 void						close_parent(int pipas[2], t_cmd_block *command);
+char						*get_path(char *command, t_minishell *shell);
 
 #endif
