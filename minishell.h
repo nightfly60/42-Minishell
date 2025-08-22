@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 15:51:44 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/21 15:58:55 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/08/22 12:24:57 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,14 +64,13 @@ typedef struct s_cmd_block
 	char				**cmds;
 }						t_cmd_block;
 
-typedef struct s_env	t_env;
-typedef struct s_alias	t_alias;
 /*struct minishell*/
 typedef struct s_minishell
 {
 	char				*prompt;
 	char				*line;
 	char				**tokens;
+	int					exit_status;
 	t_list				*cmd_block;
 	t_alias				*alias;
 	t_env				*env;

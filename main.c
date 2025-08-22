@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 14:15:26 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/21 16:00:43 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/08/22 12:07:34 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,22 @@ void	handle_signal(int signal)
 	}
 	if (signal == SIGQUIT)
 		return ;
+}
+
+void	exit_wait(t_minishell *shell, int last)
+{
+	int	pid;
+	int	status;
+	int	last_status;
+
+	pid = 0;
+	while (pid != -1)
+	{
+		pid = waitpid(0, &status, 0);
+		if (pid == last)
+			last_status = status;
+	}
+	shell->exit_status = (WEXITSTATUS(last_status));
 }
 
 int	main(int ac, char **av, char **env)
@@ -61,7 +77,7 @@ int	main(int ac, char **av, char **env)
 			ft_lstiter(shell->cmd_block, &print_cmd);
 		}
 		set_finals_fd(shell);
-		exec_line(shell);
+		exit_wait(shell, exec_line(shell));
 		ft_lstiter(shell->cmd_block, &print_cmd);
 		free_line(shell);
 	}
