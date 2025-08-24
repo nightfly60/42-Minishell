@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 12:31:28 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/08/20 17:52:55 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/08/24 23:27:42 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,8 @@ static void	ft_expand_merged(char **merged, t_minishell *shell, int eof)
 static void	ft_expand_filename(void *content, t_minishell *shell)
 {
 	t_redir	*redir;
-	char	*filename;
 
 	redir = (t_redir *)content;
-	filename = redir->name;
 	if (redir->type == HEREDOC || redir->type == HEREDOC_NO_EXP)
 		ft_expand_merged(&(redir->name), shell, 1);
 	else

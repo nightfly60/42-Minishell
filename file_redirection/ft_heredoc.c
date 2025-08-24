@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 15:25:20 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/20 18:12:51 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/08/24 23:27:57 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,10 @@ void	ft_expand_heredoc(char **tokens, t_env *env)
 int	ft_heredoc(char *limiter, t_minishell *shell, t_redirtype type)
 {
 	char	*line;
-	char	*text;
 	int		len;
 	int		fd[2];
 
 	line = NULL;
-	text = NULL;
 	len = ft_strlen(limiter);
 	if (pipe(fd) == -1)
 		perror("pipe");
