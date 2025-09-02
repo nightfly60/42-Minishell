@@ -25,6 +25,7 @@ void	print_cmd(void *commands)
 
 	cmd = (t_cmd_block *)commands;
 	print_str_table(cmd->cmds);
+	ft_printf("in :%d\nout :%d\n", cmd->in_fd, cmd->out_fd);
 	ft_lstiter(cmd->in, &print_file);
 	ft_lstiter(cmd->out, &print_file);
 }

@@ -6,14 +6,14 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 12:31:28 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/08/20 11:22:43 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/08/24 23:27:42 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parsing.h"
 
 /*	Expand autant les quotes que les dquotes.	*/
-static void	ft_expand_tokens(char **tokens, t_env *env)
+void	ft_expand_tokens(char **tokens, t_env *env)
 {
 	int	i;
 
@@ -40,7 +40,7 @@ void	exp_file(t_list *lst, void (*f)(void *, t_minishell *), t_minishell *s)
 	}
 }
 
-static void	ft_expand_merged(char **merged, t_minishell *shell)
+static void	ft_expand_merged(char **merged, t_minishell *shell, int eof)
 {
 	char	**tokens;
 	char	*res;
@@ -50,7 +50,10 @@ static void	ft_expand_merged(char **merged, t_minishell *shell)
 	i = 0;
 	res = NULL;
 	tokens = get_tokens(*merged);
-	ft_expand_tokens(tokens, shell->env);
+	if (!eof)
+		ft_expand_tokens(tokens, shell->env);
+	else
+		ft_expand_eof(tokens);
 	while (tokens[i])
 	{
 		temp = res;
@@ -67,11 +70,12 @@ static void	ft_expand_merged(char **merged, t_minishell *shell)
 static void	ft_expand_filename(void *content, t_minishell *shell)
 {
 	t_redir	*redir;
-	char	*filename;
 
 	redir = (t_redir *)content;
-	filename = redir->name;
-	ft_expand_merged(&(redir->name), shell);
+	if (redir->type == HEREDOC || redir->type == HEREDOC_NO_EXP)
+		ft_expand_merged(&(redir->name), shell, 1);
+	else
+		ft_expand_merged(&(redir->name), shell, 0);
 	return ;
 }
 
@@ -89,7 +93,7 @@ void	ft_expand_cmds(t_minishell *shell)
 		i = 0;
 		while ((command->cmds)[i])
 		{
-			ft_expand_merged(&(command->cmds)[i], shell);
+			ft_expand_merged(&(command->cmds)[i], shell, 0);
 			i++;
 		}
 		exp_file(command->in, &ft_expand_filename, shell);

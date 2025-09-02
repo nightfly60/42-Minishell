@@ -1,37 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_expand_squotes.c                                :+:      :+:    :+:   */
+/*   redirect_input.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/19 12:15:51 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/20 14:43:30 by aabouyaz         ###   ########.fr       */
+/*   Created: 2025/08/20 15:26:02 by edurance          #+#    #+#             */
+/*   Updated: 2025/08/22 12:29:54 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../parsing.h"
+#include "ft_redirection.h"
 
-/*	Expand et remplace l'adresse du char **s envoye.
-	Comportement d'une single_quote uniquement.	*/
-void	single_quote(char **s)
+/*	redirige les entree pour les commandes et les pipes.	*/
+void	redir_input(t_cmd_block *block)
 {
-	char	*res;
-	int		i;
-	int		j;
-
-	j = 0;
-	i = 1;
-	res = malloc(sizeof(char) * (ft_strlen(*s) - 1));
-	if (!res)
-		return ;
-	while ((*s)[i] != '\'')
+	if (block->in_fd == 0 && block->pipe_fd != -1)
 	{
-		res[j] = (*s)[i];
-		i++;
-		j++;
+		if (dup2(block->pipe_fd, STDIN_FILENO) == -1)
+			perror("dup2");
+		return ;
 	}
-	res[j] = 0;
-	free(*s);
-	*s = res;
+	if (block->in_fd < 0)
+		exit(1);
+	if (dup2(block->in_fd, STDIN_FILENO) == -1)
+		perror("dup2");
 }

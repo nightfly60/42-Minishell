@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/17 14:57:59 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/20 11:29:32 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/08/21 16:07:41 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ static t_redir	*make_redir(char *name, t_redirtype type)
 {
 	t_redir	*redirect;
 	int		i;
+	int		is_quote;
 
+	is_quote = 0;
 	redirect = malloc(sizeof(t_redir));
 	if (!redirect)
 		return (NULL);
@@ -27,11 +29,13 @@ static t_redir	*make_redir(char *name, t_redirtype type)
 		while (name[i])
 		{
 			if (name[i] == '"' || name[i] == '\'')
-				type = HEREDOC_NO_EXP;
+				is_quote = 1;
 			i++;
 		}
 	}
 	redirect->type = type;
+	if (is_quote)
+		redirect->type = HEREDOC_NO_EXP;
 	return (redirect);
 }
 
@@ -76,6 +80,9 @@ static t_cmd_block	*new_cmd(void)
 	cmd_block->in = NULL;
 	cmd_block->out = NULL;
 	cmd_block->cmds = NULL;
+	cmd_block->in_fd = STDIN_FILENO;
+	cmd_block->out_fd = STDOUT_FILENO;
+	cmd_block->pipe_fd = -1;
 	return (cmd_block);
 }
 
