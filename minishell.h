@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 15:51:44 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/20 17:21:01 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/08/22 12:24:57 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "environment/ft_env.h"
 # include "libft/libft.h"
 # include "parsing/parsing.h"
+# include "exec/ft_exec.h"
 # include "file_redirection/ft_redirection.h"
 # include <curses.h>
 # include <dirent.h>
@@ -57,19 +58,19 @@ typedef struct s_cmd_block
 {
 	t_list				*in;
 	t_list				*out;
+	int					pipe_fd;
 	int					out_fd;
 	int					in_fd;
 	char				**cmds;
 }						t_cmd_block;
 
-typedef struct s_env	t_env;
-typedef struct s_alias	t_alias;
 /*struct minishell*/
 typedef struct s_minishell
 {
 	char				*prompt;
 	char				*line;
 	char				**tokens;
+	int					exit_status;
 	t_list				*cmd_block;
 	t_alias				*alias;
 	t_env				*env;

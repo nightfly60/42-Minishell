@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_exit.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 15:37:00 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/08/19 12:49:54 by edurance         ###   ########.fr       */
+/*   Updated: 2025/08/22 12:44:20 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	init_shell(t_minishell *shell, char **env)
 	shell->alias = NULL;
 	shell->env = NULL;
 	shell->cmd_block = NULL;
+	shell->exit_status = 0;
 	rl_clear_history();
 	shell->prompt = "pacoshell > ";
 	copy_env(shell, env);

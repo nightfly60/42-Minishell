@@ -12,18 +12,18 @@ PARSING = parsing/tokenize/count_token.c parsing/tokenize/token_utils.c parsing/
 			parsing/expansions/ft_expand_squotes.c parsing/parse_errors/check_quotes.c parsing/expansions/ft_expand_eof.c
 
 BUILT_IN = built-in/alias/find_alias.c built-in/alias/ft_add_alias.c  built-in/alias/ft_alias.c built-in/alias/ft_modify_alias.c built-in/alias/ft_print_alias.c \
-			built-in/alias/ft_unalias.c built-in/alias/clear_alias.c
+			built-in/alias/ft_unalias.c built-in/alias/clear_alias.c built-in/is_builtin.c
 
-ENVIRNMT = environment/new_env.c environment/copy_env.c environment/env_utils.c environment/find_var.c environment/valid_id.c
+ENVIRNMT = environment/new_env.c environment/copy_env.c environment/env_utils.c environment/find_var.c environment/valid_id.c environment/convert_env.c
 
 UTILS = minishell_utils/free_line.c minishell_utils/init_exit.c
 
 REDIRECTIONS = file_redirection/set_finals_fd.c file_redirection/ft_heredoc.c file_redirection/open_files.c file_redirection/redirect_input.c \
 				file_redirection/redirect_output.c
 
-EXEC =
+EXEC = exec/exec.c exec/close.c exec/get_path.c
 
-FILES = main.c $(PARSING) $(BUILT_IN) $(ENVIRNMT) $(UTILS) $(REDIRECTIONS) debug.c
+FILES = main.c $(PARSING) $(BUILT_IN) $(ENVIRNMT) $(UTILS) $(REDIRECTIONS) $(EXEC) debug.c
 
 LIBFT_SRCS := libft/ft_atoi.c libft/ft_bzero.c libft/ft_calloc.c libft/ft_isalnum.c libft/ft_isalpha.c libft/ft_isascii.c \
 		libft/ft_isdigit.c libft/ft_isprint.c libft/ft_itoa.c libft/ft_memchr.c libft/ft_memcmp.c libft/ft_memcpy.c \
