@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 15:32:32 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/08/22 16:09:15 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/09/02 17:31:02 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ static void	child_process(t_cmd_block *command, int pipes[2], t_list *cmd_block,
 	char	*command_path;
 	char	**env;
 
+	signal(SIGINT, SIG_DFL);
 	if (is_builtin(command->cmds))
 		exit_minishell(shell);
 	redir_input(command);

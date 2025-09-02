@@ -3,26 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 14:15:26 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/22 16:01:21 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/09/02 17:33:32 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include <signal.h>
 
-void	handle_signal(int signal)
+volatile sig_atomic_t event = 0;
+
+void	handle_signal(volatile sig_atomic_t *event)
 {
-	if (signal == SIGINT)
+	if (*event == 0)
+		return ;
+	else if (*event == 1)
 	{
 		ft_printf("\n");
-		rl_replace_line("", 0);
 		rl_on_new_line();
+		rl_replace_line("", 0);
 		rl_redisplay();
+		*event = 0;
 	}
-	if (signal == SIGQUIT)
-		return ;
+}
+
+void gestionnaire(int signal)
+{
+	if (signal == SIGINT)
+		event = 1;
+	handle_signal(&event);
 }
 
 void	exit_wait(t_minishell *shell, int last)
@@ -32,13 +43,13 @@ void	exit_wait(t_minishell *shell, int last)
 	int	last_status;
 
 	pid = 0;
+	signal(SIGINT, SIG_IGN);
 	while (pid != -1)
 	{
 		pid = waitpid(0, &status, 0);
 		if (pid == last)
 			last_status = status;
 	}
-	printf("exit status ======== %d\n", (WEXITSTATUS(last_status)));
 	shell->exit_status = (WEXITSTATUS(last_status));
 }
 
@@ -51,7 +62,8 @@ int	main(int ac, char **av, char **env)
 	shell = malloc(sizeof(t_minishell));
 	if (!shell)
 		return (1);
-	signal(SIGINT, handle_signal);
+
+	signal(SIGINT, &gestionnaire);
 	signal(SIGQUIT, SIG_IGN);
 	init_shell(shell, env);
 	while (1)
@@ -78,8 +90,9 @@ int	main(int ac, char **av, char **env)
 			// ft_lstiter(shell->cmd_block, &print_cmd);
 			set_finals_fd(shell);
 			exit_wait(shell, exec_line(shell));
+			signal(SIGINT, &gestionnaire);
 		}
-		ft_printf("%d\n", shell->exit_status);
+		//ft_printf("exit status = %d\n", shell->exit_status);
 		// ft_lstiter(shell->cmd_block, &print_cmd);
 		free_line(shell);
 	}
