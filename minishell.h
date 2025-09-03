@@ -6,7 +6,7 @@
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 15:51:44 by edurance          #+#    #+#             */
-/*   Updated: 2025/09/02 15:57:16 by edurance         ###   ########.fr       */
+/*   Updated: 2025/09/03 15:13:25 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,11 @@
 /*includes*/
 # include "built-in/ft_built_in.h"
 # include "environment/ft_env.h"
-# include "libft/libft.h"
-# include "parsing/parsing.h"
 # include "exec/ft_exec.h"
 # include "file_redirection/ft_redirection.h"
+# include "libft/libft.h"
+# include "parsing/parsing.h"
+# include "signals/ft_signals.h"
 # include <curses.h>
 # include <dirent.h>
 # include <errno.h>
@@ -35,7 +36,6 @@
 # include <term.h>
 # include <termcap.h>
 # include <termios.h>
-#include <signal.h>
 
 typedef struct s_env	t_env;
 typedef struct s_alias	t_alias;
@@ -84,5 +84,6 @@ void					print_cmd(void *commands);
 void					free_line(t_minishell *shell);
 void					init_shell(t_minishell *shell, char **env);
 void					exit_minishell(t_minishell *shell);
+void					gestionnaire(int signal);
 
 #endif
