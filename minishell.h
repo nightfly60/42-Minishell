@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 15:51:44 by edurance          #+#    #+#             */
-/*   Updated: 2025/09/03 11:17:31 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/09/03 15:24:11 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ typedef struct s_minishell
 	char				*line;
 	char				**tokens;
 	int					exit_status;
+	char				*pwd;
 	t_list				*cmd_block;
 	t_alias				*alias;
 	t_env				*env;
