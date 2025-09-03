@@ -21,9 +21,11 @@ UTILS = minishell_utils/free_line.c minishell_utils/init_exit.c
 REDIRECTIONS = file_redirection/set_finals_fd.c file_redirection/ft_heredoc.c file_redirection/open_files.c file_redirection/redirect_input.c \
 				file_redirection/redirect_output.c
 
-EXEC = exec/exec.c exec/close.c exec/get_path.c
+EXEC = exec/exec.c exec/close.c exec/get_path.c exec/exit_wait.c
 
-FILES = main.c $(PARSING) $(BUILT_IN) $(ENVIRNMT) $(UTILS) $(REDIRECTIONS) $(EXEC) debug.c
+SIGNALS = signals/gestionnaire.c signals/handle_signal.c signals/init_signals.c
+
+FILES = main.c $(PARSING) $(BUILT_IN) $(ENVIRNMT) $(UTILS) $(REDIRECTIONS) $(EXEC) $(SIGNALS) debug.c
 
 LIBFT_SRCS := libft/ft_atoi.c libft/ft_bzero.c libft/ft_calloc.c libft/ft_isalnum.c libft/ft_isalpha.c libft/ft_isascii.c \
 		libft/ft_isdigit.c libft/ft_isprint.c libft/ft_itoa.c libft/ft_memchr.c libft/ft_memcmp.c libft/ft_memcpy.c \
