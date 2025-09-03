@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_env.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 15:26:57 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/08/22 13:31:17 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/09/03 16:10:47 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,6 @@ int							is_valid_id(char *s);
 t_env						*find_var_len(char *name, t_env **first,
 								int name_len);
 char						**convert_env(t_env *env);
+void						create_env(t_minishell *shell, char **env);
 
 #endif

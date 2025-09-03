@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_expansion.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 12:31:28 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/08/24 23:27:42 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/09/03 16:12:46 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parsing.h"
 
 /*	Expand autant les quotes que les dquotes.	*/
-void	ft_expand_tokens(char **tokens, t_env *env)
+void	ft_expand_tokens(char **tokens, t_minishell *shell)
 {
 	int	i;
 
@@ -21,11 +21,12 @@ void	ft_expand_tokens(char **tokens, t_env *env)
 	while (tokens[i])
 	{
 		if (tokens[i][0] == '"')
-			double_quote(&tokens[i], env);
+			double_quote(&tokens[i], shell->env);
 		else if (tokens[i][0] == '\'')
 			single_quote(&tokens[i]);
 		else
-			ft_word_expansion(&tokens[i], env);
+			ft_word_expansion(&tokens[i], shell->env);
+		expand_exit_code(&tokens[i], shell);
 		i++;
 	}
 }
@@ -51,7 +52,7 @@ static void	ft_expand_merged(char **merged, t_minishell *shell, int eof)
 	res = NULL;
 	tokens = get_tokens(*merged);
 	if (!eof)
-		ft_expand_tokens(tokens, shell->env);
+		ft_expand_tokens(tokens, shell);
 	else
 		ft_expand_eof(tokens);
 	while (tokens[i])

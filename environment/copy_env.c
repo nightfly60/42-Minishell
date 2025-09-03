@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   copy_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 15:36:41 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/08/22 12:34:24 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/09/03 16:10:49 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,16 @@ void	copy_env(t_minishell *shell, char **env)
 		free(name);
 		i++;
 	}
+}
+
+/*	crer un environnement si il y en avait pas de base.	*/
+void	create_env(t_minishell *shell, char **env)
+{
+	t_env	*new;
+
+	if (env[0])
+		return ;
+	shell->env = new_env("SHLVL", "1");
+	new = new_env("PWD", shell->pwd);
+	env_add_back(&(shell->env), new);
 }

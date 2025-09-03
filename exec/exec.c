@@ -6,7 +6,7 @@
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 15:32:32 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/09/02 17:31:02 by edurance         ###   ########.fr       */
+/*   Updated: 2025/09/03 16:12:04 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,13 @@
 
 void	print_error(char *string)
 {
-	if (errno == ENOENT)
+	if ((errno == ENOENT || !ft_strcmp(string, " ")) && !ft_strchr(string, '/'))
 	{
 		write(2, string, ft_strlen(string));
 		write(2, ": command not found\n", 21);
-		exit(127);
 		return ;
 	}
 	perror(string);
-	exit(1);
 }
 
 /*	Execute une commande dans le fils fork.	*/
@@ -31,10 +29,11 @@ static void	child_process(t_cmd_block *command, int pipes[2], t_list *cmd_block,
 {
 	char	*command_path;
 	char	**env;
+	int		exit_code;
 
 	signal(SIGINT, SIG_DFL);
 	if (is_builtin(command->cmds))
-		exit_minishell(shell);
+		exit_minishell(shell, 0);
 	redir_input(command);
 	if (redir_output(cmd_block, command, pipes))
 	{
@@ -44,22 +43,21 @@ static void	child_process(t_cmd_block *command, int pipes[2], t_list *cmd_block,
 	close_child(pipes, cmd_block);
 	command_path = get_path(command->cmds[0], shell);
 	env = convert_env(shell->env);
-	if (command_path)
+	if (command_path && command->cmds[0][0])
 		execve(command_path, command->cmds, env);
-	if (!command->cmds[0])
-		print_error(" ");
-	else if (command_path)
+	if (command_path && command->cmds[0][0])
 		print_error(command->cmds[0]);
-	else
+	else if (command->cmds[0][0])
 	{
 		ft_putstr_fd(command->cmds[0], 2);
 		ft_putstr_fd(": command not found\n", 2);
 	}
+	exit_code = 0;
 	if (errno == ENOENT || !command_path)
-		exit(127);
+		exit_code = 127;
 	free(command_path);
 	ft_freeall(env);
-	exit_minishell(shell);
+	exit_minishell(shell, exit_code);
 }
 
 /*	Execute les commande de la ligne.	*/

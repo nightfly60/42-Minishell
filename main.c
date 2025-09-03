@@ -6,7 +6,7 @@
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 14:15:26 by edurance          #+#    #+#             */
-/*   Updated: 2025/09/03 15:44:03 by edurance         ###   ########.fr       */
+/*   Updated: 2025/09/03 16:43:25 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,12 @@ int	main(int ac, char **av, char **env)
 	while (1)
 	{
 		shell->line = readline(shell->prompt);
-		if (!shell->line || !ft_strcmp((shell->line), "exit"))
-			exit_minishell(shell);
 		add_history((shell->line));
 		shell->tokens = get_tokens(shell->line);
 		if (parse_errors(shell))
 			continue ;
 		if (!(shell->line) || !ft_strcmp((shell->line), "exit"))
-			exit_minishell(shell);
+			exit_minishell(shell, 0);
 		else if (!ft_strncmp((shell->line), "alias", 5))
 		{
 			ft_alias(ft_split((shell->line), ' '), &(shell->alias));
@@ -50,9 +48,9 @@ int	main(int ac, char **av, char **env)
 			ft_expand_cmds(shell);
 			// ft_lstiter(shell->cmd_block, &print_cmd);
 			set_finals_fd(shell);
-			exit_wait(shell, exec_line(shell));
+			if (shell->cmd_block)
+				exit_wait(shell, exec_line(shell));
 		}
-		// ft_printf("exit status = %d\n", shell->exit_status);
 		// ft_lstiter(shell->cmd_block, &print_cmd);
 		free_line(shell);
 	}
