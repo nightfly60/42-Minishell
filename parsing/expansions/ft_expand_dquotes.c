@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 12:19:54 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/20 10:44:56 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/09/02 15:38:28 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,10 +91,7 @@ void	double_quote(char **s, t_env *env)
 			i += is_valid_id(&(*s)[i + 1]) + 1;
 		}
 		else
-		{
-			res[j++] = (*s)[i];
-			i++;
-		}
+			res[j++] = (*s)[i++];
 	}
 	res[j] = 0;
 	free(*s);

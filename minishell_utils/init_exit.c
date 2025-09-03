@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 15:37:00 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/08/22 12:44:20 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/09/03 11:24:32 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	init_shell(t_minishell *shell, char **env)
 	copy_env(shell, env);
 }
 
-void	exit_minishell(t_minishell *shell)
+void	exit_minishell(t_minishell *shell, int exit_code)
 {
 	free_line(shell);
 	rl_clear_history();
@@ -56,5 +56,5 @@ void	exit_minishell(t_minishell *shell)
 	clear_env(shell->env, &free);
 	free(shell);
 	ft_printf("exit\n");
-	exit(0);
+	exit(exit_code);
 }

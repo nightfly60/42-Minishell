@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 15:20:27 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/22 13:07:41 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/09/03 11:26:04 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include "../minishell.h"
 
 typedef struct s_cmd_block	t_cmd_block;
+typedef struct s_list		t_list;
+typedef struct s_minishell	t_minishell;
 
 int							exec_line(t_minishell *shell);
 void						close_child(int pipes[2], t_list *cmd_block);

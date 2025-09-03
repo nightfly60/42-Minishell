@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 15:32:32 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/08/22 16:09:15 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/09/03 11:32:00 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,9 @@ void	print_error(char *string)
 	{
 		write(2, string, ft_strlen(string));
 		write(2, ": command not found\n", 21);
-		exit(127);
 		return ;
 	}
 	perror(string);
-	exit(1);
 }
 
 /*	Execute une commande dans le fils fork.	*/
@@ -31,9 +29,10 @@ static void	child_process(t_cmd_block *command, int pipes[2], t_list *cmd_block,
 {
 	char	*command_path;
 	char	**env;
+	int		exit_code;
 
 	if (is_builtin(command->cmds))
-		exit_minishell(shell);
+		exit_minishell(shell, 0);
 	redir_input(command);
 	if (redir_output(cmd_block, command, pipes))
 	{
@@ -54,11 +53,12 @@ static void	child_process(t_cmd_block *command, int pipes[2], t_list *cmd_block,
 		ft_putstr_fd(command->cmds[0], 2);
 		ft_putstr_fd(": command not found\n", 2);
 	}
+	exit_code = 1;
 	if (errno == ENOENT || !command_path)
-		exit(127);
+		exit_code = 127;
 	free(command_path);
 	ft_freeall(env);
-	exit_minishell(shell);
+	exit_minishell(shell, exit_code);
 }
 
 /*	Execute les commande de la ligne.	*/

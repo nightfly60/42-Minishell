@@ -8,8 +8,8 @@ LIBFT := $(LIBFT_DIR)/libft.a
 
 PARSING = parsing/tokenize/count_token.c parsing/tokenize/token_utils.c parsing/tokenize/get_tokens.c parsing/utils/is_even.c parsing/expansions/ft_expand_dquotes.c \
 			parsing/expansions/ft_alias_expansion.c parsing/tokenize/ft_merge_tokens.c parsing/cmds/args.c parsing/cmds/parse_cmds.c \
-			parsing/parse_errors/check_operators.c parsing/parse_errors/parse_errors.c parsing/expansions/ft_expansion.c parsing/expansions/ft_word_exepansion.c \
-			parsing/expansions/ft_expand_squotes.c parsing/parse_errors/check_quotes.c parsing/expansions/ft_expand_eof.c
+			parsing/parse_errors/check_operators.c parsing/parse_errors/parse_errors.c parsing/expansions/ft_expansion.c parsing/expansions/ft_word_expansion.c \
+			parsing/expansions/ft_expand_squotes.c parsing/parse_errors/check_quotes.c parsing/expansions/ft_expand_eof.c parsing/expansions/ft_exit_code_exp.c
 
 BUILT_IN = built-in/alias/find_alias.c built-in/alias/ft_add_alias.c  built-in/alias/ft_alias.c built-in/alias/ft_modify_alias.c built-in/alias/ft_print_alias.c \
 			built-in/alias/ft_unalias.c built-in/alias/clear_alias.c built-in/is_builtin.c
