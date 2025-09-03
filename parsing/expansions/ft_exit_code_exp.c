@@ -6,12 +6,13 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 15:40:35 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/09/03 11:36:03 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/09/03 12:58:09 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parsing.h"
 
+/*	Compte le nombre de $? a expand.	*/
 static int	count_exit(char *s)
 {
 	int	i;
@@ -57,6 +58,7 @@ static char	*replace_exit_code(char *s, char *exit_code, int len, int nb_exit)
 	return (res);
 }
 
+/*	Expand les $? en code d'erreur.	*/
 void	expand_exit_code(char **s, t_minishell *shell)
 {
 	char	*exit_code;

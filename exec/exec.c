@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 15:32:32 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/09/03 11:32:00 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/09/03 15:14:41 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	print_error(char *string)
 {
-	if (errno == ENOENT)
+	if ((errno == ENOENT || !ft_strcmp(string, " ")) && !ft_strchr(string, '/'))
 	{
 		write(2, string, ft_strlen(string));
 		write(2, ": command not found\n", 21);
@@ -42,18 +42,16 @@ static void	child_process(t_cmd_block *command, int pipes[2], t_list *cmd_block,
 	close_child(pipes, cmd_block);
 	command_path = get_path(command->cmds[0], shell);
 	env = convert_env(shell->env);
-	if (command_path)
+	if (command_path && command->cmds[0][0])
 		execve(command_path, command->cmds, env);
-	if (!command->cmds[0])
-		print_error(" ");
-	else if (command_path)
+	if (command_path && command->cmds[0][0])
 		print_error(command->cmds[0]);
-	else
+	else if (command->cmds[0][0])
 	{
 		ft_putstr_fd(command->cmds[0], 2);
 		ft_putstr_fd(": command not found\n", 2);
 	}
-	exit_code = 1;
+	exit_code = 0;
 	if (errno == ENOENT || !command_path)
 		exit_code = 127;
 	free(command_path);
