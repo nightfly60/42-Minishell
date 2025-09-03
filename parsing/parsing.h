@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 13:22:39 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/20 18:01:36 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/09/03 10:51:09 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,7 @@ void						double_quote(char **s, t_env *env);
 void						ft_word_expansion(char **s, t_env *env);
 void						ft_expand_cmds(t_minishell *shell);
 void						ft_expand_eof(char **tokens);
+void						expand_exit_code(char **s, t_minishell *shell);
+void						ft_expand_tokens(char **tokens, t_minishell *shell);
 
 #endif

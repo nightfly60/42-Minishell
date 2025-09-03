@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 15:51:44 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/22 12:24:57 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/09/03 15:24:11 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 /*includes*/
 # include "built-in/ft_built_in.h"
 # include "environment/ft_env.h"
-# include "libft/libft.h"
-# include "parsing/parsing.h"
 # include "exec/ft_exec.h"
 # include "file_redirection/ft_redirection.h"
+# include "libft/libft.h"
+# include "parsing/parsing.h"
 # include <curses.h>
 # include <dirent.h>
 # include <errno.h>
@@ -71,6 +71,7 @@ typedef struct s_minishell
 	char				*line;
 	char				**tokens;
 	int					exit_status;
+	char				*pwd;
 	t_list				*cmd_block;
 	t_alias				*alias;
 	t_env				*env;
@@ -82,6 +83,6 @@ void					print_cmd(void *commands);
 /*	utils Minishell	*/
 void					free_line(t_minishell *shell);
 void					init_shell(t_minishell *shell, char **env);
-void					exit_minishell(t_minishell *shell);
+void					exit_minishell(t_minishell *shell, int exit_code);
 
 #endif

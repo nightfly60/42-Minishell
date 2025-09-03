@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 14:15:26 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/22 16:01:21 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/09/03 15:16:05 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	exit_wait(t_minishell *shell, int last)
 		if (pid == last)
 			last_status = status;
 	}
-	printf("exit status ======== %d\n", (WEXITSTATUS(last_status)));
 	shell->exit_status = (WEXITSTATUS(last_status));
 }
 
@@ -62,7 +61,7 @@ int	main(int ac, char **av, char **env)
 		if (parse_errors(shell))
 			continue ;
 		if (!(shell->line) || !ft_strcmp((shell->line), "exit"))
-			exit_minishell(shell);
+			exit_minishell(shell, 0);
 		else if (!ft_strncmp((shell->line), "alias", 5))
 		{
 			ft_alias(ft_split((shell->line), ' '), &(shell->alias));
@@ -77,9 +76,9 @@ int	main(int ac, char **av, char **env)
 			ft_expand_cmds(shell);
 			// ft_lstiter(shell->cmd_block, &print_cmd);
 			set_finals_fd(shell);
-			exit_wait(shell, exec_line(shell));
+			if (shell->cmd_block)
+				exit_wait(shell, exec_line(shell));
 		}
-		ft_printf("%d\n", shell->exit_status);
 		// ft_lstiter(shell->cmd_block, &print_cmd);
 		free_line(shell);
 	}
