@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 15:32:32 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/09/03 16:12:04 by edurance         ###   ########.fr       */
+/*   Updated: 2025/09/03 16:47:17 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ static void	child_process(t_cmd_block *command, int pipes[2], t_list *cmd_block,
 	int		exit_code;
 
 	signal(SIGINT, SIG_DFL);
-	if (is_builtin(command->cmds))
-		exit_minishell(shell, 0);
 	redir_input(command);
 	if (redir_output(cmd_block, command, pipes))
 	{
@@ -41,6 +39,8 @@ static void	child_process(t_cmd_block *command, int pipes[2], t_list *cmd_block,
 		exit(1);
 	}
 	close_child(pipes, cmd_block);
+	if (is_builtin(command->cmds, shell))
+		exit_minishell(shell, 0);
 	command_path = get_path(command->cmds[0], shell);
 	env = convert_env(shell->env);
 	if (command_path && command->cmds[0][0])
@@ -70,7 +70,7 @@ int	exec_line(t_minishell *shell)
 
 	cmd_block = (shell->cmd_block);
 	command = (t_cmd_block *)cmd_block->content;
-	if (!cmd_block->next && is_builtin(command->cmds))
+	if (!cmd_block->next && is_builtin(command->cmds, shell))
 		return (-1);
 	while (cmd_block)
 	{
