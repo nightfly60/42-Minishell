@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_exec.h                                          :+:      :+:    :+:   */
+/*   ft_signals.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/21 15:20:27 by edurance          #+#    #+#             */
-/*   Updated: 2025/09/03 16:12:11 by edurance         ###   ########.fr       */
+/*   Created: 2025/09/03 15:07:02 by edurance          #+#    #+#             */
+/*   Updated: 2025/09/03 15:44:33 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_EXEC_H
-# define FT_EXEC_H
+#ifndef FT_SIGNALS_H
+# define FT_SIGNALS_H
 
 # include "../minishell.h"
+# include <signal.h>
 
-typedef struct s_cmd_block	t_cmd_block;
-typedef struct s_list		t_list;
-typedef struct s_minishell	t_minishell;
+extern volatile sig_atomic_t	g_event;
 
-int							exec_line(t_minishell *shell);
-void						close_child(int pipes[2], t_list *cmd_block);
-void						close_parent(int pipas[2], t_cmd_block *command);
-char						*get_path(char *command, t_minishell *shell);
-void						exit_wait(t_minishell *shell, int last);
+int								handle_signal(void);
+void							gestionnaire(int signal);
+void							init_signals(void);
 
 #endif

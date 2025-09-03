@@ -1,33 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   valid_id.c                                         :+:      :+:    :+:   */
+/*   init_signals.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/16 11:34:27 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/09/03 16:11:01 by edurance         ###   ########.fr       */
+/*   Created: 2025/09/03 15:09:53 by edurance          #+#    #+#             */
+/*   Updated: 2025/09/03 15:10:04 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_env.h"
+#include "ft_signals.h"
 
-/*	Renvoie la taille d'un id valide.
-	Regles:
-		- commencer par un '_' ou un alphabetique.
-		- uniquement des '_' et des alphanumeriques.	*/
-int	is_valid_id(char *s)
+void	init_signals(void)
 {
-	int	i;
+	struct sigaction	sa;
 
-	i = 0;
-	if (s[i] != '_' && !ft_isalpha(s[i]))
-		return (0);
-	while (s[i])
-	{
-		if (s[i] != '_' && !ft_isalnum(s[i]))
-			return (i);
-		i++;
-	}
-	return (i);
+	sa.sa_handler = gestionnaire;
+	sigemptyset(&sa.sa_mask);
+	sa.sa_flags = SA_RESTART;
+	sigaction(SIGINT, &sa, NULL);
+	signal(SIGQUIT, SIG_IGN);
 }

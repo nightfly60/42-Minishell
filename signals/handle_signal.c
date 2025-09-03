@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   valid_id.c                                         :+:      :+:    :+:   */
+/*   handle_signal.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/16 11:34:27 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/09/03 16:11:01 by edurance         ###   ########.fr       */
+/*   Created: 2025/09/03 15:06:43 by edurance          #+#    #+#             */
+/*   Updated: 2025/09/03 15:42:15 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_env.h"
+#include "ft_signals.h"
 
-/*	Renvoie la taille d'un id valide.
-	Regles:
-		- commencer par un '_' ou un alphabetique.
-		- uniquement des '_' et des alphanumeriques.	*/
-int	is_valid_id(char *s)
+int	handle_signal(void)
 {
-	int	i;
-
-	i = 0;
-	if (s[i] != '_' && !ft_isalpha(s[i]))
-		return (0);
-	while (s[i])
+	if (g_event == 1)
 	{
-		if (s[i] != '_' && !ft_isalnum(s[i]))
-			return (i);
-		i++;
+		printf("\n");
+		rl_on_new_line();
+		rl_replace_line("", 0);
+		rl_redisplay();
+		g_event = 0;
+		return (1);
 	}
-	return (i);
+	return (0);
 }

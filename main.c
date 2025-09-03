@@ -3,43 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 14:15:26 by edurance          #+#    #+#             */
-/*   Updated: 2025/09/03 15:16:05 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/09/03 16:10:54 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	handle_signal(int signal)
-{
-	if (signal == SIGINT)
-	{
-		ft_printf("\n");
-		rl_replace_line("", 0);
-		rl_on_new_line();
-		rl_redisplay();
-	}
-	if (signal == SIGQUIT)
-		return ;
-}
-
-void	exit_wait(t_minishell *shell, int last)
-{
-	int	pid;
-	int	status;
-	int	last_status;
-
-	pid = 0;
-	while (pid != -1)
-	{
-		pid = waitpid(0, &status, 0);
-		if (pid == last)
-			last_status = status;
-	}
-	shell->exit_status = (WEXITSTATUS(last_status));
-}
+volatile sig_atomic_t	g_event = 0;
 
 int	main(int ac, char **av, char **env)
 {
@@ -50,8 +23,7 @@ int	main(int ac, char **av, char **env)
 	shell = malloc(sizeof(t_minishell));
 	if (!shell)
 		return (1);
-	signal(SIGINT, handle_signal);
-	signal(SIGQUIT, SIG_IGN);
+	init_signals();
 	init_shell(shell, env);
 	while (1)
 	{

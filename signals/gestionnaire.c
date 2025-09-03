@@ -1,33 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   valid_id.c                                         :+:      :+:    :+:   */
+/*   gestionnaire.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/16 11:34:27 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/09/03 16:11:01 by edurance         ###   ########.fr       */
+/*   Created: 2025/09/03 15:08:29 by edurance          #+#    #+#             */
+/*   Updated: 2025/09/03 15:42:07 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_env.h"
+#include "ft_signals.h"
 
-/*	Renvoie la taille d'un id valide.
-	Regles:
-		- commencer par un '_' ou un alphabetique.
-		- uniquement des '_' et des alphanumeriques.	*/
-int	is_valid_id(char *s)
+void	gestionnaire(int signal)
 {
-	int	i;
-
-	i = 0;
-	if (s[i] != '_' && !ft_isalpha(s[i]))
-		return (0);
-	while (s[i])
-	{
-		if (s[i] != '_' && !ft_isalnum(s[i]))
-			return (i);
-		i++;
-	}
-	return (i);
+	if (signal == SIGINT)
+		g_event = 1;
+	handle_signal();
 }
