@@ -6,7 +6,7 @@
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 14:15:26 by edurance          #+#    #+#             */
-/*   Updated: 2025/09/03 15:42:39 by edurance         ###   ########.fr       */
+/*   Updated: 2025/09/03 15:44:03 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int	main(int ac, char **av, char **env)
 	init_shell(shell, env);
 	while (1)
 	{
-		handle_signal();
 		shell->line = readline(shell->prompt);
 		if (!shell->line || !ft_strcmp((shell->line), "exit"))
 			exit_minishell(shell);
