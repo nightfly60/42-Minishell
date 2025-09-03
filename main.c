@@ -6,13 +6,13 @@
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 14:15:26 by edurance          #+#    #+#             */
-/*   Updated: 2025/09/03 15:14:24 by edurance         ###   ########.fr       */
+/*   Updated: 2025/09/03 15:42:39 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-volatile sig_atomic_t	event = 0;
+volatile sig_atomic_t	g_event = 0;
 
 int	main(int ac, char **av, char **env)
 {
@@ -52,7 +52,6 @@ int	main(int ac, char **av, char **env)
 			// ft_lstiter(shell->cmd_block, &print_cmd);
 			set_finals_fd(shell);
 			exit_wait(shell, exec_line(shell));
-			init_signals();
 		}
 		// ft_printf("exit status = %d\n", shell->exit_status);
 		// ft_lstiter(shell->cmd_block, &print_cmd);

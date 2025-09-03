@@ -6,7 +6,7 @@
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 14:43:25 by edurance          #+#    #+#             */
-/*   Updated: 2025/09/03 15:05:10 by edurance         ###   ########.fr       */
+/*   Updated: 2025/09/03 15:40:28 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,9 @@ void	exit_wait(t_minishell *shell, int last)
 	sigint_received = 0;
 	pid = 0;
 	signal(SIGINT, SIG_IGN);
-	while ((pid = waitpid(0, &status, 0)) > 0)
+	while (pid != -1)
 	{
+		pid = waitpid(0, &status, 0);
 		if (pid == last)
 			last_status = status;
 		if (WIFSIGNALED(status) && WTERMSIG(status) == SIGINT)

@@ -6,7 +6,7 @@
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 15:07:02 by edurance          #+#    #+#             */
-/*   Updated: 2025/09/03 15:14:04 by edurance         ###   ########.fr       */
+/*   Updated: 2025/09/03 15:41:38 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 # include "../minishell.h"
 # include <signal.h>
 
-extern volatile sig_atomic_t	event;
+extern volatile sig_atomic_t	g_event;
 
-int						handle_signal(void);
-void					gestionnaire(int signal);
-void					init_signals(void);
+int								handle_signal(void);
+void							gestionnaire(int signal);
+void							init_signals(void);
 
 #endif
