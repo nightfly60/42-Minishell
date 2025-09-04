@@ -6,11 +6,11 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/17 14:57:59 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/21 16:07:41 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/09/04 17:11:36 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../parsing.h"
+#include "parsing.h"
 
 static t_redir	*make_redir(char *name, t_redirtype type)
 {

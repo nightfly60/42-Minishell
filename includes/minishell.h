@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 15:51:44 by edurance          #+#    #+#             */
-/*   Updated: 2025/09/04 16:14:01 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/09/04 17:14:21 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 # define MINISHELL_H
 
 /*includes*/
-# include "built-in/ft_built_in.h"
-# include "environment/ft_env.h"
-# include "exec/ft_exec.h"
-# include "file_redirection/ft_redirection.h"
-# include "libft/libft.h"
-# include "parsing/parsing.h"
-# include "signals/ft_signals.h"
+# include "ft_built_in.h"
+# include "ft_env.h"
+# include "ft_exec.h"
+# include "ft_redirection.h"
+# include "../libft/include/libft.h"
+# include "parsing.h"
+# include "ft_signals.h"
 # include <curses.h>
 # include <limits.h>
 # include <dirent.h>
@@ -85,6 +85,6 @@ void					print_cmd(void *commands);
 /*	utils Minishell	*/
 void					free_line(t_minishell *shell);
 void					init_shell(t_minishell *shell, char **env);
-void					exit_minishell(t_minishell *shell, int exit_code);
+void					exit_minishell(t_minishell *shell);
 
 #endif

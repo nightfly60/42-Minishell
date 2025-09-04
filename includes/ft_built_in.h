@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_built_in.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 17:16:07 by edurance          #+#    #+#             */
-/*   Updated: 2025/09/04 15:57:06 by edurance         ###   ########.fr       */
+/*   Updated: 2025/09/04 17:11:15 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_BUILT_IN_H
 # define FT_BUILT_IN_H
 
-# include "../minishell.h"
+# include "minishell.h"
 
 typedef struct s_minishell	t_minishell;
 
@@ -40,5 +40,7 @@ int							ft_echo(char **cmd, t_minishell *shell);
 int							ft_cd(char **name, t_minishell *shell);
 int							ft_pwd(t_minishell *shell);
 int							ft_unalias(char **cmd, t_minishell *shell);
+int							ft_env(t_minishell *shell);
+int							ft_exit(char **cmds, t_minishell *shell);
 
 #endif

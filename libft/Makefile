@@ -16,7 +16,7 @@ CC = cc
 AR = ar rcs
 CFLAGS = -Wall -Werror -Wextra -g3
 OBJ = $(patsubst %.c, $(OBJDIR)/%.o, $(FILES))
-INCLUDES = libft.h
+INCLUDES = include/libft.h
 
 RESET = \033[0m
 GRAY = \033[1;90m
@@ -29,7 +29,7 @@ $(NAME): $(OBJ)
 
 $(OBJDIR)/%.o: %.c $(INCLUDES)
 	@mkdir -p $(dir $@)
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -I include -c $< -o $@
 
 clean:
 	@rm -rf $(OBJDIR)

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_add_alias.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 17:23:01 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/15 11:04:25 by edurance         ###   ########.fr       */
+/*   Updated: 2025/09/04 17:11:36 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_built_in.h"
+#include "ft_built_in.h"
 
 /*Si la liste n'existe pas ou que c'est le premier dans l'ordre alphabetique
 	-> ajoute.*/

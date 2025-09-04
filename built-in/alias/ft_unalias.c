@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_unalias.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 16:45:03 by edurance          #+#    #+#             */
-/*   Updated: 2025/09/04 16:02:44 by edurance         ###   ########.fr       */
+/*   Updated: 2025/09/04 17:11:36 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_built_in.h"
+#include "ft_built_in.h"
 
 /*Free un alias et son contenu.*/
 static void	ft_alias_delone(t_alias *alias, void (*del)(void *))
@@ -23,7 +23,7 @@ static void	ft_alias_delone(t_alias *alias, void (*del)(void *))
 	alias = NULL;
 }
 
-/*Change les pointeurs de previous de next + next de previous 
+/*Change les pointeurs de previous de next + next de previous
 pour rattacher la chaine correctement sans l'elem.*/
 static void	ft_reattach_alias(t_alias *previous, t_alias *next, t_alias **alias)
 {
@@ -35,7 +35,7 @@ static void	ft_reattach_alias(t_alias *previous, t_alias *next, t_alias **alias)
 		next->previous = previous;
 }
 
-static void err_display(char *del_name)
+static void	err_display(char *del_name)
 {
 	ft_putstr_fd("unalias: ", STDERR_FILENO);
 	ft_putstr_fd(del_name, STDERR_FILENO);
@@ -66,7 +66,7 @@ static int	ft_unalias_one(char *del_name, t_alias **alias)
 	return (1);
 }
 
-int ft_unalias(char **cmd, t_minishell *shell)
+int	ft_unalias(char **cmd, t_minishell *shell)
 {
 	int	i;
 
@@ -74,7 +74,8 @@ int ft_unalias(char **cmd, t_minishell *shell)
 	i = 1;
 	if (ft_arrlen(cmd) == 1)
 	{
-		ft_putstr_fd("unalias: usage: unalias [-a] name [name ...]\n", STDERR_FILENO);
+		ft_putstr_fd("unalias: usage: unalias [-a] name [name ...]\n",
+			STDERR_FILENO);
 		shell->exit_status = 2;
 	}
 	while (cmd[i])

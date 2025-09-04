@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_alias.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 17:21:20 by edurance          #+#    #+#             */
-/*   Updated: 2025/09/04 15:35:46 by edurance         ###   ########.fr       */
+/*   Updated: 2025/09/04 17:11:36 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_built_in.h"
+#include "ft_built_in.h"
 
 /*Print la liste d'alias complete sous le format : "name='content'".*/
 void	ft_print_alias(t_alias *alias_list)
