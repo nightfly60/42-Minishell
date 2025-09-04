@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 16:01:35 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/08/22 13:35:05 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/09/04 16:15:54 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,23 +38,6 @@ void	env_add_back(t_env **lst, t_env *new)
 	last->next = new;
 	new->previous = last;
 	new->next = NULL;
-}
-
-/*	supprime un element de t_env.	*/
-void	env_delone(t_env *elem, void (*del)(void *))
-{
-	t_env	*n_elem;
-	t_env	*p_elem;
-
-	if (!elem)
-		return ;
-	del(elem->name);
-	del(elem->value);
-	n_elem = elem->next;
-	p_elem = elem->previous;
-	n_elem->previous = p_elem;
-	p_elem->next = n_elem;
-	del(elem);
 }
 
 /*	affiche tout l'env. du shell (NAME=Value).	*/

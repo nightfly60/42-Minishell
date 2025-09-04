@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_expand_dquotes.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 12:19:54 by edurance          #+#    #+#             */
-/*   Updated: 2025/09/03 16:12:38 by edurance         ###   ########.fr       */
+/*   Updated: 2025/09/04 17:11:36 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../parsing.h"
+#include "parsing.h"
 
 /*	Calcul la longueur totale finale d'un dquote a expand.	*/
 static int	expand_len(char *s, t_env *first)

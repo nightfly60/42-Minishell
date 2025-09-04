@@ -6,11 +6,11 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/17 15:12:01 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/08/17 15:36:50 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/09/04 17:11:36 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../parsing.h"
+#include "parsing.h"
 
 /*	Calcul la longueur totale finale d'un mot a expand.	*/
 static int	expand_len(char *s, t_env *first)

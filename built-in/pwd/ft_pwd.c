@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_signals.h                                       :+:      :+:    :+:   */
+/*   ft_pwd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/03 15:07:02 by edurance          #+#    #+#             */
-/*   Updated: 2025/09/03 15:44:33 by edurance         ###   ########.fr       */
+/*   Created: 2025/09/04 14:43:45 by edurance          #+#    #+#             */
+/*   Updated: 2025/09/04 17:11:36 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_SIGNALS_H
-# define FT_SIGNALS_H
+#include "ft_built_in.h"
 
-# include "../minishell.h"
-# include <signal.h>
-
-extern volatile sig_atomic_t	g_event;
-
-int								handle_signal(void);
-void							gestionnaire(int signal);
-void							init_signals(void);
-
-#endif
+/*built in pwd*/
+int	ft_pwd(t_minishell *shell)
+{
+	ft_printf("%s\n", shell->pwd);
+	shell->exit_status = 0;
+	return (1);
+}

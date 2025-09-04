@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 13:22:39 by edurance          #+#    #+#             */
-/*   Updated: 2025/09/03 16:12:30 by edurance         ###   ########.fr       */
+/*   Updated: 2025/09/04 17:13:37 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSING_H
 # define PARSING_H
 
-# include "../minishell.h"
+# include "minishell.h"
 
 /*structs*/
 typedef struct s_alias		t_alias;

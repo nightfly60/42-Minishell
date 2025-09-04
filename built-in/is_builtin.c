@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 15:17:43 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/09/04 10:53:48 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/09/04 16:15:09 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,22 @@
 int	is_builtin(char **name, t_minishell *shell)
 {
 	if (!ft_strcmp(name[0], "echo"))
-		return (1);
+		return (ft_echo(name, shell));
 	else if (!ft_strcmp(name[0], "cd"))
-		return (1);
+		return (ft_cd(name, shell));
 	else if (!ft_strcmp(name[0], "pwd"))
-		return (1);
+		return (ft_pwd(shell));
 	else if (!ft_strcmp(name[0], "export"))
 		return (1);
 	else if (!ft_strcmp(name[0], "unset"))
-		return (1);
+		return (ft_unset(name, shell));
 	else if (!ft_strcmp(name[0], "env"))
 		return (ft_env(shell));
 	else if (!ft_strcmp(name[0], "exit"))
 		return (ft_exit(name, shell));
 	else if (!ft_strcmp(name[0], "alias"))
-		return (1);
+		return (ft_alias(name, shell));
+	else if (!ft_strcmp(name[0], "unalias"))
+		return (ft_unalias(name, shell));
 	return (0);
 }

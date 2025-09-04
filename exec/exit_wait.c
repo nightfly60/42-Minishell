@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_wait.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 14:43:25 by edurance          #+#    #+#             */
-/*   Updated: 2025/09/03 15:40:28 by edurance         ###   ########.fr       */
+/*   Updated: 2025/09/04 16:44:47 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	exit_wait(t_minishell *shell, int last)
 	int	last_status;
 	int	sigint_received;
 
+	if (last < 0)
+		return ;
 	last_status = 0;
 	sigint_received = 0;
 	pid = 0;

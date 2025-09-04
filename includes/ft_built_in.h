@@ -6,14 +6,14 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 17:16:07 by edurance          #+#    #+#             */
-/*   Updated: 2025/09/04 10:53:30 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/09/04 17:11:15 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_BUILT_IN_H
 # define FT_BUILT_IN_H
 
-# include "../minishell.h"
+# include "minishell.h"
 
 typedef struct s_minishell	t_minishell;
 
@@ -26,20 +26,20 @@ typedef struct s_alias
 	struct s_alias			*previous;
 }							t_alias;
 
-int							ft_alias(char **args, t_alias **alias_list);
+int							ft_alias(char **args, t_minishell *shell);
 void						ft_print_alias(t_alias *alias_list);
 int							modify_alias(t_alias *alias_list, char *name,
 								char *content);
 void						ft_add_alias(char *name, char *content,
 								t_alias **alias_list);
 int							find_alias(t_alias *alias_list, char *name);
-void						ft_unalias(char *del_name, t_alias **alias);
 void						clear_alias(t_alias *lst, void (*f)(void *));
-
-/*	Is  Built-In ?	*/
 int							is_builtin(char **name, t_minishell *shell);
-
-/*	Les Built-in	*/
+int							ft_unset(char **cmd, t_minishell *shell);
+int							ft_echo(char **cmd, t_minishell *shell);
+int							ft_cd(char **name, t_minishell *shell);
+int							ft_pwd(t_minishell *shell);
+int							ft_unalias(char **cmd, t_minishell *shell);
 int							ft_env(t_minishell *shell);
 int							ft_exit(char **cmds, t_minishell *shell);
 

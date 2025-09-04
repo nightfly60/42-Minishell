@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_env.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 15:26:57 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/09/03 16:10:47 by edurance         ###   ########.fr       */
+/*   Updated: 2025/09/04 17:10:38 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_ENV_H
 # define FT_ENV_H
 
-# include "../minishell.h"
+# include "minishell.h"
 
 typedef struct s_minishell	t_minishell;
 
@@ -29,7 +29,6 @@ typedef struct s_env
 /*	fonctions pour l'environnement	*/
 t_env						*env_last(t_env *lst);
 void						env_add_back(t_env **lst, t_env *new);
-void						env_delone(t_env *elem, void (*del)(void *));
 t_env						*new_env(char *name, char *value);
 void						copy_env(t_minishell *shell, char **env);
 void						print_env(t_minishell *shell);

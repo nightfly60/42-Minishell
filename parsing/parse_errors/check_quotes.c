@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   check_quotes.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 13:22:10 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/19 12:30:17 by edurance         ###   ########.fr       */
+/*   Updated: 2025/09/04 17:11:36 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../parsing.h"
+#include "parsing.h"
 
 /*Savoir si je considere ma quote comme tel ou comme un char normal.*/
 static void	which_quotes(char c, int *inside, int *dquotes, int *squotes)
@@ -54,7 +54,8 @@ int	quotes_checker(char *line)
 	}
 	if (!is_even(dquotes) || !is_even(squotes))
 	{
-		ft_printf("minishell: %s: syntax error\n", line);
+		ft_putstr_fd(line, STDERR_FILENO);
+		ft_putstr_fd(": syntax error\n", STDERR_FILENO);
 		return (0);
 	}
 	return (1);

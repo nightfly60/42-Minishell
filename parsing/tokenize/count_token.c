@@ -6,11 +6,11 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 15:16:07 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/08/18 15:15:13 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/09/04 17:11:37 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../parsing.h"
+#include "parsing.h"
 
 /*	compte le nombre de tokens dans la ligne	*/
 int	count_tokens(char *s)

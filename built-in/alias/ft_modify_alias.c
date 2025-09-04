@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_modify_alias.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 17:22:11 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/15 10:54:16 by edurance         ###   ########.fr       */
+/*   Updated: 2025/09/04 17:11:36 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_built_in.h"
+#include "ft_built_in.h"
 
 /*Modifier un alias si il existe deja.*/
 int	modify_alias(t_alias *alias_list, char *name, char *content)

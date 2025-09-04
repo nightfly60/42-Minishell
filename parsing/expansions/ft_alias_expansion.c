@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_alias_expension.c                               :+:      :+:    :+:   */
+/*   ft_alias_expansion.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 12:19:47 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/15 12:31:32 by edurance         ###   ########.fr       */
+/*   Updated: 2025/09/04 17:11:36 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../parsing.h"
+#include "parsing.h"
 
 /*Renvoie la position dans la liste de l'alias avec le nom passe en arg.
 	-1 Si il n'existe pas.*/

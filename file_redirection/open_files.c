@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 11:47:38 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/08/22 15:09:33 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/09/04 16:17:35 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	open_files(char *name, t_redirtype type)
 	else if (type == APPEND)
 		fd = open(name, O_CREAT | O_WRONLY | O_APPEND, 0666);
 	else
-		ft_printf("ERROR: OPEN");
+		ft_putstr_fd("ERROR: OPEN", STDERR_FILENO);
 	if (fd == -1)
 		perror(name);
 	return (fd);

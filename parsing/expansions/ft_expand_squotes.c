@@ -6,11 +6,11 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 12:15:51 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/20 14:43:30 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/09/04 17:11:36 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../parsing.h"
+#include "parsing.h"
 
 /*	Expand et remplace l'adresse du char **s envoye.
 	Comportement d'une single_quote uniquement.	*/

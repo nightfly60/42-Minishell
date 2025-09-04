@@ -6,13 +6,24 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 14:15:26 by edurance          #+#    #+#             */
-/*   Updated: 2025/09/04 12:14:43 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/09/04 17:00:49 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 volatile sig_atomic_t	g_event = 0;
+
+static void	pacoshell(t_minishell *shell)
+{
+	ft_alias_expansion(shell->tokens, shell->alias);
+	ft_merge_tokens(shell);
+	parse_pipeline(shell);
+	ft_expand_cmds(shell);
+	set_finals_fd(shell);
+	if (shell->cmd_block)
+		exit_wait(shell, exec_line(shell));
+}
 
 int	main(int ac, char **av, char **env)
 {
@@ -23,7 +34,6 @@ int	main(int ac, char **av, char **env)
 	shell = malloc(sizeof(t_minishell));
 	if (!shell)
 		return (1);
-	init_signals();
 	init_shell(shell, env);
 	while (1)
 	{
@@ -37,22 +47,8 @@ int	main(int ac, char **av, char **env)
 			ft_putstr_fd("exit\n", STDERR_FILENO);
 			exit_minishell(shell);
 		}
-		else if (!ft_strncmp((shell->line), "alias", 5))
-		{
-			ft_alias(ft_split((shell->line), ' '), &(shell->alias));
-		}
 		else
-		{
-			ft_alias_expansion(shell->tokens, shell->alias);
-			ft_merge_tokens(shell);
-			parse_pipeline(shell);
-			ft_expand_cmds(shell);
-			// ft_lstiter(shell->cmd_block, &print_cmd);
-			set_finals_fd(shell);
-			if (shell->cmd_block)
-				exit_wait(shell, exec_line(shell));
-		}
-		// ft_lstiter(shell->cmd_block, &print_cmd);
+			pacoshell(shell);
 		free_line(shell);
 	}
 	return (0);

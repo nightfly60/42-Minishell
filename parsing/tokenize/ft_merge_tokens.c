@@ -6,11 +6,11 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 15:33:11 by edurance          #+#    #+#             */
-/*   Updated: 2025/08/20 11:16:43 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/09/04 17:11:36 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../parsing.h"
+#include "parsing.h"
 
 /*On join les tokens tant qu'on arrive pas sur un espace.*/
 static char	*merge_until_space(char *line, int *line_i, char **tokens, int *i)
