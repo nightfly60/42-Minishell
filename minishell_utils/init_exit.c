@@ -6,13 +6,13 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 15:37:00 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/09/04 16:19:26 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/09/04 17:11:36 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "minishell.h"
 
-static void	ft_pacoshell(void)
+static void	ft_pacoshell_display(void)
 {
 	ft_printf("  8888888b.     d8888  .d8888b.   .d88888b.  d8b\n");
 	ft_printf("  888   Y88b   d88888 d88P  Y88b d88P\" \"Y88b 88P\n");
@@ -36,7 +36,7 @@ static void	ft_pacoshell(void)
 
 void	init_shell(t_minishell *shell, char **env)
 {
-	ft_pacoshell();
+	ft_pacoshell_display();
 	shell->tokens = NULL;
 	shell->line = NULL;
 	shell->alias = NULL;
@@ -48,9 +48,10 @@ void	init_shell(t_minishell *shell, char **env)
 	shell->pwd = getcwd(NULL, 0);
 	copy_env(shell, env);
 	create_env(shell, env);
+	init_signals();
 }
 
-void	exit_minishell(t_minishell *shell, int exit_code)
+void	exit_minishell(t_minishell *shell)
 {
 	int	exit_code;
 

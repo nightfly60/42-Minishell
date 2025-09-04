@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_redirection.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 11:38:19 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/09/03 16:12:14 by edurance         ###   ########.fr       */
+/*   Updated: 2025/09/04 17:10:40 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_REDIRECTION_H
 # define FT_REDIRECTION_H
 
-# include "../minishell.h"
+# include "minishell.h"
 
 typedef enum e_redirtype	t_redirtype;
 typedef struct s_cmd_block	t_cmd_block;

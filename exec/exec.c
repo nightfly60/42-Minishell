@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 15:32:32 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/09/04 16:17:14 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/09/04 16:58:26 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,23 +23,11 @@ void	print_error(char *string)
 	perror(string);
 }
 
-/*	Execute une commande dans le fils fork.	*/
-static void	child_process(t_cmd_block *command, int pipes[2], t_list *cmd_block,
-		t_minishell *shell)
+static void	exec_child(t_minishell *shell, t_cmd_block *command)
 {
-	char	*command_path;
 	char	**env;
+	char	*command_path;
 
-	signal(SIGINT, SIG_DFL);
-	redir_input(command);
-	if (redir_output(cmd_block, command, pipes))
-	{
-		perror(((t_redir *)ft_lstlast(command->out)->content)->name);
-		exit(1);
-	}
-	close_child(pipes, cmd_block);
-	if (is_builtin(command->cmds, shell) || handle_directory(command->cmds, shell))
-		exit_minishell(shell);
 	command_path = get_path(command->cmds[0], shell);
 	env = convert_env(shell->env);
 	if (command_path && command->cmds[0][0])
@@ -57,6 +45,23 @@ static void	child_process(t_cmd_block *command, int pipes[2], t_list *cmd_block,
 	free(command_path);
 	ft_freeall(env);
 	exit_minishell(shell);
+}
+
+/*	Execute une commande dans le fils fork.	*/
+static void	child_process(t_cmd_block *command, int pipes[2], t_list *cmd_block,
+		t_minishell *shell)
+{
+	signal(SIGINT, SIG_DFL);
+	redir_input(command);
+	if (redir_output(cmd_block, command, pipes))
+	{
+		perror(((t_redir *)ft_lstlast(command->out)->content)->name);
+		exit(1);
+	}
+	close_child(pipes, cmd_block);
+	if (is_builtin(command->cmds, shell) || handle_dir(command->cmds, shell))
+		exit_minishell(shell);
+	exec_child(shell, command);
 }
 
 /*	Execute les commande de la ligne.	*/

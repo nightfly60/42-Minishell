@@ -6,14 +6,14 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 15:26:57 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/09/04 16:16:03 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/09/04 17:10:38 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_ENV_H
 # define FT_ENV_H
 
-# include "../minishell.h"
+# include "minishell.h"
 
 typedef struct s_minishell	t_minishell;
 

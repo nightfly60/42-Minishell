@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_signals.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 15:07:02 by edurance          #+#    #+#             */
-/*   Updated: 2025/09/03 15:44:33 by edurance         ###   ########.fr       */
+/*   Updated: 2025/09/04 17:11:06 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_SIGNALS_H
 # define FT_SIGNALS_H
 
-# include "../minishell.h"
+# include "minishell.h"
 # include <signal.h>
 
 extern volatile sig_atomic_t	g_event;

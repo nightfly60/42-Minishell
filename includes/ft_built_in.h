@@ -6,14 +6,14 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 17:16:07 by edurance          #+#    #+#             */
-/*   Updated: 2025/09/04 16:14:25 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/09/04 17:11:15 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_BUILT_IN_H
 # define FT_BUILT_IN_H
 
-# include "../minishell.h"
+# include "minishell.h"
 
 typedef struct s_minishell	t_minishell;
 
