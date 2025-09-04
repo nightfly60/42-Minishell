@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 14:15:26 by edurance          #+#    #+#             */
-/*   Updated: 2025/09/04 10:56:01 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/09/04 12:14:43 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,10 @@ int	main(int ac, char **av, char **env)
 		if (parse_errors(shell))
 			continue ;
 		if (!(shell->line))
+		{
+			ft_putstr_fd("exit\n", STDERR_FILENO);
 			exit_minishell(shell);
+		}
 		else if (!ft_strncmp((shell->line), "alias", 5))
 		{
 			ft_alias(ft_split((shell->line), ' '), &(shell->alias));
