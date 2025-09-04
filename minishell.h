@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 15:51:44 by edurance          #+#    #+#             */
-/*   Updated: 2025/09/03 16:10:51 by edurance         ###   ########.fr       */
+/*   Updated: 2025/09/04 11:21:35 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include "parsing/parsing.h"
 # include "signals/ft_signals.h"
 # include <curses.h>
+# include <limits.h>
 # include <dirent.h>
 # include <errno.h>
 # include <fcntl.h>
@@ -84,6 +85,6 @@ void					print_cmd(void *commands);
 /*	utils Minishell	*/
 void					free_line(t_minishell *shell);
 void					init_shell(t_minishell *shell, char **env);
-void					exit_minishell(t_minishell *shell, int exit_code);
+void					exit_minishell(t_minishell *shell);
 
 #endif

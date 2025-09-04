@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 15:32:32 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/09/03 16:47:17 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/09/04 10:51:03 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ static void	child_process(t_cmd_block *command, int pipes[2], t_list *cmd_block,
 {
 	char	*command_path;
 	char	**env;
-	int		exit_code;
 
 	signal(SIGINT, SIG_DFL);
 	redir_input(command);
@@ -40,7 +39,7 @@ static void	child_process(t_cmd_block *command, int pipes[2], t_list *cmd_block,
 	}
 	close_child(pipes, cmd_block);
 	if (is_builtin(command->cmds, shell))
-		exit_minishell(shell, 0);
+		exit_minishell(shell);
 	command_path = get_path(command->cmds[0], shell);
 	env = convert_env(shell->env);
 	if (command_path && command->cmds[0][0])
@@ -52,12 +51,12 @@ static void	child_process(t_cmd_block *command, int pipes[2], t_list *cmd_block,
 		ft_putstr_fd(command->cmds[0], 2);
 		ft_putstr_fd(": command not found\n", 2);
 	}
-	exit_code = 0;
+	shell->exit_status = 0;
 	if (errno == ENOENT || !command_path)
-		exit_code = 127;
+		shell->exit_status = 127;
 	free(command_path);
 	ft_freeall(env);
-	exit_minishell(shell, exit_code);
+	exit_minishell(shell);
 }
 
 /*	Execute les commande de la ligne.	*/
