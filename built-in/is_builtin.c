@@ -6,7 +6,7 @@
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 15:17:43 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/09/03 16:59:06 by edurance         ###   ########.fr       */
+/*   Updated: 2025/09/04 10:54:48 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	is_builtin(char **name, t_minishell *shell)
 {
 	if (!ft_strcmp(name[0], "echo"))
-		return (1);
+		return (ft_echo(name, shell));
 	else if (!ft_strcmp(name[0], "cd"))
 		return (1);
 	else if (!ft_strcmp(name[0], "pwd"))
