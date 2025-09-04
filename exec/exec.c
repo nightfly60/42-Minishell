@@ -6,7 +6,7 @@
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 15:32:32 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/09/03 17:50:19 by edurance         ###   ########.fr       */
+/*   Updated: 2025/09/04 15:19:36 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ static void	child_process(t_cmd_block *command, int pipes[2], t_list *cmd_block,
 		exit(1);
 	}
 	close_child(pipes, cmd_block);
-	if (is_builtin(command->cmds, shell))
-		exit_minishell(shell, 0);
+	if (is_builtin(command->cmds, shell) || handle_directory(command->cmds, shell))
+		exit_minishell(shell, shell->exit_status);
 	command_path = get_path(command->cmds[0], shell);
 	env = convert_env(shell->env);
 	if (command_path && command->cmds[0][0])

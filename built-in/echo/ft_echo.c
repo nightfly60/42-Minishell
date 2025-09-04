@@ -6,12 +6,13 @@
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 10:50:42 by edurance          #+#    #+#             */
-/*   Updated: 2025/09/04 12:14:10 by edurance         ###   ########.fr       */
+/*   Updated: 2025/09/04 15:18:48 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_built_in.h"
 
+/*verifie la validite d'un flag*/
 static int	verify_flag(char *cmd)
 {
 	int	i;
@@ -26,6 +27,7 @@ static int	verify_flag(char *cmd)
 	return (1);
 }
 
+/*passe tous les flags et les verifie avec la fonction au dessus*/
 static int	good_flag(int *i, char **cmd)
 {
 	int	flag;
@@ -41,6 +43,7 @@ static int	good_flag(int *i, char **cmd)
 	return (flag);
 }
 
+/*built in echo*/
 int	ft_echo(char **cmd, t_minishell *shell)
 {
 	int	i;

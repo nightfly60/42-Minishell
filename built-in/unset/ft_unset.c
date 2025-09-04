@@ -6,12 +6,13 @@
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 16:45:22 by edurance          #+#    #+#             */
-/*   Updated: 2025/09/04 10:44:07 by edurance         ###   ########.fr       */
+/*   Updated: 2025/09/04 15:19:26 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_built_in.h"
 
+/*retirer un elem de l'env*/
 static void	env_delone(t_env *env, void (*del)(void *))
 {
 	if (!env)
@@ -22,6 +23,7 @@ static void	env_delone(t_env *env, void (*del)(void *))
 	env = NULL;
 }
 
+/*rattacher la liste chainnee pour del*/
 static void	ft_reattach_env(t_env *previous, t_env *next, t_env **env)
 {
 	if (previous)
@@ -32,6 +34,7 @@ static void	ft_reattach_env(t_env *previous, t_env *next, t_env **env)
 		next->previous = previous;
 }
 
+/*built in unset -> retirer une var de l'env*/
 int	ft_unset(char **cmd, t_minishell *shell)
 {
 	int		i;

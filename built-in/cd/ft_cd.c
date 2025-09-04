@@ -6,12 +6,13 @@
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 12:15:18 by edurance          #+#    #+#             */
-/*   Updated: 2025/09/04 14:43:05 by edurance         ###   ########.fr       */
+/*   Updated: 2025/09/04 15:18:05 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_built_in.h"
 
+/*affiche la bonne erreur*/
 static int	display_cd_error(char *name, int error, t_minishell *shell)
 {
 	if (error == 1)
@@ -24,6 +25,7 @@ static int	display_cd_error(char *name, int error, t_minishell *shell)
 	return (1);
 }
 
+/*built in cd*/
 int	ft_cd(char **name, t_minishell *shell)
 {
 	t_env	*home;

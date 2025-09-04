@@ -12,7 +12,8 @@ PARSING = parsing/tokenize/count_token.c parsing/tokenize/token_utils.c parsing/
 			parsing/expansions/ft_expand_squotes.c parsing/parse_errors/check_quotes.c parsing/expansions/ft_expand_eof.c parsing/expansions/ft_exit_code_exp.c
 
 BUILT_IN = built-in/alias/find_alias.c built-in/alias/ft_add_alias.c  built-in/alias/ft_alias.c built-in/alias/ft_modify_alias.c built-in/alias/ft_print_alias.c \
-			built-in/alias/ft_unalias.c built-in/alias/clear_alias.c built-in/is_builtin.c built-in/unset/ft_unset.c built-in/echo/ft_echo.c built-in/cd/ft_cd.c
+			built-in/alias/ft_unalias.c built-in/alias/clear_alias.c built-in/is_builtin.c built-in/unset/ft_unset.c built-in/echo/ft_echo.c built-in/cd/ft_cd.c \
+			built-in/pwd/ft_pwd.c
 
 ENVIRNMT = environment/new_env.c environment/copy_env.c environment/env_utils.c environment/find_var.c environment/valid_id.c environment/convert_env.c
 
@@ -21,7 +22,7 @@ UTILS = minishell_utils/free_line.c minishell_utils/init_exit.c
 REDIRECTIONS = file_redirection/set_finals_fd.c file_redirection/ft_heredoc.c file_redirection/open_files.c file_redirection/redirect_input.c \
 				file_redirection/redirect_output.c
 
-EXEC = exec/exec.c exec/close.c exec/get_path.c exec/exit_wait.c
+EXEC = exec/exec.c exec/close.c exec/get_path.c exec/exit_wait.c exec/handle_directory.c
 
 SIGNALS = signals/gestionnaire.c signals/handle_signal.c signals/init_signals.c
 
