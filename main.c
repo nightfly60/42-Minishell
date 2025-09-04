@@ -6,7 +6,7 @@
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 14:15:26 by edurance          #+#    #+#             */
-/*   Updated: 2025/09/03 16:43:25 by edurance         ###   ########.fr       */
+/*   Updated: 2025/09/03 17:50:11 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ int	main(int ac, char **av, char **env)
 		{
 			ft_alias(ft_split((shell->line), ' '), &(shell->alias));
 		}
-		else if (!ft_strncmp((shell->line), "env", 3))
-			print_env(shell);
 		else
 		{
 			ft_alias_expansion(shell->tokens, shell->alias);

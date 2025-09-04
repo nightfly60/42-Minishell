@@ -12,7 +12,7 @@ PARSING = parsing/tokenize/count_token.c parsing/tokenize/token_utils.c parsing/
 			parsing/expansions/ft_expand_squotes.c parsing/parse_errors/check_quotes.c parsing/expansions/ft_expand_eof.c parsing/expansions/ft_exit_code_exp.c
 
 BUILT_IN = built-in/alias/find_alias.c built-in/alias/ft_add_alias.c  built-in/alias/ft_alias.c built-in/alias/ft_modify_alias.c built-in/alias/ft_print_alias.c \
-			built-in/alias/ft_unalias.c built-in/alias/clear_alias.c built-in/is_builtin.c
+			built-in/alias/ft_unalias.c built-in/alias/clear_alias.c built-in/is_builtin.c built-in/unset/ft_unset.c
 
 ENVIRNMT = environment/new_env.c environment/copy_env.c environment/env_utils.c environment/find_var.c environment/valid_id.c environment/convert_env.c
 
