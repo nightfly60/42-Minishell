@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 14:15:26 by edurance          #+#    #+#             */
-/*   Updated: 2025/09/04 16:07:36 by edurance         ###   ########.fr       */
+/*   Updated: 2025/09/04 16:11:14 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,11 @@ int	main(int ac, char **av, char **env)
 		shell->tokens = get_tokens(shell->line);
 		if (parse_errors(shell))
 			continue ;
-		if (!(shell->line) || !ft_strcmp((shell->line), "exit"))
-			exit_minishell(shell, 0);
+		if (!(shell->line))
+		{
+			ft_putstr_fd("exit\n", STDERR_FILENO);
+			exit_minishell(shell);
+		}
 		else
 		{
 			ft_alias_expansion(shell->tokens, shell->alias);

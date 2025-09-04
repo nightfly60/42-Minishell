@@ -1,27 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_signal.c                                    :+:      :+:    :+:   */
+/*   ft_env.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/03 15:06:43 by edurance          #+#    #+#             */
-/*   Updated: 2025/09/04 16:18:19 by aabouyaz         ###   ########.fr       */
+/*   Created: 2025/09/03 16:40:23 by aabouyaz          #+#    #+#             */
+/*   Updated: 2025/09/04 10:26:07 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_signals.h"
+#include "../ft_built_in.h"
 
-int	handle_signal(void)
+/*	buil-in : env	*/
+int	ft_env(t_minishell *shell)
 {
-	if (g_event == 1)
-	{
-		ft_printf("\n");
-		rl_on_new_line();
-		rl_replace_line("", 0);
-		rl_redisplay();
-		g_event = 0;
-		return (1);
-	}
-	return (0);
+	print_env(shell);
+	shell->exit_status = 0;
+	return (1);
 }

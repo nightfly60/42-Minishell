@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_alias.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 17:15:36 by edurance          #+#    #+#             */
-/*   Updated: 2025/09/04 15:56:42 by edurance         ###   ########.fr       */
+/*   Updated: 2025/09/04 16:19:13 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,18 +72,15 @@ static int	handle_alias(t_alias **alias_list, char *args)
 2. Afficher un alias en particulier.*/
 int	ft_alias(char **args, t_minishell *shell)
 {
-	int	arg_count;
-	t_alias **alias_list;
+	int		arg_count;
+	t_alias	**alias_list;
 
 	shell->exit_status = 0;
 	arg_count = ft_arrlen(args);
 	alias_list = &shell->alias;
 	if (arg_count == 1)
 		ft_print_alias(*alias_list);
-	else if (arg_count == 2)
-	{
-		if (!handle_alias(alias_list, args[1]))
-			shell->exit_status = 1;
-	}
+	else if (arg_count == 2 && !handle_alias(alias_list, args[1]))
+		shell->exit_status = 1;
 	return (1);
 }

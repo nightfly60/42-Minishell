@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_exit.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 15:37:00 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/09/03 16:12:24 by edurance         ###   ########.fr       */
+/*   Updated: 2025/09/04 16:19:26 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,9 @@ void	init_shell(t_minishell *shell, char **env)
 
 void	exit_minishell(t_minishell *shell, int exit_code)
 {
+	int	exit_code;
+
+	exit_code = shell->exit_status;
 	free_line(shell);
 	rl_clear_history();
 	clear_alias(shell->alias, &free);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_builtin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 15:17:43 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/09/04 15:58:54 by edurance         ###   ########.fr       */
+/*   Updated: 2025/09/04 16:15:09 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ int	is_builtin(char **name, t_minishell *shell)
 	else if (!ft_strcmp(name[0], "unset"))
 		return (ft_unset(name, shell));
 	else if (!ft_strcmp(name[0], "env"))
-		return (1);
+		return (ft_env(shell));
 	else if (!ft_strcmp(name[0], "exit"))
-		return (1);
+		return (ft_exit(name, shell));
 	else if (!ft_strcmp(name[0], "alias"))
 		return (ft_alias(name, shell));
 	else if (!ft_strcmp(name[0], "unalias"))

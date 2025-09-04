@@ -1,27 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_signal.c                                    :+:      :+:    :+:   */
+/*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/03 15:06:43 by edurance          #+#    #+#             */
-/*   Updated: 2025/09/04 16:18:19 by aabouyaz         ###   ########.fr       */
+/*   Created: 2025/09/04 15:05:23 by aabouyaz          #+#    #+#             */
+/*   Updated: 2025/09/04 15:09:45 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_signals.h"
+#include "../ft_built_in.h"
 
-int	handle_signal(void)
+int	ft_export(char **cmds, t_minishell *shell)
 {
-	if (g_event == 1)
-	{
-		ft_printf("\n");
-		rl_on_new_line();
-		rl_replace_line("", 0);
-		rl_redisplay();
-		g_event = 0;
-		return (1);
-	}
-	return (0);
+	if ()
 }

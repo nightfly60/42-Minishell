@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   handle_directory.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 15:12:31 by edurance          #+#    #+#             */
-/*   Updated: 2025/09/04 15:38:59 by edurance         ###   ########.fr       */
+/*   Updated: 2025/09/04 16:21:16 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_exec.h"
 
 /*handle directory si il existe ou non*/
-int handle_directory(char **cmd, t_minishell *shell)
+int	handle_directory(char **cmd, t_minishell *shell)
 {
-	int fd;
+	int	fd;
 
 	if (!ft_strchr(cmd[0], '/'))
 		return (0);
