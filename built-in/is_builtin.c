@@ -6,7 +6,7 @@
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 15:17:43 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/09/04 14:49:11 by edurance         ###   ########.fr       */
+/*   Updated: 2025/09/04 15:58:54 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int	is_builtin(char **name, t_minishell *shell)
 	else if (!ft_strcmp(name[0], "exit"))
 		return (1);
 	else if (!ft_strcmp(name[0], "alias"))
-		return (1);
+		return (ft_alias(name, shell));
+	else if (!ft_strcmp(name[0], "unalias"))
+		return (ft_unalias(name, shell));
 	return (0);
 }

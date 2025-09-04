@@ -6,7 +6,7 @@
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 14:15:26 by edurance          #+#    #+#             */
-/*   Updated: 2025/09/03 17:50:11 by edurance         ###   ########.fr       */
+/*   Updated: 2025/09/04 16:07:36 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,6 @@ int	main(int ac, char **av, char **env)
 			continue ;
 		if (!(shell->line) || !ft_strcmp((shell->line), "exit"))
 			exit_minishell(shell, 0);
-		else if (!ft_strncmp((shell->line), "alias", 5))
-		{
-			ft_alias(ft_split((shell->line), ' '), &(shell->alias));
-		}
 		else
 		{
 			ft_alias_expansion(shell->tokens, shell->alias);
