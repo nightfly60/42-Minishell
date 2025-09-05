@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 15:05:23 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/09/05 15:42:55 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/09/05 17:14:09 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,15 @@ static void	export_var(char *str, t_minishell *shell)
 
 	if (str[0] == '=')
 	{
-		print_error("export: `", str, "': not a valide identifier\n");
+		print_error("export: `", str, "': not a valid identifier\n");
+		shell->exit_status = 1;
 		return ;
 	}
 	split = ft_split(str, '=');
-	if (!is_valid_id(split[0]))
+	if (is_valid_id(split[0]) != (int)ft_strlen(split[0]))
 	{
-		print_error("export: `", split[0], "': not a valide identifier\n");
+		shell->exit_status = 1;
+		print_error("export: `", split[0], "': not a valid identifier\n");
 		ft_freeall(split);
 		return ;
 	}
@@ -39,6 +41,7 @@ int	ft_export(char **cmds, t_minishell *shell)
 {
 	int	i;
 
+	shell->exit_status = 0;
 	if (!cmds[1])
 		return (print_export_env(shell));
 	i = 1;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_expansion.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 12:31:28 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/09/04 17:11:36 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/09/05 17:09:51 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,17 @@ void	ft_expand_tokens(char **tokens, t_minishell *shell)
 	while (tokens[i])
 	{
 		if (tokens[i][0] == '"')
+		{
 			double_quote(&tokens[i], shell->env);
+			expand_exit_code(&tokens[i], shell);
+		}
 		else if (tokens[i][0] == '\'')
 			single_quote(&tokens[i]);
 		else
+		{
 			ft_word_expansion(&tokens[i], shell->env);
-		expand_exit_code(&tokens[i], shell);
+			expand_exit_code(&tokens[i], shell);
+		}
 		i++;
 	}
 }
