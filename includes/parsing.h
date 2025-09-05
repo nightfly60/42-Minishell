@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 13:22:39 by edurance          #+#    #+#             */
-/*   Updated: 2025/09/04 17:13:37 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/09/04 17:39:30 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ int							is_quote(char *s);
 int							count_tokens(char *s);
 char						**get_tokens(char *line);
 void						ft_merge_tokens(t_minishell *shell);
-void						free_str_array(char **arr);
 
 /*	commands (parse pipeline)	*/
 int							count_cmd_args(char **tokens, int i);
