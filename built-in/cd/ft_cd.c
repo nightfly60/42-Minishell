@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 12:15:18 by edurance          #+#    #+#             */
-/*   Updated: 2025/09/04 17:11:36 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/09/05 12:27:03 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ static int	display_cd_error(char *name, int error, t_minishell *shell)
 int	ft_cd(char **name, t_minishell *shell)
 {
 	t_env	*home;
+	t_env	*pwd;
+	char	*cwd;
 
 	shell->exit_status = 0;
 	home = find_var("HOME", &shell->env);
@@ -47,6 +49,11 @@ int	ft_cd(char **name, t_minishell *shell)
 	}
 	else if (chdir(name[1]) == -1)
 		return (display_cd_error(name[1], 3, shell));
+	cwd = getcwd(NULL, 0);
+	pwd = find_var("PWD", &shell->env);
+	modify_env("OLDPWD", pwd->value, &shell->env);
+	modify_env("PWD", cwd, &shell->env);
+	free(cwd);
 	free(shell->pwd);
 	shell->pwd = getcwd(NULL, 0);
 	return (1);

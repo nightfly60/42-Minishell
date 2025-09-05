@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_built_in.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 17:16:07 by edurance          #+#    #+#             */
-/*   Updated: 2025/09/04 17:11:15 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/09/05 10:35:13 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 typedef struct s_minishell	t_minishell;
 
-/*alias*/
+/*utils*/
 typedef struct s_alias
 {
 	char					*name;
@@ -26,7 +26,6 @@ typedef struct s_alias
 	struct s_alias			*previous;
 }							t_alias;
 
-int							ft_alias(char **args, t_minishell *shell);
 void						ft_print_alias(t_alias *alias_list);
 int							modify_alias(t_alias *alias_list, char *name,
 								char *content);
@@ -35,6 +34,10 @@ void						ft_add_alias(char *name, char *content,
 int							find_alias(t_alias *alias_list, char *name);
 void						clear_alias(t_alias *lst, void (*f)(void *));
 int							is_builtin(char **name, t_minishell *shell);
+void						print_error(char *s1, char *s2, char *s3);
+
+/*built in*/
+int							ft_alias(char **args, t_minishell *shell);
 int							ft_unset(char **cmd, t_minishell *shell);
 int							ft_echo(char **cmd, t_minishell *shell);
 int							ft_cd(char **name, t_minishell *shell);

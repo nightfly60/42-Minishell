@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 15:26:57 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/09/04 17:10:38 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/09/05 10:38:46 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,7 @@ t_env						*find_var_len(char *name, t_env **first,
 								int name_len);
 char						**convert_env(t_env *env);
 void						create_env(t_minishell *shell, char **env);
+t_env						*modify_env(char *name, char *new_value,
+								t_env **first);
 
 #endif
