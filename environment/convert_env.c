@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 13:23:14 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/08/22 13:33:24 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/09/05 13:16:42 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,10 @@ char	**convert_env(t_env *env)
 	i = 0;
 	while (current)
 	{
-		line = ft_strjoin(current->name, "=");
+		if (current->value)
+			line = ft_strjoin(current->name, "=");
+		else
+			line = ft_strdup(current->name);
 		res[i] = ft_strjoin(line, current->value);
 		free(line);
 		current = current->next;

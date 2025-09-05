@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 15:17:43 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/09/04 16:15:09 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/09/05 15:42:36 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	is_builtin(char **name, t_minishell *shell)
 	else if (!ft_strcmp(name[0], "pwd"))
 		return (ft_pwd(shell));
 	else if (!ft_strcmp(name[0], "export"))
-		return (1);
+		return (ft_export(name, shell));
 	else if (!ft_strcmp(name[0], "unset"))
 		return (ft_unset(name, shell));
 	else if (!ft_strcmp(name[0], "env"))

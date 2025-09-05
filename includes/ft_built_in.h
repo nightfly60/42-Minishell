@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_built_in.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 17:16:07 by edurance          #+#    #+#             */
-/*   Updated: 2025/09/05 10:35:13 by edurance         ###   ########.fr       */
+/*   Updated: 2025/09/05 15:43:35 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,7 @@ int							ft_pwd(t_minishell *shell);
 int							ft_unalias(char **cmd, t_minishell *shell);
 int							ft_env(t_minishell *shell);
 int							ft_exit(char **cmds, t_minishell *shell);
+int							print_export_env(t_minishell *shell);
+int							ft_export(char **cmds, t_minishell *shell);
 
 #endif

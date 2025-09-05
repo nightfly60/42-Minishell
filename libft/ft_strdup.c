@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 18:34:27 by edurance          #+#    #+#             */
-/*   Updated: 2025/07/13 18:41:34 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/09/05 13:07:18 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ char	*ft_strdup(const char *src)
 	int		i;
 
 	i = 0;
+	if (!src)
+		return (NULL);
 	str = malloc(sizeof(char) * ft_strlen(src) + 1);
 	if (!str)
 		return (NULL);

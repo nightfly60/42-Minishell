@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   valid_id.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/16 11:34:27 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/09/03 16:11:01 by edurance         ###   ########.fr       */
+/*   Updated: 2025/09/05 13:21:04 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int	is_valid_id(char *s)
 	int	i;
 
 	i = 0;
+	if (!s)
+		return (0);
 	if (s[i] != '_' && !ft_isalpha(s[i]))
 		return (0);
 	while (s[i])
