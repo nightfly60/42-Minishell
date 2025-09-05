@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 15:32:32 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/09/04 16:58:26 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/09/05 10:34:04 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_exec.h"
 
-void	print_error(char *string)
+void	display_cmd_not_found(char *string)
 {
 	if ((errno == ENOENT || !ft_strcmp(string, " ")) && !ft_strchr(string, '/'))
 	{
@@ -33,7 +33,7 @@ static void	exec_child(t_minishell *shell, t_cmd_block *command)
 	if (command_path && command->cmds[0][0])
 		execve(command_path, command->cmds, env);
 	if (command_path && command->cmds[0][0])
-		print_error(command->cmds[0]);
+		display_cmd_not_found(command->cmds[0]);
 	else if (command->cmds[0][0])
 	{
 		ft_putstr_fd(command->cmds[0], 2);

@@ -6,7 +6,7 @@
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 17:16:07 by edurance          #+#    #+#             */
-/*   Updated: 2025/09/04 17:38:33 by edurance         ###   ########.fr       */
+/*   Updated: 2025/09/05 10:35:13 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void						ft_add_alias(char *name, char *content,
 int							find_alias(t_alias *alias_list, char *name);
 void						clear_alias(t_alias *lst, void (*f)(void *));
 int							is_builtin(char **name, t_minishell *shell);
+void						print_error(char *s1, char *s2, char *s3);
 
 /*built in*/
 int							ft_alias(char **args, t_minishell *shell);

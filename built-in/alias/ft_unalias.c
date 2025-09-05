@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_unalias.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 16:45:03 by edurance          #+#    #+#             */
-/*   Updated: 2025/09/04 17:11:36 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/09/05 10:39:39 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,6 @@ static void	ft_reattach_alias(t_alias *previous, t_alias *next, t_alias **alias)
 		next->previous = previous;
 }
 
-static void	err_display(char *del_name)
-{
-	ft_putstr_fd("unalias: ", STDERR_FILENO);
-	ft_putstr_fd(del_name, STDERR_FILENO);
-	ft_putstr_fd(": not found\n", STDERR_FILENO);
-}
-
 /*Retire un alias de la liste (l'alias avec le nom passe en arg).*/
 static int	ft_unalias_one(char *del_name, t_alias **alias)
 {
@@ -62,7 +55,7 @@ static int	ft_unalias_one(char *del_name, t_alias **alias)
 		}
 		current = current->next;
 	}
-	err_display(del_name);
+	print_error("unalias: ", del_name, ": not found\n");
 	return (1);
 }
 
