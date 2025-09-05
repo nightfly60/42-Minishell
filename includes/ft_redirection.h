@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 11:38:19 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/09/04 17:10:40 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/09/05 13:49:14 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int							open_files(char *name, t_redirtype type);
 int							ft_heredoc(char *limiter, t_minishell *shell,
 								t_redirtype type);
 void						set_finals_fd(t_minishell *shell);
-void						redir_input(t_cmd_block *block);
+void						redir_input(t_cmd_block *block, t_minishell *shell);
 int							redir_output(t_list *cmd_block, t_cmd_block *block,
 								int pipes[2]);
 

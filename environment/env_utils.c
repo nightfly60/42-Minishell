@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 16:01:35 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/09/04 16:15:54 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/09/05 12:50:03 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ void	print_env(t_minishell *shell)
 	current = shell->env;
 	while (current)
 	{
-		ft_printf("%s=%s\n", current->name, current->value);
+		if (current->value)
+			ft_printf("%s=%s\n", current->name, current->value);
 		current = current->next;
 	}
 }
