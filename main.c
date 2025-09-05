@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 14:15:26 by edurance          #+#    #+#             */
-/*   Updated: 2025/09/04 17:00:49 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/09/05 15:42:14 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,12 @@ static void	pacoshell(t_minishell *shell)
 	set_finals_fd(shell);
 	if (shell->cmd_block)
 		exit_wait(shell, exec_line(shell));
+}
+
+static void handle_sigquit(t_minishell *shell)
+{
+	ft_putstr_fd("exit\n", STDERR_FILENO);
+	exit_minishell(shell);
 }
 
 int	main(int ac, char **av, char **env)
@@ -43,12 +49,10 @@ int	main(int ac, char **av, char **env)
 		if (parse_errors(shell))
 			continue ;
 		if (!(shell->line))
-		{
-			ft_putstr_fd("exit\n", STDERR_FILENO);
-			exit_minishell(shell);
-		}
+			handle_sigquit(shell);
 		else
 			pacoshell(shell);
+		init_signals();
 		free_line(shell);
 	}
 	return (0);
