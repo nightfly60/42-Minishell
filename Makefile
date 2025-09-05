@@ -14,7 +14,8 @@ BUILT_IN =	built-in/alias/find_alias.c built-in/alias/ft_add_alias.c  built-in/a
 			built-in/alias/ft_unalias.c built-in/alias/clear_alias.c built-in/is_builtin.c built-in/unset/ft_unset.c built-in/echo/ft_echo.c built-in/cd/ft_cd.c \
 			built-in/pwd/ft_pwd.c built-in/env/ft_env.c built-in/exit/ft_exit.c built-in/exit/print_error.c
 
-ENVIRNMT =	environment/new_env.c environment/copy_env.c environment/env_utils.c environment/find_var.c environment/valid_id.c environment/convert_env.c
+ENVIRNMT =	environment/new_env.c environment/copy_env.c environment/env_utils.c environment/find_var.c environment/valid_id.c environment/convert_env.c \
+			environment/modify_env.c
 
 UTILS =		minishell_utils/free_line.c minishell_utils/init_exit.c
 
