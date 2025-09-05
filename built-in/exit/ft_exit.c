@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 10:23:03 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/09/04 17:11:36 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/09/05 10:35:00 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,6 @@ static int	is_str_num(char *s)
 		i++;
 	}
 	return (1);
-}
-
-static void	print_error(char *s1, char *s2, char *s3)
-{
-	ft_putstr_fd(s1, STDERR_FILENO);
-	ft_putstr_fd(s2, STDERR_FILENO);
-	ft_putstr_fd(s3, STDERR_FILENO);
 }
 
 static long long	ft_atoll(const char *nptr)
