@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 14:15:26 by edurance          #+#    #+#             */
-/*   Updated: 2025/09/05 15:42:14 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/09/05 16:17:39 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	pacoshell(t_minishell *shell)
 		exit_wait(shell, exec_line(shell));
 }
 
-static void handle_sigquit(t_minishell *shell)
+static void	handle_sigquit(t_minishell *shell)
 {
 	ft_putstr_fd("exit\n", STDERR_FILENO);
 	exit_minishell(shell);

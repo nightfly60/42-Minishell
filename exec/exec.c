@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 15:32:32 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/09/05 15:43:30 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/09/05 16:16:05 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,16 @@ static void	child_process(t_cmd_block *command, int pipes[2], t_list *cmd_block,
 		t_minishell *shell)
 {
 	signal(SIGINT, SIG_DFL);
-	redir_input(command, shell);
+	if (redir_input(command))
+	{
+		if (pipes[0] > 2)
+			close(pipes[0]);
+		if (pipes[1] > 2)
+			close(pipes[1]);
+		exit_minishell(shell);
+	}
 	if (redir_output(cmd_block, command, pipes))
 	{
-		perror(((t_redir *)ft_lstlast(command->out)->content)->name);
 		if (pipes[0] > 2)
 			close(pipes[0]);
 		if (pipes[1] > 2)
@@ -83,8 +89,6 @@ int	exec_line(t_minishell *shell)
 	while (cmd_block)
 	{
 		pipe(pipes);
-		shell->pipes[0] = pipes[0];
-		shell->pipes[1] = pipes[1];
 		pid = fork();
 		command = (t_cmd_block *)cmd_block->content;
 		if (pid == 0)
