@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 15:36:49 by edurance          #+#    #+#             */
-/*   Updated: 2025/09/06 19:05:26 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/09/06 22:37:03 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static void	redirect_fd(t_cmd_block *block, t_minishell *shell)
 		redir = (t_redir *)lst->content;
 		if (redir->type == INFILE)
 			set_infile_fd(redir, shell, block);
-		else
+		else if (redir->type != HEREDOC && redir->type != HEREDOC_NO_EXP)
 			set_outfile_fd(redir, shell, block);
 		lst = lst->next;
 	}
