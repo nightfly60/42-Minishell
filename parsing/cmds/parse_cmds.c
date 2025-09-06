@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_cmds.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/17 14:57:59 by edurance          #+#    #+#             */
-/*   Updated: 2025/09/06 16:03:14 by edurance         ###   ########.fr       */
+/*   Updated: 2025/09/06 18:45:59 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,22 +47,22 @@ static int	handle_operators(int i, char **tokens, t_cmd_block *cmd_block)
 	if (!ft_strcmp(tokens[i], "<") && tokens[i + 1])
 	{
 		elem = ft_lstnew(make_redir(tokens[i + 1], INFILE));
-		ft_lstadd_back(&cmd_block->in, elem);
+		ft_lstadd_back(&cmd_block->redir, elem);
 	}
 	else if (!ft_strcmp(tokens[i], ">") && tokens[i + 1])
 	{
 		elem = ft_lstnew(make_redir(tokens[i + 1], OUTFILE));
-		ft_lstadd_back(&cmd_block->out, elem);
+		ft_lstadd_back(&cmd_block->redir, elem);
 	}
 	else if (!ft_strcmp(tokens[i], ">>") && tokens[i + 1])
 	{
 		elem = ft_lstnew(make_redir(tokens[i + 1], APPEND));
-		ft_lstadd_back(&cmd_block->out, elem);
+		ft_lstadd_back(&cmd_block->redir, elem);
 	}
 	else if (!ft_strcmp(tokens[i], "<<") && tokens[i + 1])
 	{
 		elem = ft_lstnew(make_redir(tokens[i + 1], HEREDOC));
-		ft_lstadd_back(&cmd_block->in, elem);
+		ft_lstadd_back(&cmd_block->redir, elem);
 	}
 	else
 		return (0);
@@ -77,8 +77,7 @@ static t_cmd_block	*new_cmd(void)
 	cmd_block = malloc(sizeof(t_cmd_block));
 	if (!cmd_block)
 		return (NULL);
-	cmd_block->in = NULL;
-	cmd_block->out = NULL;
+	cmd_block->redir = NULL;
 	cmd_block->cmds = NULL;
 	cmd_block->in_fd = STDIN_FILENO;
 	cmd_block->out_fd = STDOUT_FILENO;

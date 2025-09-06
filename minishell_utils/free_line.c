@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 12:49:20 by edurance          #+#    #+#             */
-/*   Updated: 2025/09/05 15:43:45 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/09/06 18:45:50 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,8 @@ static void	free_cmd_block(void *command)
 	cmd = (t_cmd_block *)command;
 	ft_freeall(cmd->cmds);
 	cmd->cmds = NULL;
-	ft_lstclear(&(cmd->in), &free_files);
-	ft_lstclear(&(cmd->out), &free_files);
-	cmd->in = NULL;
-	cmd->out = NULL;
+	ft_lstclear(&(cmd->redir), &free_files);
+	cmd->redir = NULL;
 	free(command);
 	command = NULL;
 }

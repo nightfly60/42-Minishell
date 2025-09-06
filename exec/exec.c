@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 15:32:32 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/09/06 17:33:21 by edurance         ###   ########.fr       */
+/*   Updated: 2025/09/06 19:00:38 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ static void	exec_child(t_minishell *shell, t_cmd_block *command)
 	env = convert_env(shell->env);
 	if (command_path && command->cmds[0][0])
 		execve(command_path, command->cmds, env);
-	if (command_path && command->cmds[0][0] && !handle_dir(command->cmds, shell))
+	if (command_path && command->cmds[0][0] && !handle_dir(command->cmds,
+			shell))
 		display_cmd_not_found(command->cmds[0]);
 	else if (command->cmds[0][0])
 	{

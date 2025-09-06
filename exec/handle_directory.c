@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_directory.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 15:12:31 by edurance          #+#    #+#             */
-/*   Updated: 2025/09/06 17:49:52 by edurance         ###   ########.fr       */
+/*   Updated: 2025/09/06 18:46:51 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	handle_dir(char **cmd, t_minishell *shell)
 
 	if (!ft_strchr(cmd[0], '/'))
 		return (0);
-	if (!access(cmd[0], F_OK) &&access(cmd[0], X_OK))
+	if (!access(cmd[0], F_OK) && access(cmd[0], X_OK))
 	{
 		perror(cmd[0]);
 		shell->exit_status = 126;
