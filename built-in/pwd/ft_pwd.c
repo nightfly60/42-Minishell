@@ -6,7 +6,7 @@
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 14:43:45 by edurance          #+#    #+#             */
-/*   Updated: 2025/09/06 14:16:28 by edurance         ###   ########.fr       */
+/*   Updated: 2025/09/06 19:00:14 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /*built in pwd*/
 int	ft_pwd(t_cmd_block *cmd, t_minishell *shell, int is_pipe)
 {
-	int oldfd;
+	int	oldfd;
 
 	oldfd = builtin_outfile(cmd, is_pipe);
 	ft_printf("%s\n", shell->pwd);
