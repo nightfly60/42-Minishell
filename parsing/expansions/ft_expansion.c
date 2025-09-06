@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_expansion.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 12:31:28 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/09/05 17:09:51 by edurance         ###   ########.fr       */
+/*   Updated: 2025/09/06 19:05:51 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,8 +102,7 @@ void	ft_expand_cmds(t_minishell *shell)
 			ft_expand_merged(&(command->cmds)[i], shell, 0);
 			i++;
 		}
-		exp_file(command->in, &ft_expand_filename, shell);
-		exp_file(command->out, &ft_expand_filename, shell);
+		exp_file(command->redir, &ft_expand_filename, shell);
 		lst = lst->next;
 	}
 }
