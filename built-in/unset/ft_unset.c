@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 16:45:22 by edurance          #+#    #+#             */
-/*   Updated: 2025/09/04 17:11:36 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/09/06 14:18:40 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,28 +35,31 @@ static void	ft_reattach_env(t_env *previous, t_env *next, t_env **env)
 }
 
 /*built in unset -> retirer une var de l'env*/
-int	ft_unset(char **cmd, t_minishell *shell)
+int	ft_unset(t_cmd_block *cmd, t_minishell *shell, int is_pipe)
 {
+	char	**args;
 	int		i;
 	t_env	*to_del;
 	t_env	*previous;
-	t_env	*next;
+	int		oldfd;
 
+	oldfd = builtin_outfile(cmd, is_pipe);
+	args = cmd->cmds;
 	i = 1;
-	while (cmd[i])
+	while (args[i])
 	{
-		to_del = find_var(cmd[i], &shell->env);
+		to_del = find_var(args[i], &shell->env);
 		if (!to_del)
 		{
 			i++;
 			continue ;
 		}
 		previous = to_del->previous;
-		next = to_del->next;
-		ft_reattach_env(previous, next, &shell->env);
+		ft_reattach_env(previous, to_del->next, &shell->env);
 		env_delone(to_del, &free);
 		i++;
 	}
 	shell->exit_status = 0;
+	reset_output(is_pipe, oldfd);
 	return (1);
 }

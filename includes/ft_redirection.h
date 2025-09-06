@@ -6,7 +6,7 @@
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 11:38:19 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/09/05 16:16:25 by edurance         ###   ########.fr       */
+/*   Updated: 2025/09/06 12:31:40 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ typedef struct s_cmd_block	t_cmd_block;
 typedef struct s_list		t_list;
 
 /*	fonction de redirection	*/
-int							open_files(char *name, t_redirtype type);
+int							open_files(char *name, t_redirtype type,
+								t_minishell *shell);
 int							ft_heredoc(char *limiter, t_minishell *shell,
 								t_redirtype type);
 void						set_finals_fd(t_minishell *shell);

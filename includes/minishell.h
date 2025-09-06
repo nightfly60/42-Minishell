@@ -6,7 +6,7 @@
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 15:51:44 by edurance          #+#    #+#             */
-/*   Updated: 2025/09/05 16:16:32 by edurance         ###   ########.fr       */
+/*   Updated: 2025/09/06 12:28:01 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ typedef struct s_cmd_block
 	int					pipe_fd;
 	int					out_fd;
 	int					in_fd;
+	int					is_valid;
 	char				**cmds;
 }						t_cmd_block;
 

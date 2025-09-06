@@ -6,7 +6,7 @@
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 15:12:31 by edurance          #+#    #+#             */
-/*   Updated: 2025/09/06 11:39:08 by edurance         ###   ########.fr       */
+/*   Updated: 2025/09/06 12:08:28 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ int	handle_dir(char **cmd, t_minishell *shell)
 	fd = open(cmd[0], __O_DIRECTORY);
 	if (fd == -1 && cmd[0][0] != '/')
 	{
-		ft_putstr_fd(cmd[0], STDERR_FILENO);
-		ft_putstr_fd(": No such file or directory\n", STDERR_FILENO);
+		perror(cmd[0]);
 		shell->exit_status = 127;
 		return (1);
 	}

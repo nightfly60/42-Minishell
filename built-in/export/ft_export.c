@@ -6,7 +6,7 @@
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 15:05:23 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/09/05 17:14:09 by edurance         ###   ########.fr       */
+/*   Updated: 2025/09/06 14:15:56 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,18 +37,26 @@ static void	export_var(char *str, t_minishell *shell)
 	ft_freeall(split);
 }
 
-int	ft_export(char **cmds, t_minishell *shell)
+int	ft_export(t_cmd_block *cmd, t_minishell *shell, int is_pipe)
 {
-	int	i;
+	int		i;
+	char	**cmds;
+	int		oldfd;
 
+	oldfd = builtin_outfile(cmd, is_pipe);
+	cmds = cmd->cmds;
 	shell->exit_status = 0;
 	if (!cmds[1])
+	{
+		reset_output(is_pipe, oldfd);
 		return (print_export_env(shell));
+	}
 	i = 1;
 	while (cmds[i])
 	{
 		export_var(cmds[i], shell);
 		i++;
 	}
+	reset_output(is_pipe, oldfd);
 	return (1);
 }

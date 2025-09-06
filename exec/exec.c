@@ -6,7 +6,7 @@
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 15:32:32 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/09/06 11:47:08 by edurance         ###   ########.fr       */
+/*   Updated: 2025/09/06 13:21:57 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,8 @@ static void	child_process(t_cmd_block *command, int pipes[2], t_list *cmd_block,
 		exit_minishell(shell);
 	}
 	close_child(pipes, cmd_block);
-	if (is_builtin(command->cmds, shell) || handle_dir(command->cmds, shell))
+	if (command->is_valid && (is_builtin(command, shell, 1)
+			|| handle_dir(command->cmds, shell)))
 		exit_minishell(shell);
 	exec_child(shell, command);
 }
@@ -88,7 +89,7 @@ int	exec_line(t_minishell *shell)
 
 	cmd_block = (shell->cmd_block);
 	command = (t_cmd_block *)cmd_block->content;
-	if (!cmd_block->next && is_builtin(command->cmds, shell))
+	if (command->is_valid && !cmd_block->next && is_builtin(command, shell, 0))
 		return (-1);
 	while (cmd_block)
 	{

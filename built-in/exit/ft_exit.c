@@ -6,7 +6,7 @@
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 10:23:03 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/09/05 10:35:00 by edurance         ###   ########.fr       */
+/*   Updated: 2025/09/06 14:15:09 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,12 @@ static long long	ft_atoll(const char *nptr)
 	return (res * signe);
 }
 
-int	ft_exit(char **cmds, t_minishell *shell)
+int	ft_exit(t_cmd_block *cmd, t_minishell *shell, int is_pipe)
 {
+	char	**cmds;
+
+	(void)is_pipe;
+	cmds = cmd->cmds;
 	ft_putstr_fd("exit\n", STDERR_FILENO);
 	if (!cmds[1])
 		exit_minishell(shell);
