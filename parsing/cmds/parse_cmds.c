@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_cmds.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/17 14:57:59 by edurance          #+#    #+#             */
-/*   Updated: 2025/09/04 17:11:36 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/09/06 16:03:14 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ static t_cmd_block	*new_cmd(void)
 	cmd_block->in_fd = STDIN_FILENO;
 	cmd_block->out_fd = STDOUT_FILENO;
 	cmd_block->pipe_fd = -1;
+	cmd_block->is_valid = 1;
 	return (cmd_block);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_files.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 11:47:38 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/09/05 15:43:33 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/09/06 17:29:57 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /*	ouvre le fichier 'name' selon le type:
 	- "infile", "outfile", "append".	*/
-int	open_files(char *name, t_redirtype type)
+int	open_files(char *name, t_redirtype type, t_minishell *shell)
 {
 	int	fd;
 
@@ -28,6 +28,9 @@ int	open_files(char *name, t_redirtype type)
 	else
 		ft_putstr_fd("ERROR: OPEN", STDERR_FILENO);
 	if (fd == -1)
+	{
+		shell->exit_status = 1;
 		perror(name);
+	}
 	return (fd);
 }

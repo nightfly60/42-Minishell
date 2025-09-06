@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit_code_exp.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 15:40:35 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/09/04 17:11:36 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/09/05 17:06:16 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static char	*replace_exit_code(char *s, char *exit_code, int len, int nb_exit)
 		return (NULL);
 	i = 0;
 	j = 0;
-	while (s[i] && s[i + 1])
+	while (s[i])
 	{
 		if (s[i] == '$' && s[i + 1] && s[i + 1] == '?')
 		{

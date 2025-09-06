@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_directory.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 15:12:31 by edurance          #+#    #+#             */
-/*   Updated: 2025/09/04 16:58:38 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/09/06 17:49:52 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,18 @@ int	handle_dir(char **cmd, t_minishell *shell)
 {
 	int	fd;
 
-	if (!ft_strchr(cmd[0], '/') || !ft_strncmp(cmd[0], "./", 2))
+	if (!ft_strchr(cmd[0], '/'))
 		return (0);
+	if (!access(cmd[0], F_OK) &&access(cmd[0], X_OK))
+	{
+		perror(cmd[0]);
+		shell->exit_status = 126;
+		return (1);
+	}
 	fd = open(cmd[0], __O_DIRECTORY);
 	if (fd == -1)
 	{
-		ft_putstr_fd(cmd[0], STDERR_FILENO);
-		ft_putstr_fd(": No such file or directory\n", STDERR_FILENO);
+		perror(cmd[0]);
 		shell->exit_status = 127;
 		return (1);
 	}

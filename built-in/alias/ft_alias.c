@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_alias.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 17:15:36 by edurance          #+#    #+#             */
-/*   Updated: 2025/09/04 17:11:36 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/09/06 14:09:37 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,15 @@ static int	handle_alias(t_alias **alias_list, char *args)
 	on appelle la commande alias pour savoir si on doit :
 1. Changer ou ajouter un alias.
 2. Afficher un alias en particulier.*/
-int	ft_alias(char **args, t_minishell *shell)
+int	ft_alias(t_cmd_block *cmd, t_minishell *shell, int is_pipe)
 {
+	char	**args;
 	int		arg_count;
 	t_alias	**alias_list;
+	int		oldfd;
 
+	args = cmd->cmds;
+	oldfd = builtin_outfile(cmd, is_pipe);
 	shell->exit_status = 0;
 	arg_count = ft_arrlen(args);
 	alias_list = &shell->alias;
@@ -82,5 +86,6 @@ int	ft_alias(char **args, t_minishell *shell)
 		ft_print_alias(*alias_list);
 	else if (arg_count == 2 && !handle_alias(alias_list, args[1]))
 		shell->exit_status = 1;
+	reset_output(is_pipe, oldfd);
 	return (1);
 }

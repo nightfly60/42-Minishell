@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 15:32:32 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/09/05 15:43:30 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/09/06 17:33:21 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,17 @@ static void	exec_child(t_minishell *shell, t_cmd_block *command)
 	env = convert_env(shell->env);
 	if (command_path && command->cmds[0][0])
 		execve(command_path, command->cmds, env);
-	if (command_path && command->cmds[0][0])
+	if (command_path && command->cmds[0][0] && !handle_dir(command->cmds, shell))
 		display_cmd_not_found(command->cmds[0]);
 	else if (command->cmds[0][0])
 	{
 		ft_putstr_fd(command->cmds[0], 2);
 		ft_putstr_fd(": command not found\n", 2);
 	}
-	shell->exit_status = 0;
+	if (command->cmds[0][0])
+		shell->exit_status = 1;
+	else
+		shell->exit_status = 0;
 	if (errno == ENOENT || !command_path)
 		shell->exit_status = 127;
 	free(command_path);
@@ -52,10 +55,17 @@ static void	child_process(t_cmd_block *command, int pipes[2], t_list *cmd_block,
 		t_minishell *shell)
 {
 	signal(SIGINT, SIG_DFL);
-	redir_input(command, shell);
+	signal(SIGQUIT, SIG_DFL);
+	if (redir_input(command))
+	{
+		if (pipes[0] > 2)
+			close(pipes[0]);
+		if (pipes[1] > 2)
+			close(pipes[1]);
+		exit_minishell(shell);
+	}
 	if (redir_output(cmd_block, command, pipes))
 	{
-		perror(((t_redir *)ft_lstlast(command->out)->content)->name);
 		if (pipes[0] > 2)
 			close(pipes[0]);
 		if (pipes[1] > 2)
@@ -63,7 +73,8 @@ static void	child_process(t_cmd_block *command, int pipes[2], t_list *cmd_block,
 		exit_minishell(shell);
 	}
 	close_child(pipes, cmd_block);
-	if (is_builtin(command->cmds, shell) || handle_dir(command->cmds, shell))
+	if (command->is_valid && (is_builtin(command, shell, 1)
+			|| handle_dir(command->cmds, shell)))
 		exit_minishell(shell);
 	exec_child(shell, command);
 }
@@ -78,13 +89,11 @@ int	exec_line(t_minishell *shell)
 
 	cmd_block = (shell->cmd_block);
 	command = (t_cmd_block *)cmd_block->content;
-	if (!cmd_block->next && is_builtin(command->cmds, shell))
+	if (command->is_valid && !cmd_block->next && is_builtin(command, shell, 0))
 		return (-1);
 	while (cmd_block)
 	{
 		pipe(pipes);
-		shell->pipes[0] = pipes[0];
-		shell->pipes[1] = pipes[1];
 		pid = fork();
 		command = (t_cmd_block *)cmd_block->content;
 		if (pid == 0)
