@@ -12,3 +12,4 @@ minishell
 .vscode
 .gitignore
 main.c
+minishell_tester
