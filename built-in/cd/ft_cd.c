@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 12:15:18 by edurance          #+#    #+#             */
-/*   Updated: 2025/09/05 15:42:50 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/09/06 11:42:54 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ static int	display_cd_error(char *name, int error, t_minishell *shell)
 	{
 		ft_putstr_fd("cd: ", STDERR_FILENO);
 		ft_putstr_fd(name, STDERR_FILENO);
-		ft_putstr_fd(": No such file or directory\n", STDERR_FILENO);
+		if (!access(name, 0))
+			ft_putstr_fd(": Not a directory\n", STDERR_FILENO);
+		else
+			ft_putstr_fd(": No such file or directory\n", STDERR_FILENO);
 	}
 	shell->exit_status = 1;
 	return (1);
@@ -38,7 +41,7 @@ int	ft_cd(char **name, t_minishell *shell)
 
 	shell->exit_status = 0;
 	home = find_var("HOME", &shell->env);
-	if (!home || !home->value)
+	if ((!home || !home->value) && ft_arrlen(name) < 2)
 		return (display_cd_error(name[1], 2, shell));
 	if (ft_arrlen(name) > 2)
 		return (display_cd_error(name[1], 1, shell));

@@ -6,7 +6,7 @@
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 14:15:26 by edurance          #+#    #+#             */
-/*   Updated: 2025/09/05 17:07:41 by edurance         ###   ########.fr       */
+/*   Updated: 2025/09/06 11:55:19 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,14 @@ int	main(int ac, char **av, char **env)
 	while (1)
 	{
 		shell->line = readline(shell->prompt);
-		add_history((shell->line));
 		shell->tokens = get_tokens(shell->line);
+		if (shell->line && shell->line[0])
+			add_history((shell->line));
 		if (parse_errors(shell))
 			continue ;
 		if (!(shell->line))
 			handle_sigquit(shell);
-		else
+		else if (shell->line[0])
 			pacoshell(shell);
 		init_signals();
 		free_line(shell);

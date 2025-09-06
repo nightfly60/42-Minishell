@@ -6,7 +6,7 @@
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 15:32:32 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/09/05 17:16:01 by edurance         ###   ########.fr       */
+/*   Updated: 2025/09/06 11:47:08 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,10 @@ static void	exec_child(t_minishell *shell, t_cmd_block *command)
 		ft_putstr_fd(command->cmds[0], 2);
 		ft_putstr_fd(": command not found\n", 2);
 	}
-	shell->exit_status = 1;
+	if (command->cmds[0][0])
+		shell->exit_status = 1;
+	else
+		shell->exit_status = 0;
 	if (errno == ENOENT || !command_path)
 		shell->exit_status = 127;
 	free(command_path);
@@ -52,6 +55,7 @@ static void	child_process(t_cmd_block *command, int pipes[2], t_list *cmd_block,
 		t_minishell *shell)
 {
 	signal(SIGINT, SIG_DFL);
+	signal(SIGQUIT, SIG_DFL);
 	if (redir_input(command))
 	{
 		if (pipes[0] > 2)
