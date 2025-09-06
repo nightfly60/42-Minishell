@@ -6,7 +6,7 @@
 /*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 15:17:43 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/09/06 14:08:33 by edurance         ###   ########.fr       */
+/*   Updated: 2025/09/06 18:25:10 by edurance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	reset_output(int is_pipe, int saved)
 		return ;
 	if (dup2(saved, STDOUT_FILENO) == -1)
 		perror("dup2");
+	close(saved);
 }
 
 int	is_builtin(t_cmd_block *command, t_minishell *shell, int is_pipe)
