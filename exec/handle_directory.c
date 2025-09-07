@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 15:12:31 by edurance          #+#    #+#             */
-/*   Updated: 2025/09/06 19:05:16 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/09/07 12:45:25 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,13 @@ static int	handle_dot(char **cmd, t_minishell *shell)
 		ft_putstr_fd(".: filename argument required\n", STDERR_FILENO);
 		ft_putstr_fd(".: usage: . filename [arguments]\n", STDERR_FILENO);
 		shell->exit_status = 2;
+		return (1);
+	}
+	if (ft_strcmp(cmd[0], "..") == 0)
+	{
+		ft_putstr_fd(cmd[0], 2);
+		ft_putstr_fd(": command not found\n", 2);
+		shell->exit_status = 127;
 		return (1);
 	}
 	return (0);

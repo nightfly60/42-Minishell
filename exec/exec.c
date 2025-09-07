@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 15:32:32 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/09/07 11:54:47 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/09/07 13:17:28 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ static void	exec_child(t_minishell *shell, t_cmd_block *command)
 	char	**env;
 	char	*command_path;
 
+	if (!command->cmds[0])
+		exit_minishell(shell);
 	command_path = get_path(command->cmds[0], shell);
 	env = convert_env(shell->env);
 	if (command_path && command->cmds[0][0] && command->is_valid)

@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 15:17:43 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/09/06 19:05:05 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/09/07 13:15:34 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void	reset_output(int is_pipe, int saved)
 
 int	is_builtin(t_cmd_block *command, t_minishell *shell, int is_pipe)
 {
+	if (!command->cmds[0])
+		return (0);
 	if (!ft_strcmp(command->cmds[0], "echo"))
 		return (ft_echo(command, shell, is_pipe));
 	else if (!ft_strcmp(command->cmds[0], "cd"))

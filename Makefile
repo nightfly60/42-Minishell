@@ -41,7 +41,7 @@ LIBFT_SRCS :=	libft/ft_atoi.c libft/ft_bzero.c libft/ft_calloc.c libft/ft_isalnu
 				libft/get_next_line/get_next_line_utils.c libft/ft_freeall.c libft/ft_lstget.c libft/ft_lstget.c
 
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -g3
+CFLAGS = -Wall -Werror -Wextra
 OBJ = $(patsubst %.c, $(OBJDIR)/%.o, $(FILES))
 
 INCLUDES = includes
