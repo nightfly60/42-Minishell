@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 15:20:27 by edurance          #+#    #+#             */
-/*   Updated: 2025/09/04 17:17:39 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/09/07 11:30:01 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@ void						close_parent(int pipas[2], t_cmd_block *command);
 char						*get_path(char *command, t_minishell *shell);
 void						exit_wait(t_minishell *shell, int last);
 int							handle_dir(char **cmd, t_minishell *shell);
+int							ft_fork(void);
 
 #endif

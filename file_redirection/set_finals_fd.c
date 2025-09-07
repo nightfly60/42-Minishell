@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 15:36:49 by edurance          #+#    #+#             */
-/*   Updated: 2025/09/06 22:37:03 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/09/07 11:47:49 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	set_infile_fd(t_redir *redir, t_minishell *shell,
 		}
 	}
 	else
-		block->in_fd = ft_heredoc(redir->name, shell, redir->type);
+		block->in_fd = ft_heredoc(redir->name, shell, redir->type, block);
 }
 
 static void	set_outfile_fd(t_redir *redir, t_minishell *shell,

@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 15:32:32 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/09/06 19:05:12 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/09/07 11:54:47 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,16 @@ void	display_cmd_not_found(char *string)
 	perror(string);
 }
 
+int	ft_fork(void)
+{
+	int	pid;
+
+	pid = fork();
+	if (pid == -1)
+		perror("fork");
+	return (pid);
+}
+
 static void	exec_child(t_minishell *shell, t_cmd_block *command)
 {
 	char	**env;
@@ -30,21 +40,18 @@ static void	exec_child(t_minishell *shell, t_cmd_block *command)
 
 	command_path = get_path(command->cmds[0], shell);
 	env = convert_env(shell->env);
-	if (command_path && command->cmds[0][0])
+	if (command_path && command->cmds[0][0] && command->is_valid)
 		execve(command_path, command->cmds, env);
-	if (command_path && command->cmds[0][0] && !handle_dir(command->cmds,
-			shell))
+	if (command_path && command->cmds[0][0] && !handle_dir(command->cmds, shell)
+		&& command->is_valid)
 		display_cmd_not_found(command->cmds[0]);
-	else if (command->cmds[0][0])
-	{
-		ft_putstr_fd(command->cmds[0], 2);
-		ft_putstr_fd(": command not found\n", 2);
-	}
-	if (command->cmds[0][0])
+	else if (command->cmds[0][0] && command->is_valid)
+		display_cmd_not_found(command->cmds[0]);
+	if (command->cmds[0][0] && command->is_valid)
 		shell->exit_status = 1;
-	else
+	else if (command->is_valid)
 		shell->exit_status = 0;
-	if (errno == ENOENT || !command_path)
+	if ((errno == ENOENT || !command_path) && command->is_valid)
 		shell->exit_status = 127;
 	free(command_path);
 	ft_freeall(env);
@@ -95,7 +102,7 @@ int	exec_line(t_minishell *shell)
 	while (cmd_block)
 	{
 		pipe(pipes);
-		pid = fork();
+		pid = ft_fork();
 		command = (t_cmd_block *)cmd_block->content;
 		if (pid == 0)
 			child_process(command, pipes, cmd_block, shell);

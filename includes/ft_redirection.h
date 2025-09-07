@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_redirection.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edurance <edurance@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 11:38:19 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/09/06 12:31:40 by edurance         ###   ########.fr       */
+/*   Updated: 2025/09/07 11:48:12 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ typedef struct s_list		t_list;
 int							open_files(char *name, t_redirtype type,
 								t_minishell *shell);
 int							ft_heredoc(char *limiter, t_minishell *shell,
-								t_redirtype type);
+								t_redirtype type, t_cmd_block *block);
 void						set_finals_fd(t_minishell *shell);
 int							redir_input(t_cmd_block *block);
 int							redir_output(t_list *cmd_block, t_cmd_block *block,

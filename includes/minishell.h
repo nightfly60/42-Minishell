@@ -6,7 +6,7 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 15:51:44 by edurance          #+#    #+#             */
-/*   Updated: 2025/09/06 19:05:35 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/09/07 12:11:44 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 # define MINISHELL_H
 
 /*includes*/
+# include "../libft/include/libft.h"
 # include "ft_built_in.h"
 # include "ft_env.h"
 # include "ft_exec.h"
 # include "ft_redirection.h"
-# include "../libft/include/libft.h"
-# include "parsing.h"
 # include "ft_signals.h"
+# include "parsing.h"
 # include <curses.h>
-# include <limits.h>
 # include <dirent.h>
 # include <errno.h>
 # include <fcntl.h>
+# include <limits.h>
 # include <readline/history.h>
 # include <readline/readline.h>
 # include <signal.h>
@@ -83,5 +83,6 @@ typedef struct s_minishell
 void					free_line(t_minishell *shell);
 void					init_shell(t_minishell *shell, char **env);
 void					exit_minishell(t_minishell *shell);
+t_minishell				*get_shell(t_minishell *shell);
 
 #endif
