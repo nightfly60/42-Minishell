@@ -1,0 +1,70 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   env_utils.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/15 16:01:35 by aabouyaz          #+#    #+#             */
+/*   Updated: 2025/09/05 15:43:05 by aabouyaz         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "ft_env.h"
+
+/*	renvoie le dernier element de t_env.	*/
+t_env	*env_last(t_env *lst)
+{
+	if (lst == NULL)
+		return (NULL);
+	while (lst->next)
+	{
+		lst = lst->next;
+	}
+	return (lst);
+}
+
+/*	ajoute un element a la fin de t_env.	*/
+void	env_add_back(t_env **lst, t_env *new)
+{
+	t_env	*last;
+
+	if (!*lst)
+	{
+		*lst = new;
+		return ;
+	}
+	last = env_last(*lst);
+	last->next = new;
+	new->previous = last;
+	new->next = NULL;
+}
+
+/*	affiche tout l'env. du shell (NAME=Value).	*/
+void	print_env(t_minishell *shell)
+{
+	t_env	*current;
+
+	current = shell->env;
+	while (current)
+	{
+		if (current->value)
+			ft_printf("%s=%s\n", current->name, current->value);
+		current = current->next;
+	}
+}
+
+/*	Sert a liberer toutes les variables d'env.	*/
+void	clear_env(t_env *lst, void (*f)(void *))
+{
+	t_env	*next;
+
+	while (lst)
+	{
+		f(lst->value);
+		f(lst->name);
+		next = lst->next;
+		f(lst);
+		lst = next;
+	}
+}
