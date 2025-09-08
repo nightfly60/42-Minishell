@@ -6,11 +6,11 @@
 /*   By: aabouyaz <aabouyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 14:51:13 by aabouyaz          #+#    #+#             */
-/*   Updated: 2025/05/28 11:48:57 by aabouyaz         ###   ########.fr       */
+/*   Updated: 2025/09/07 09:58:50 by aabouyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "libft.h"
 
 char	*get_result(char *s)
 {
@@ -39,6 +39,25 @@ char	*get_result(char *s)
 		res = NULL;
 	}
 	return (res);
+}
+
+static char	*free_all_cases(char ***res)
+{
+	int	i;
+
+	i = 0;
+	while (i < 1024)
+	{
+		if ((*res) && (*res)[i])
+		{
+			free((*res)[i]);
+			(*res)[i] = NULL;
+		}
+		i++;
+	}
+	free(*res);
+	*res = NULL;
+	return (NULL);
 }
 
 void	freeall_gnl(char ***res, int fd)
@@ -89,6 +108,8 @@ char	*get_next_line(int fd)
 	static char	**remain = NULL;
 	char		*res;
 
+	if (fd == -1)
+		return (free_all_cases(&remain));
 	alloc_remain(&remain);
 	my_read(fd, &remain, &r);
 	if (fd < 0 || r == -1 || fd > 1023)
