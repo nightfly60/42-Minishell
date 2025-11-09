@@ -5,7 +5,7 @@
 
 ---
 
-# English Version
+## English Version
 
 > _“As beautiful as a shell.”_  
 > _Create your own little Bash, a journey through processes, pipes, and file descriptors._
